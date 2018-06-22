@@ -75,3 +75,7 @@
   :config 
   (global-set-key (kbd "C-=") 'er/expand-region))
 #+END_SRC
+* y-n-p
+#+BEGIN_SRC emacs-lisp
+(fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
