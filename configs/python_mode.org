@@ -1,0 +1,8 @@
+* jedi mode
+#+BEGIN_SRC emacs-lisp
+(use-package jedi
+  :ensure t
+  :init
+  (add-hook 'python-mode-hook 'jedi:setup)
+  (add-hook 'python-mode-hook 'jedi:ac-setup))
+#+END_SRC
