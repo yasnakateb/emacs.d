@@ -485,3 +485,45 @@ and store the result as a list in LISTVAR."
   (add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
   (add-to-list 'auto-mode-alist '("\\.cmake\\'" . cmake-mode)))
 #+END_SRC
+* compile
+#+BEGIN_SRC emacs-lisp
+(projectile-register-project-type 'cmake '("CMakeLists.txt")
+                  :configure "cd ../ && rm -rf build && mkdir build/ && cd build && cmake .. "
+                  :compile "make -j 1"
+		  :compilation-dir "build")
+#+END_SRC
+* cc mode
+#+BEGIN_SRC emacs-lisp
+(defun c-c++/init-cc-mode ()
+  (use-package cc-mode
+    :defer t
+    :init
+    (progn
+      (add-to-list 'auto-mode-alist
+                   `("\\.h\\'" . ,c-c++-default-mode-for-headers)))
+    :config
+    (progn
+      (require 'compile)
+      (c-toggle-auto-newline 1))))
+#+END_SRC
+* disaster
+#+BEGIN_SRC emacs-lisp
+(defun c-c++/init-disaster ()
+  (use-package disaster
+    :defer t
+    :commands (disaster)
+    :init))
+#+END_SRC
+* clang-format
+#+BEGIN_SRC emacs-lisp
+(defun c-c++/init-clang-format ()
+  (use-package clang-format
+    :if c-c++-enable-clang-support))
+#+END_SRC
+* init cmake-mode
+#+BEGIN_SRC emacs-lisp
+(defun c-c++/init-cmake-mode ()
+  (use-package cmake-mode
+    :mode (("CMakeLists\\.txt\\'" . cmake-mode) ("\\.cmake\\'" . cmake-mode))
+    :init (push 'company-cmake company-backends-cmake-mode)))
+#+END_SRC
