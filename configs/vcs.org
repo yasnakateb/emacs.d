@@ -5,5 +5,5 @@
   :config
   (progn
   (global-set-key (kbd "C-c g") 'magit-status)
-  )
+  ))
 #+END_SRC

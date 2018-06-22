@@ -24,7 +24,7 @@
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/themes.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/python_mode.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/cc_mode.org"))
-
+(org-babel-load-file (expand-file-name "~/.emacs.d/configs/vcs.org"))
 (provide 'init)
 ;;; init.el ends here
 (custom-set-variables
@@ -34,7 +34,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (counsel-projectile projectile expand-region hungry-delete beacon yasnippet-snippets yasnippet jedi which-key use-package try ox-reveal org-bullets htmlize flycheck dracula-theme counsel auto-complete ace-window))))
+    (autopair rainbow-delimiters all-the-icons neotree imenu-list magit dumb-jump counsel-projectile projectile expand-region hungry-delete beacon yasnippet-snippets yasnippet jedi which-key use-package try ox-reveal org-bullets htmlize flycheck dracula-theme counsel auto-complete ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
