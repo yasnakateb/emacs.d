@@ -17,11 +17,11 @@
 (use-package try
 	     :ensure t)
 
-(org-babel-load-file (expand-file-name "~/.emacs.d/configs/org_mode.org"))
+(org-babel-load-file (expand-file-name "~/.emacs.d/configs/themes.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/buffer.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/window.org"))
+(org-babel-load-file (expand-file-name "~/.emacs.d/configs/org_mode.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/completion.org"))
-(org-babel-load-file (expand-file-name "~/.emacs.d/configs/themes.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/python_mode.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/cc_mode.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/vcs.org"))
