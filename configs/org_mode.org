@@ -1,0 +1,7 @@
+* org-bullets
+#+BEGIN_SRC emacs-lisp 
+  (use-package org-bullets
+	       :ensure t
+	       :config
+	       (add-hook 'org-mode-hool 'org-bullets-mode))
+#+END_SRC
