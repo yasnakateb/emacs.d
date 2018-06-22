@@ -5,7 +5,8 @@
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
-
+(add-to-list 'package-archives
+             '("org" . "http://orgmode.org/elpa/"))
 (package-initialize)
 
 ;; Bootstrap `use-package'
@@ -21,3 +22,4 @@
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/window.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/completion.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/themes.org"))
+
