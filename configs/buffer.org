@@ -68,3 +68,10 @@
   :config
   (global-hungry-delete-mode))
 #+END_SRC
+* expand-region mode
+#+BEGIN_SRC emacs-lisp
+(use-package expand-region
+  :ensure t
+  :config 
+  (global-set-key (kbd "C-=") 'er/expand-region))
+#+END_SRC
