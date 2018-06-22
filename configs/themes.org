@@ -27,3 +27,7 @@
 
 
 
+* scrollbar
+#+BEGIN_SRC emacs-lisp
+(scroll-bar-mode -1)
+#+END_SRC
