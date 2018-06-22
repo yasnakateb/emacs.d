@@ -19,4 +19,4 @@
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/org_mode.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/buffer.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/window.org"))
-
+(org-babel-load-file (expand-file-name "~/.emacs.d/configs/completion.org"))
