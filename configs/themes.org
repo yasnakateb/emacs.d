@@ -1,4 +1,4 @@
-* Thene
+* Theme
 #+BEGIN_SRC emacs-lisp
   (use-package dracula-theme
     :ensure t
@@ -30,4 +30,8 @@
 * scrollbar
 #+BEGIN_SRC emacs-lisp
 (scroll-bar-mode -1)
+#+END_SRC
+* titlebar
+#+BEGIN_SRC emacs-lisp
+(menu-bar-mode -1)
 #+END_SRC
