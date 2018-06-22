@@ -23,6 +23,8 @@
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/completion.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/themes.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/python_mode.org"))
+(org-babel-load-file (expand-file-name "~/.emacs.d/configs/cc_mode.org"))
+
 (provide 'init)
 ;;; init.el ends here
 (custom-set-variables

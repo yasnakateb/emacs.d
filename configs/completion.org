@@ -1,3 +1,13 @@
+* company mode
+#+BEGIN_SRC emacs-lisp
+(use-package company
+  :ensure t
+  :config
+  (progn
+  (add-hook 'after-init-hook 'global-company-mode)
+  (global-set-key (kbd "M-/") 'company-complete-common-or-cycle)
+  (setq company-idle-delay 0)))
+#+END_SRC
 * auto-complete mode
 #+BEGIN_SRC emacs-lisp
 (use-package auto-complete
@@ -5,7 +15,7 @@
   :init
   (progn
     (ac-config-default)
-    (global-auto-complete-mode t)
+;;    (global-auto-complete-mode t)
     ))
 #+END_SRC
 * flycheck mode
