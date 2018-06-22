@@ -11,3 +11,7 @@
     :config
     (which-key-mode))
 #+END_SRC
+* ibuffer interactive mode
+#+BEGIN_SRC emacs-lisp
+(defalias 'list-buffers 'ibuffer-other-window)
+#+END_SRC
