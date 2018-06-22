@@ -15,3 +15,39 @@
 #+BEGIN_SRC emacs-lisp
 (winner-mode 1)
 #+END_SRC
+* all-the-icons
+#+BEGIN_SRC emacs-lisp
+(use-package all-the-icons
+  :ensure t)
+#+END_SRC
+* imenu
+#+BEGIN_SRC emacs-lisp
+(use-package imenu
+  :ensure t
+  )
+#+END_SRC
+* imenu-list
+#+BEGIN_SRC emacs-lisp
+(use-package imenu-list
+    :defer t
+    :init
+    (progn
+      (setq imenu-list-focus-after-activation t
+            imenu-list-auto-resize t)
+    :config
+  (global-set-key (kbd "C-c i") #'imenu-list-smart-toggle)
+         :mode imenu-list-minor-mode
+))
+#+END_SRC
+* neo-tree
+#+BEGIN_SRC emacs-lisp
+(use-package neotree
+  :ensure t
+  :config
+  (progn
+  (setq projectile-switch-project-action 'neotree-projectile-action)
+  (setq neo-smart-open t)
+  (global-set-key (kbd "C-c f t") 'neotree-toggle)
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+  ))
+#+END_SRC
