@@ -10,13 +10,20 @@
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
-	(package-refresh-contents)
-	(package-install 'use-package))
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 (use-package try
-	:ensure t)
+	     :ensure t)
 
 (use-package which-key
-	:ensure t 
-	:config
-	(which-key-mode))
+	     :ensure t
+	     :config
+	     (which-key-mode))
+
+
+;; Org mode
+(use-package org-bullets
+	     :ensure t
+	     :config
+	     (add-hook 'org-mode-hook 'org-bullets-mode))
