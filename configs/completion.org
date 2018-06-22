@@ -15,3 +15,10 @@
   :init
   (global-flycheck-mode t))
 #+END_SRC
+* yasnippet mode
+#+BEGIN_SRC emacs-lisp
+(use-package yasnippet
+  :ensure t
+  :init
+  (yas-global-mode 1))
+#+END_SRC
