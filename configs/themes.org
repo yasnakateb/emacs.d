@@ -6,3 +6,24 @@
     (load-theme 'dracula t))
 #+END_SRC
 
+* highlight-line mode
+#+BEGIN_SRC emacs-lisp
+(global-hl-line-mode t)
+#+END_SRC
+* beacon mode
+#+BEGIN_SRC emacs-lisp
+(use-package beacon
+  :ensure t
+  :config
+  (progn
+  (setq beacon-blink-when-window-changes t)
+  (setq beacon-blink-when-window-scrolls nil)
+  (setq beacon-blink-when-point-moves nil)
+  (setq beacon-blink-duration .2)
+  (setq beacon-blink-delay .2)
+  (setq beacon-size 20)
+  (beacon-mode 1)))
+#+END_SRC
+
+
+
