@@ -527,3 +527,40 @@ and store the result as a list in LISTVAR."
     :mode (("CMakeLists\\.txt\\'" . cmake-mode) ("\\.cmake\\'" . cmake-mode))
     :init (push 'company-cmake company-backends-cmake-mode)))
 #+END_SRC
+* autoinsert
+#+BEGIN_SRC emacs-lisp
+(define-auto-insert
+      (cons "\\.\\([Hh]\\|hh\\|hpp\\)\\'" "C/C++ header")
+      '(nil
+    	"/*"  (make-string 70 ?*) "\n"
+    	"* File       : <" (file-name-nondirectory buffer-file-name) ">\n"
+    	"*\n"
+    	"* Author     : <Siavash Katebzadeh>\n"
+    	"*\n"
+    	"* Description:\n"
+    	"*\n"
+    	(make-string 71 ?*) "/\n\n"
+    	(let* ((noext (substring buffer-file-name 0 (match-beginning 0)))
+    		   (nopath (file-name-nondirectory noext))
+    		   (ident (concat (upcase nopath) "_H")))
+    	  (concat "#ifndef " ident "\n"
+    			  "#define " ident  " 1\n\n\n"
+    			  "\n\n#endif // " ident "\n"))))
+(define-auto-insert
+      (cons "\\.\\([Cc]\\|cc\\|cpp\\)\\'" "C/C++ source")
+      '(nil
+    	"/*"  (make-string 70 ?*) "\n"
+    	"* File       : <" (file-name-nondirectory buffer-file-name) ">\n"
+    	"*\n"
+    	"* Author     : <Siavash Katebzadeh>\n"
+    	"*\n"
+    	"* Description:\n"
+    	"*\n"
+    	(make-string 71 ?*) "/\n\n"
+    	(let* ((noext (substring buffer-file-name 0 (match-beginning 0)))
+    		   (nopath (file-name-nondirectory noext))
+    		   (ident (concat nopath ".h")))
+    	  (if (file-exists-p ident)
+    		  (concat "#include \"" ident "\"\n")))))
+(auto-insert-mode +1)
+#+END_SRC
