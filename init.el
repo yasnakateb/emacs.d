@@ -20,3 +20,4 @@
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/buffer.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/window.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/completion.org"))
+(org-babel-load-file (expand-file-name "~/.emacs.d/configs/themes.org"))

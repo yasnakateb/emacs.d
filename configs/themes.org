@@ -1,0 +1,8 @@
+* Thene
+#+BEGIN_SRC emacs-lisp
+  (use-package dracula-theme
+    :ensure t
+    :config
+    (load-theme 'dracula t))
+#+END_SRC
+
