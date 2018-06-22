@@ -2,5 +2,8 @@
 #+BEGIN_SRC emacs-lisp
 (use-package magit
   :ensure t
+  :config
+  (progn
+  (global-set-key (kbd "C-c g") 'magit-status)
   )
 #+END_SRC
