@@ -24,9 +24,27 @@
   (setq beacon-size 20)
   (beacon-mode 1)))
 #+END_SRC
-
-
-
+* parentheses
+** highlight matches
+#+BEGIN_SRC emacs-lisp
+(show-paren-mode 1)
+#+END_SRC
+** auto-pair
+#+BEGIN_SRC emacs-lisp
+(use-package autopair
+  :ensure t
+  :config
+  (autopair-global-mode))
+#+END_SRC
+** rainbow mode
+#+BEGIN_SRC emacs-lisp
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (progn
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+  ))
+#+END_SRC
 * scrollbar
 #+BEGIN_SRC emacs-lisp
 (scroll-bar-mode -1)
