@@ -8,3 +8,10 @@
     (global-auto-complete-mode t)
     ))
 #+END_SRC
+* flycheck mode
+#+BEGIN_SRC emacs-lisp
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t))
+#+END_SRC
