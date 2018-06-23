@@ -35,9 +35,7 @@
       (setq imenu-list-focus-after-activation t
             imenu-list-auto-resize t)
     :config
-  (global-set-key (kbd "C-c i") #'imenu-list-smart-toggle)
-         :mode imenu-list-minor-mode
-))
+    (global-set-key (kbd "C-c i") #'imenu-list-smart-toggle)))
 #+END_SRC
 * neo-tree
 #+BEGIN_SRC emacs-lisp
