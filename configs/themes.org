@@ -1,3 +1,7 @@
+* menubar
+#+BEGIN_SRC emacs-lisp
+(menu-bar-mode -1)
+#+END_SRC
 * welcome screen
 #+BEGIN_SRC emacs-lisp
 (use-package page-break-lines
@@ -77,10 +81,3 @@
 #+BEGIN_SRC emacs-lisp
 (scroll-bar-mode -1)
 #+END_SRC
-* titlebar
-#+BEGIN_SRC emacs-lisp
-(menu-bar-mode -1)
-#+END_SRC
-
-
-
