@@ -12,10 +12,10 @@
 #+BEGIN_SRC emacs-lisp
 (use-package irony
   :ensure t
-  :init (unless (irony--find-server-executable)
-                (call-interactively #'irony-install-server))
   :config
   (progn
+   (unless (irony--find-server-executable)
+                (call-interactively #'irony-install-server))
    (add-hook 'c++-mode-hook 'irony-mode)
    (add-hook 'c-mode-hook 'irony-mode)
    (setq-default irony-cdb-compilation-databases '(irony-cdb-libclang
