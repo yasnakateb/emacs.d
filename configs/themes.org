@@ -1,11 +1,39 @@
-* Theme
+* welcome screen
+#+BEGIN_SRC emacs-lisp
+(use-package page-break-lines
+  :ensure t)
+(use-package dashboard
+  :ensure t
+  :config
+  (progn
+  (setq dashboard-banner-logo-title "[-< True happiness can be found when two contrary powers cooperate together >-]")
+  (setq dashboard-startup-banner "~/.emacs.d/configs/logo.png")
+  (setq dashboard-items '((recents  . 7)
+                          (projects . 5)
+                          (agenda . 5)
+                          (bookmarks . 10)))
+  (dashboard-setup-startup-hook)))
+#+END_SRC
+* theme
 #+BEGIN_SRC emacs-lisp
   (use-package dracula-theme
     :ensure t
     :config
-    (load-theme 'dracula t))
+    (progn
+    (load-theme 'dracula t)))
 #+END_SRC
-
+* spaceline
+#+BEGIN_SRC emacs-lisp
+(use-package spaceline
+  :ensure t)
+(use-package spaceline-all-the-icons
+  :ensure t
+  :after spaceline
+  :config
+  (progn
+   (spaceline-all-the-icons-theme)
+   (setq spaceline-all-the-icons-separator-type 'cup)))
+#+END_SRC
 * highlight-line mode
 #+BEGIN_SRC emacs-lisp
 (global-hl-line-mode t)
