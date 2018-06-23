@@ -70,6 +70,8 @@
    "m" 'mu4e
    "g" 'magit-status
    "o" 'org-mode
+   "t" 'twit
+   "r" 'md4rd
    )
 #+END_SRC
 * leader buffer
