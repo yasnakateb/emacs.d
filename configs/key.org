@@ -57,6 +57,8 @@
    "x" 'counsel-M-x
    "s" 'swiper
    "t" 'neotree-toggle
+   "I" 'rtags-imenu
+   "i" 'imenu
    )
 #+END_SRC
 * leader modes
@@ -93,5 +95,15 @@
    "j" 'evil-window-down
    "k" 'evil-window-up
    "l" 'evil-window-right
+   )
+#+END_SRC
+* leader shell
+#+BEGIN_SRC emacs-lisp
+(general-define-key
+   :prefix "SPC s"
+   :states '(normal visual motion)
+   :keymaps 'override
+   "u" 'update-ticket
+   "s" 'scp-project
    )
 #+END_SRC
