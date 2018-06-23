@@ -1,0 +1,35 @@
+* update ticket
+#+BEGIN_SRC emacs-lisp
+(defun update-ticket()
+  (interactive)
+  (let ((command 
+  (format
+  "echo %s | kinit %s@%s && cd %s && pssh -h %s -l %s 'echo %s | kinit; aklog -force'"
+  staff-password
+  "s1691546"
+  staff-realm
+  staff-phd
+  staff-hosts
+  "s1691546"
+  staff-password)))
+  (shell-command command)))
+#+END_SRC
+* scp-project
+#+BEGIN_SRC  emacs-lisp
+(defun scp-project ()
+  (interactive)
+  (let*
+     ((dir 
+         (file-name-nondirectory
+            (directory-file-name
+               (file-name-directory
+                 (projectile-project-root)))))
+
+        (command
+          (format
+            "rsync -rav -e ssh  --include='*' --exclude='*.git*' %s %s%s"
+	       (projectile-project-root)
+	       staff-project
+	       dir)))
+  (shell-command command)))
+#+END_SRC

@@ -17,6 +17,7 @@
 (use-package try
 	     :ensure t)
 
+(load-library "~/.emacs.d/secrets/passwords.el.gpg")
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/themes.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/buffer.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/window.org"))
@@ -28,6 +29,7 @@
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/latex.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/mail.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/key.org"))
+(org-babel-load-file (expand-file-name "~/.emacs.d/configs/shell.org"))
 
 (provide 'init)
 ;;; init.el ends here
