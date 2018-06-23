@@ -38,7 +38,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (dashboard hydra general evil-magit evil-collection evil gnus-dired mu4e-alert mu4e cmake-mode cmake-project yasnippet-snippets which-key use-package undo-tree try rainbow-delimiters ox-reveal org-bullets neotree magit jedi irony-eldoc imenu-list hungry-delete htmlize helm-rtags google-c-style ggtags flycheck-rtags flycheck-irony expand-region dumb-jump dracula-theme counsel-projectile company-rtags company-irony beacon autopair auctex all-the-icons ace-window))))
+    (mu4e-conversation dashboard hydra general evil-magit evil-collection evil gnus-dired mu4e-alert mu4e cmake-mode cmake-project yasnippet-snippets which-key use-package undo-tree try rainbow-delimiters ox-reveal org-bullets neotree magit jedi irony-eldoc imenu-list hungry-delete htmlize helm-rtags google-c-style ggtags flycheck-rtags flycheck-irony expand-region dumb-jump dracula-theme counsel-projectile company-rtags company-irony beacon autopair auctex all-the-icons ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
