@@ -120,7 +120,7 @@
 ;;  :config
 ;;  (counsel-projectile-on))
 #+END_SRC
-* linum-relative
+* nlinum-relative
 #+BEGIN_SRC emacs-lisp
 (use-package nlinum-relative
   :ensure t
@@ -129,5 +129,23 @@
   (add-hook 'prog-mode-hook 'nlinum-relative-mode)
   (setq nlinum-relative-redisplay-delay 0)
   (setq nlinum-relative-current-symbol "")
-  (setq nlinum-relative-offset 1))                 ;; 1 if you want 0, 2, 3...
+  (setq nlinum-relative-offset 1))
+#+END_SRC
+* backups
+#+BEGIN_SRC emacs-lisp
+(let ((backup-dir "~/.emacs.d/backups")
+      (auto-saves-dir "~/.emacs.d/auto-saves/"))
+  (dolist (dir (list backup-dir auto-saves-dir))
+    (when (not (file-directory-p dir))
+      (make-directory dir t)))
+  (setq backup-directory-alist `(("." . ,backup-dir))
+        auto-save-file-name-transforms `((".*" ,auto-saves-dir t))
+        auto-save-list-file-prefix (concat auto-saves-dir ".saves-")
+        tramp-backup-directory-alist `((".*" . ,backup-dir))
+        tramp-auto-save-directory auto-saves-dir))
+(setq backup-by-copying t
+      delete-old-versions t
+      version-control t
+      kept-new-versions 5
+      kept-old-versions 2)
 #+END_SRC
