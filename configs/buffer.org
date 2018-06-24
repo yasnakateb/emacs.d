@@ -149,3 +149,10 @@
       kept-new-versions 5
       kept-old-versions 2)
 #+END_SRC
+* emojify
+#+BEGIN_SRC emacs-lisp
+(use-package emojify
+  :ensure t
+  :config
+  (add-hook 'after-init-hook #'global-emojify-mode))
+#+END_SRC
