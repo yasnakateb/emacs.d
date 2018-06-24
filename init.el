@@ -16,7 +16,8 @@
 
 (use-package try
 	     :ensure t)
-
+(setq custom-file "~/.emacs.d/backups/custom.el")
+(load custom-file 'noerror)
 (load-library "~/.emacs.d/secrets/passwords.el.gpg")
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/themes.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/buffer.org"))
