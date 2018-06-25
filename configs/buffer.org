@@ -156,3 +156,10 @@
   :config
   (add-hook 'after-init-hook #'global-emojify-mode))
 #+END_SRC
+* google-this
+#+BEGIN_SRC emacs-lisp
+(use-package google-this
+  :ensure t
+  :config
+  (google-this-mode 1))
+#+END_SRC

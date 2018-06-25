@@ -109,3 +109,15 @@
    "s" 'scp-project
    )
 #+END_SRC
+
+* information
+#+BEGIN_SRC emacs-lisp
+(general-define-key
+   :prefix "SPC i"
+   :states '(normal visual motion)
+   :keymaps 'override
+   "g" 'google-this
+   "G" 'google-this-search
+   "m" 'man
+   )
+#+END_SRC
