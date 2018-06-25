@@ -1,0 +1,22 @@
+* web-mode
+#+BEGIN_SRC emacs-lisp
+(use-package web-mode
+  :ensure t)
+#+END_SRC
+* company-web-html
+#+BEGIN_SRC emacs-lisp
+(use-package company-web
+  :ensure t
+  :config
+  (add-hook 'web-mode-hook
+       (lambda ()
+          (set (make-local-variable 'company-backends) '(company-web-html))
+            (company-mode t))))
+#+END_SRC
+* company settings
+#+BEGIN_SRC emacs-lisp
+(setq company-tooltip-limit 20)
+(setq company-tooltip-align-annotations 't)
+(setq company-idle-delay .3)
+(setq company-begin-commands '(self-insert-command))
+#+END_SRC
