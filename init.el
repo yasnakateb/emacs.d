@@ -7,6 +7,8 @@
 	     '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives
              '("org" . "http://orgmode.org/elpa/"))
+(add-to-list 'package-archives
+	     '("marmalade" . "https://marmalade-repo.org/packages") t)
 (package-initialize)
 
 ;; Bootstrap `use-package'

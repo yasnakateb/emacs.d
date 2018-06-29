@@ -81,7 +81,8 @@
    :states '(normal visual motion)
    :keymaps 'override
    "b" 'ibuffer
-   "d" 'kill-buffer
+   "d" 'kill-current-buffer
+   "D" 'kill-buffer
    )
 #+END_SRC
 * leader window
@@ -97,6 +98,7 @@
    "j" 'evil-window-down
    "k" 'evil-window-up
    "l" 'evil-window-right
+   "t" 'toggle-transparency
    )
 #+END_SRC
 * leader shell
@@ -107,6 +109,31 @@
    :keymaps 'override
    "u" 'update-ticket
    "s" 'scp-project
+   "w" 'wttrin
+   "W" 'wttrin-exit
+   )
+#+END_SRC
+
+* leader goto 
+#+BEGIN_SRC emacs-lisp
+(general-define-key
+   :prefix "SPC g"
+   :states '(normal visual motion)
+   :keymaps 'override
+   "c" 'avy-goto-char
+   )
+#+END_SRC
+
+* leader config files 
+#+BEGIN_SRC emacs-lisp
+(defun configs-visit ()
+(interactive)
+(find-file "~/.emacs.d/configs"))
+(general-define-key
+   :prefix "SPC C"
+   :states '(normal visual motion)
+   :keymaps 'override
+   "C" 'configs-visit 
    )
 #+END_SRC
 
