@@ -27,9 +27,18 @@
 
         (command
           (format
-            "rsync -rav -e ssh  --include='*' --exclude='*.git*' %s %s%s"
+            "rsync -rav -e ssh   --exclude=build --exclude='.git*' %s %s%s"
 	       (projectile-project-root)
 	       staff-project
 	       dir)))
   (shell-command command)))
+#+END_SRC
+* Show weather
+#+BEGIN_SRC emacs-lisp
+(use-package wttrin
+  :ensure t
+  :commands (wttrin)
+  :init
+  (setq wttrin-default-accept-language '("Accept-Language" . "en-US"))
+  (setq wttrin-default-cities '("Edinburgh" "~Shiraz" "London")))
 #+END_SRC
