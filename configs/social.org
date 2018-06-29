@@ -18,3 +18,12 @@
   (setq twittering-timer-interval 300)
   (setq twittering-url-show-status nil)))
 #+END_SRC
+* ivy-youtube mode
+#+BEGIN_SRC emacs-lisp
+(use-package ivy-youtube
+  :ensure t
+  :config
+  (progn
+  (setq ivy-youtube-key 'youtube-key)
+  ))
+#+END_SRC
