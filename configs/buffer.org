@@ -169,3 +169,16 @@
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "qutebrowser")
 #+END_SRC
+
+** kill buffer
+#+BEGIN_SRC emacs-lisp
+(setq kill-buffer-query-functions 
+  (delq 'process-kill-buffer-query-function kill-buffer-query-functions))
+#+END_SRC
+
+** man
+#+BEGIN_SRC emacs-lisp
+(require 'man)
+(set-face-attribute 'Man-overstrike nil :inherit font-lock-type-face :bold t)
+(set-face-attribute 'Man-underline nil :inherit font-lock-keyword-face :underline t)
+#+END_SRC
