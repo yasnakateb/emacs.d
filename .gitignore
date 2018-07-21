@@ -1,3 +1,13 @@
 elpa/*
 *~
 configs/*.el
+ac-comphist.dat
+auto-saves/
+backups/
+emojis/
+irony/
+ivy-youtube-history
+projectile-bookmarks.eld
+recentf
+request/
+url/
