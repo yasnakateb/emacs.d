@@ -163,6 +163,19 @@
   :config
   (google-this-mode 1))
 #+END_SRC
+* FIXMEe
+#+BEGIN_SRC emacs-lisp
+(use-package fixmee
+  :ensure t
+  :after button-lock
+  :config
+  (global-fixmee-mode 1))
+#+END_SRC
+* dark room
+#+BEGIN_SRC emacs-lisp
+(use-package darkroom
+  :ensure t)
+#+END_SRC
 * defaults
 ** browser
 #+BEGIN_SRC emacs-lisp

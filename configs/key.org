@@ -83,6 +83,7 @@
    "b" 'ibuffer
    "d" 'kill-current-buffer
    "D" 'kill-buffer
+   "r" 'darkroom-mode
    )
 #+END_SRC
 * leader window
