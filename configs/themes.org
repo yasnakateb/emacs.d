@@ -36,7 +36,7 @@
   :config
   (progn
    (spaceline-all-the-icons-theme)
-   (setq spaceline-all-the-icons-separator-type 'cup)))
+   (setq spaceline-all-the-icons-separator-type 'arrow)))
 #+END_SRC
 * highlight-line mode
 #+BEGIN_SRC emacs-lisp
@@ -93,4 +93,18 @@
                      ((numberp (cadr alpha)) (cadr alpha)))
                100)
           '(85 . 50) '(100 . 100)))))
+#+END_SRC
+* highlight-indent-guides
+#+BEGIN_SRC emacs-lisp
+(use-package highlight-indent-guides
+  :ensure t
+  :config
+  (progn
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  (setq highlight-indent-guides-method 'character)))
+#+END_SRC
+
+* hs
+#+BEGIN_SRC emacs-lisp
+(add-hook 'prog-mode-hook 'hs-minor-mode)
 #+END_SRC
