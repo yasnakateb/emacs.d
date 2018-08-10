@@ -8,14 +8,6 @@
   (require 'org-id))
 
 #+END_SRC
-* org-bullets
-#+BEGIN_SRC emacs-lisp 
-  (use-package org-bullets
-    :ensure t
-    :config
-    (add-hook 'org-mode-hook 'org-bullets-mode))
-#+END_SRC
-
 * org-reveal
 #+BEGIN_SRC emacs-lisp
 (use-package ox-reveal
@@ -29,3 +21,19 @@
 #+END_SRC
 
 #+RESULTS:
+
+* gnuplot
+#+BEGIN_SRC emacs-lisp
+(use-package gnuplot
+  :ensure t)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((gnuplot . t)))
+(defun insert-file-as-org-table (filename)
+  "Insert a file into the current buffer at point, and convert it to an org table."
+  (interactive (list (ido-read-file-name "csv file: ")))
+  (let* ((start (point))
+    (end (+ start (nth 1 (insert-file-contents filename)))))
+    (org-table-convert-region start end)
+    )) 
+#+END_SRC
