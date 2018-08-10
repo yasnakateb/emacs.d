@@ -569,7 +569,31 @@ and store the result as a list in LISTVAR."
 (use-package rust-mode
   :ensure t
   :config
-  (add-hook 'rust-mode-hook 'prettify-symbols-mode))
+  (add-hook 'rust-mode-hook 'prettify-symbols-mode)
+  (add-hook
+   'rust-mode-hook
+   (lambda ()
+     (setq
+      prettify-symbols-alist
+      '(
+        ("fn"         . ?ƒ)
+        ("Fn"         . ?𝘍)
+        ("->"         . ?⟼)
+        ("=>"         . ?⟹)
+        (">="         . ?≥)
+        ("<="         . ?≤)
+        ("=="         . ?≌)
+        ("!="         . ?≠)
+        ; (".."         . ?‥)
+        ("..."        . ?…)
+
+        ; ("*"          . ?×)
+        ; ("/"          . ?÷)
+        )
+      )
+     )
+   )
+  )
 #+END_SRC
 * cargo
 #+BEGIN_SRC emacs-lisp
