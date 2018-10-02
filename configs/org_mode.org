@@ -6,7 +6,13 @@
   :mode ("\\.org$" . org-mode)
   :config
   (require 'org-id))
-
+#+END_SRC
+* org-bullets
+#+BEGIN_SRC emacs-lisp
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+END_SRC
 * org-reveal
 #+BEGIN_SRC emacs-lisp

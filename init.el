@@ -34,5 +34,6 @@
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/key.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/shell.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/configs/social.org"))
+(org-babel-load-file (expand-file-name "~/.emacs.d/configs/web.org"))
 
 (provide 'init)

@@ -8,6 +8,11 @@
   (progn 
   (evil-mode 1)))
 #+END_SRC
+* evil-org
+#+BEGIN_SRC emacs-lisp
+(use-package evil-org
+   :ensure t)
+#+END_SRC
 * evil-collection
 #+BEGIN_SRC emacs-lisp
 (use-package evil-collection

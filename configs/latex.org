@@ -83,5 +83,8 @@ the automatic filling of the current paragraph."
       (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
       (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
       (add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)))
-
+  (use-package latex-preview-pane 
+  :ensure t
+  :config
+  (latex-preview-pane-enable))
 #+END_SRC

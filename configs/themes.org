@@ -20,11 +20,10 @@
 #+END_SRC
 * theme
 #+BEGIN_SRC emacs-lisp
-  (use-package dracula-theme
-    :ensure t
-    :config
-    (progn
-    (load-theme 'dracula t)))
+(use-package challenger-deep-theme
+  :ensure t
+  :config
+(load-theme 'challenger-deep t))
 #+END_SRC
 * spaceline
 #+BEGIN_SRC emacs-lisp
@@ -40,21 +39,11 @@
 #+END_SRC
 * highlight-line mode
 #+BEGIN_SRC emacs-lisp
-(global-hl-line-mode t)
+
 #+END_SRC
 * beacon mode
 #+BEGIN_SRC emacs-lisp
-(use-package beacon
-  :ensure t
-  :config
-  (progn
-  (setq beacon-blink-when-window-changes t)
-  (setq beacon-blink-when-window-scrolls nil)
-  (setq beacon-blink-when-point-moves nil)
-  (setq beacon-blink-duration .2)
-  (setq beacon-blink-delay .2)
-  (setq beacon-size 20)
-  (beacon-mode 1)))
+
 #+END_SRC
 * parentheses
 ** highlight matches
@@ -79,7 +68,7 @@
 #+END_SRC
 * scrollbar
 #+BEGIN_SRC emacs-lisp
-(scroll-bar-mode -1)
+
 #+END_SRC
 * transparency
 #+BEGIN_SRC emacs-lisp
@@ -106,5 +95,5 @@
 
 * hs
 #+BEGIN_SRC emacs-lisp
-(add-hook 'prog-mode-hook 'hs-minor-mode)
+
 #+END_SRC
