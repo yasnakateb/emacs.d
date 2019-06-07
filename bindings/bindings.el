@@ -1,59 +1,4 @@
-* evil
-#+BEGIN_SRC emacs-lisp
-(use-package evil
-  :ensure t
-  :init
-  (setq evil-want-integration nil) 
-  :config
-  (progn 
-  (evil-mode 1)))
-#+END_SRC
-* evil-org
-#+BEGIN_SRC emacs-lisp
-(use-package evil-org
-   :ensure t)
-#+END_SRC
-* evil-collection
-#+BEGIN_SRC emacs-lisp
-(use-package evil-collection
-  :after evil
-  :ensure t
-  :config
-  (progn
-  (evil-collection-init)))
-#+END_SRC
-* evil-magit
-#+BEGIN_SRC emacs-lisp
-(use-package evil-magit
-  :ensure t
-  :config
-  (progn
-  (evil-define-key evil-magit-state magit-mode-map "?" 'evil-search-backward)))
-#+END_SRC
-* hydra
-#+BEGIN_SRC emacs-lisp
-(use-package hydra
-  :ensure t
-)
-#+END_SRC
-* evil leader key
-#+BEGIN_SRC emacs-lisp
-(use-package general
-  :ensure t
-  :config
-  (setq general-override-states '(insert
-                                  emacs
-                                  hybrid
-                                  normal
-                                  visual
-                                  motion
-                                  operator
-                                  replace))
-  (general-override-mode))
-  
-#+END_SRC
-* leader file
-#+BEGIN_SRC emacs-lisp
+;;; leader file
 (general-define-key
    :prefix "SPC f"
    :states '(normal visual motion)
@@ -65,9 +10,7 @@
    "I" 'rtags-imenu
    "i" 'imenu
    )
-#+END_SRC
-* leader modes
-#+BEGIN_SRC emacs-lisp
+;;; leader modes
 (general-define-key
    :prefix "SPC m"
    :states '(normal visual motion)
@@ -78,9 +21,7 @@
    "t" 'twit
    "r" 'md4rd
    )
-#+END_SRC
-* leader buffer
-#+BEGIN_SRC emacs-lisp
+;;; leader buffer
 (general-define-key
    :prefix "SPC b"
    :states '(normal visual motion)
@@ -90,9 +31,7 @@
    "D" 'kill-buffer
    "r" 'darkroom-mode
    )
-#+END_SRC
-* leader window
-#+BEGIN_SRC emacs-lisp
+;;; leader window
 (general-define-key
    :prefix "SPC w"
    :states '(normal visual motion)
@@ -106,9 +45,7 @@
    "l" 'evil-window-right
    "t" 'toggle-transparency
    )
-#+END_SRC
-* leader shell
-#+BEGIN_SRC emacs-lisp
+;;; leader shell
 (general-define-key
    :prefix "SPC s"
    :states '(normal visual motion)
@@ -118,20 +55,14 @@
    "w" 'wttrin
    "W" 'wttrin-exit
    )
-#+END_SRC
-
-* leader goto 
-#+BEGIN_SRC emacs-lisp
+;;; leader goto 
 (general-define-key
    :prefix "SPC g"
    :states '(normal visual motion)
    :keymaps 'override
    "c" 'avy-goto-char
    )
-#+END_SRC
-
-* leader config files 
-#+BEGIN_SRC emacs-lisp
+;;; leader config files 
 (defun configs-visit ()
 (interactive)
 (find-file "~/.emacs.d/configs"))
@@ -141,10 +72,7 @@
    :keymaps 'override
    "C" 'configs-visit 
    )
-#+END_SRC
-
-* information
-#+BEGIN_SRC emacs-lisp
+;;; information
 (general-define-key
    :prefix "SPC i"
    :states '(normal visual motion)
@@ -153,4 +81,3 @@
    "G" 'google-this-search
    "m" 'man
    )
-#+END_SRC

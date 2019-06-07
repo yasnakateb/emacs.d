@@ -1,33 +1,31 @@
-* web-mode
-#+BEGIN_SRC emacs-lisp
+;;; web-mode
 (use-package web-mode
-  :ensure t)
-#+END_SRC
-* company-web-html
-#+BEGIN_SRC emacs-lisp
+  :ensure t
+  :defer t)
+;;; company-web-html
 (use-package company-web
   :ensure t
+  :defer t
   :config
   (add-hook 'web-mode-hook
        (lambda ()
           (set (make-local-variable 'company-backends) '(company-web-html))
             (company-mode t))))
-#+END_SRC
-* company settings
-#+BEGIN_SRC emacs-lisp
+;;; company settings
 (setq company-tooltip-limit 20)
 (setq company-tooltip-align-annotations 't)
 (setq company-idle-delay .3)
 (setq company-begin-commands '(self-insert-command))
-#+END_SRC
-* react native
-#+BEGIN_SRC emacs-lisp
+;;; react native
 (use-package js2-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 (use-package nodejs-repl
-  :ensure t)
+  :ensure t
+  :defer t)
 (use-package tide
-  :ensure t)
+  :ensure t
+  :defer t)
 (setq js2-basic-offset 2
       js2-bounce-indent-p t)
 
@@ -54,4 +52,3 @@
 (add-hook 'before-save-hook 'tide-format-before-save)
 
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
-#+END_SRC

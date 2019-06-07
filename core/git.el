@@ -1,14 +1,9 @@
-* magit mode
-#+BEGIN_SRC emacs-lisp
+;;; magit
 (use-package magit
   :ensure t
   :config
-  (progn
-  (global-set-key (kbd "C-c g") 'magit-status)
-  ))
-#+END_SRC
-* git-gutter
-#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c g") 'magit-status))
+;;; git-gutter
 (use-package git-gutter-fringe+
   :ensure t
   :config
@@ -97,4 +92,3 @@
   ".XXXX..."
   ".XXXX..."
   ".XXXX...")))
-#+END_SRC

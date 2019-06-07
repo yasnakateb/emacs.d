@@ -1,5 +1,4 @@
-* update ticket
-#+BEGIN_SRC emacs-lisp
+;;; update ticket
 (defun update-ticket()
   (interactive)
   (let ((command 
@@ -13,9 +12,7 @@
   "s1691546"
   staff-password)))
   (shell-command command)))
-#+END_SRC
-* scp-project
-#+BEGIN_SRC  emacs-lisp
+;;; scp-project
 (defun scp-project ()
   (interactive)
   (let*
@@ -32,13 +29,10 @@
 	       staff-project
 	       dir)))
   (shell-command command)))
-#+END_SRC
-* Show weather
-#+BEGIN_SRC emacs-lisp
+;;; Show weather
 (use-package wttrin
   :ensure t
   :commands (wttrin)
   :init
   (setq wttrin-default-accept-language '("Accept-Language" . "en-US"))
   (setq wttrin-default-cities '("Edinburgh" "~Shiraz" "London")))
-#+END_SRC

@@ -1,55 +1,49 @@
-* mu4e general settings
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu/mu4")
-  (setq mu4e-update-interval 300
+;;; mu4e general settings
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+(setq mu4e-update-interval 300
 	mu4e-view-show-images t
 	mu4e-view-image-max-width 800
 	mu4e-maildir-shortcuts
-	'(("/Gmail/inbox" . ?g)
-	  ("/Staff/inbox" . ?s)))
-  (global-set-key (kbd "C-c a M") 'mu4e)
-#+END_SRC
-* imap
-#+BEGIN_SRC emacs-lisp
-(setq mu4e-get-mail-command "offlineimap")
-#+END_SRC
-* default send
-#+BEGIN_SRC emacs-lisp
+	'(("/gmail/inbox" . ?g)
+	  ("/staff/inbox" . ?s)))
+(global-set-key (kbd "C-c a M") 'mu4e)
+;;; imap
+(setq mu4e-get-mail-command "mbsync")
+;;; default send
 (setq mu4e-sent-folder "/sent"
       mu4e-drafts-folder "/drafts"
       user-mail-address "mr.katebzadeh@gmail.com"
       smtpmail-default-smtp-server "smtp.gmail.com"
       smtpmail-smtp-server "smtp.gmail.com"
       smtpmail-smtp-service 587)
-#+END_SRC
-* list of accounts
-#+BEGIN_SRC emacs-lisp
-  (defvar mu4e-account-list
-    '(("Gmail"
-       (mu4e-sent-folder "/Gmail/sent")
+;;; list of accounts
+(defvar mu4e-account-list
+    '(("gmail"
+       (mu4e-sent-folder "/gmail/[Gmail].Sent Mail")
+       (mu4e-drafts-folder "/gmail/[Gmail].Drafts")
+       (mu4e-trash-folder "/gmail/[Gmail].Trash")
        (user-mail-address "mr.katebzadeh@gmail.com")
        (smtpmail-smtp-user "mr.katebzadeh")
        (smtpmail-local-domain "gmail.com")
        (smtpmail-default-smtp-server "smtp.gmail.com")
        (smtpmail-smtp-server "smtp.gmail.com")
-       (user-full-name "Siavash Katebzadeh")
+       (user-full-name "M.R. Siavash Katebzadeh")
        (smtpmail-smtp-service 587)
        )
-      ("Staff"
-       (mu4e-sent-folder "/Staff/sent")
+      ("staff"
+       (mu4e-sent-folder "/staff/Sent Items")
+       (mu4e-drafts-folder "/staff/Drafts")
+       (mu4e-trash-folder "/staff/Trash")
        (user-mail-address "m.r.katebzadeh@ed.ac.uk")
        (smtpmail-smtp-user "s1691546")
        (smtpmail-local-domain "ed.ac.uk")
        (smtpmail-default-smtp-server "smtp.staffmail.ed.ac.uk ")
        (smtpmail-smtp-server "smtp.staffmail.ed.ac.uk ")
-       (user-full-name "Katebzadeh Siavash")
-
+       (user-full-name "KATEBZADEH Siavash")
        (smtpmail-smtp-service 587)
        )))
-#+END_SRC
-* set account
-#+BEGIN_SRC emacs-lisp
-  (defun mu4e-set-account ()
+;;; set account
+(defun mu4e-set-account ()
     (let* ((account
             (if mu4e-compose-parent-message
                 (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
@@ -66,14 +60,12 @@
                     (set (car var) (cadr var)))
                 account-vars)
         (error "No email account found"))))
-  (add-hook 'mu4e-compose-pre-hook 'mu4e-set-account)
-#+END_SRC
-* msmtp
-#+BEGIN_SRC emacs-lisp
+(add-hook 'mu4e-compose-pre-hook 'mu4e-set-account)
+;;; msmtp
 (setq message-send-mail-function 'message-send-mail-with-sendmail
         sendmail-program "/usr/bin/msmtp"
         user-full-name "Siavash Katebzadeh")
-  (defun choose-msmtp-account ()
+(defun choose-msmtp-account ()
     (if (message-mail-p)
         (save-excursion
           (let*
@@ -82,27 +74,22 @@
                        (message-fetch-field "from")))
                (account
                 (cond
-                 ((string-match "mr.katebzadeh@gmail.com" from) "Gmail")
-                 ((string-match "mrkatebzadeh.com" from) "Gmail")
-                 ((string-match "m.r.katebzadeh@ed.ac.uk" from) "Staff")
-                 ((string-match "s1691546@ed.ac.uk" from) "Staff")
-                 ((string-match "s1691546@staffmail.ed.ac.uk" from) "Staff"))))
+                 ((string-match "mr.katebzadeh@gmail.com" from) "gmail")
+                 ((string-match "mrkatebzadeh.com" from) "gmail")
+                 ((string-match "m.r.katebzadeh@ed.ac.uk" from) "staff")
+                 ((string-match "s1691546@ed.ac.uk" from) "staff")
+                 ((string-match "s1691546@staffmail.ed.ac.uk" from) "staff"))))
             (setq message-sendmail-extra-arguments (list '"-a" account))))))
-  (setq message-sendmail-envelope-from 'header)
-  (add-hook 'message-send-mail-hook 'choose-msmtp-account)
-#+END_SRC
-* alert
-#+BEGIN_SRC emacs-lisp
+(setq message-sendmail-envelope-from 'header)
+(add-hook 'message-send-mail-hook 'choose-msmtp-account)
+;;; alert
 (use-package mu4e-alert
   :ensure t
   :config
-  (progn
      (mu4e-alert-set-default-style 'notifications)
      (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
-     (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display)))
-#+END_SRC
-* gnus-dired
-#+BEGIN_SRC emacs-lisp
+     (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display))
+;;; gnus-dired
 (use-package gnus
   :ensure t
   :config
@@ -117,18 +104,14 @@
             (push (buffer-name buffer) buffers))))
       (nreverse buffers)))
 
-  (setq gnus-dired-mail-mode 'mu4e-user-agent)
-  (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)))
-#+END_SRC
-* maildirs-extention
-#+BEGIN_SRC emacs-lisp
+(setq gnus-dired-mail-mode 'mu4e-user-agent)
+(add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)))
+;;; maildirs-extention
 (use-package mu4e-maildirs-extension
   :ensure t
   :config
   (mu4e-maildirs-extension))
-#+END_SRC
-* signature
-#+BEGIN_SRC emacs-lisp
+;;; signature
 (defun mu4e-choose-signature ()
   "Insert one of a number of sigs"
   (interactive)
@@ -146,13 +129,6 @@
     (message-insert-signature)))
 (add-hook 'mu4e-compose-mode-hook
           (lambda () (local-set-key (kbd "C-c C-w") #'mu4e-choose-signature)))
-#+END_SRC
-* mu4e-conversation
-#+BEGIN_SRC emacs-lisp
-  (use-package mu4e-conversation
-    :ensure t
-    :config
-    (progn
-      ;;(global-mu4e-conversation-mode)
-))
-#+END_SRC
+;;; mu4e-conversation
+(use-package mu4e-conversation
+    :ensure t)

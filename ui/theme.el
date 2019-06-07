@@ -1,13 +1,15 @@
-* menubar
-#+BEGIN_SRC emacs-lisp
+;;; theme
+;; bars
 (menu-bar-mode -1)
-#+END_SRC
-* welcome screen
-#+BEGIN_SRC emacs-lisp
+(toggle-scroll-bar -1) 
+(tool-bar-mode -1) 
+;; welcome screen
 (use-package page-break-lines
   :ensure t)
 (use-package dashboard
   :ensure t
+  :init
+  (dashboard-setup-startup-hook)
   :config
   (progn
   (setq dashboard-banner-logo-title "[-< True happiness can be found when two contrary powers cooperate together >-]")
@@ -15,63 +17,39 @@
   (setq dashboard-items '((recents  . 7)
                           (projects . 5)
                           (agenda . 5)
-                          (bookmarks . 10)))
-  (dashboard-setup-startup-hook)))
-#+END_SRC
-* theme
-#+BEGIN_SRC emacs-lisp
+                          (bookmarks . 10)))))
+;; theme
 (use-package challenger-deep-theme
   :ensure t
-  :config
-(load-theme 'challenger-deep t))
-#+END_SRC
-* spaceline
-#+BEGIN_SRC emacs-lisp
+  :init
+  (load-theme 'challenger-deep t)
+  :config)
+;; spaceline
 (use-package spaceline
   :ensure t)
 (use-package spaceline-all-the-icons
   :ensure t
   :after spaceline
+  :init
+   (spaceline-all-the-icons-theme)
   :config
   (progn
-   (spaceline-all-the-icons-theme)
    (setq spaceline-all-the-icons-separator-type 'arrow)))
-#+END_SRC
-* highlight-line mode
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-* beacon mode
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-* parentheses
-** highlight matches
-#+BEGIN_SRC emacs-lisp
+;; parentheses
+;; highlight matches
 (show-paren-mode 1)
-#+END_SRC
-** auto-pair
-#+BEGIN_SRC emacs-lisp
+;; auto-pair
 (use-package autopair
   :ensure t
   :config
   (autopair-global-mode))
-#+END_SRC
-** rainbow mode
-#+BEGIN_SRC emacs-lisp
+;; rainbow mode
 (use-package rainbow-delimiters
   :ensure t
   :config
   (progn
-  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-  ))
-#+END_SRC
-* scrollbar
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-* transparency
-#+BEGIN_SRC emacs-lisp
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)))
+;; transparency
 (defun toggle-transparency ()
   (interactive)
   (let ((alpha (frame-parameter nil 'alpha)))
@@ -82,18 +60,10 @@
                      ((numberp (cadr alpha)) (cadr alpha)))
                100)
           '(85 . 50) '(100 . 100)))))
-#+END_SRC
-* highlight-indent-guides
-#+BEGIN_SRC emacs-lisp
+;; highlight-indent-guides
 (use-package highlight-indent-guides
   :ensure t
   :config
   (progn
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
   (setq highlight-indent-guides-method 'character)))
-#+END_SRC
-
-* hs
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC

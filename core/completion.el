@@ -1,40 +1,28 @@
-* company mode
-#+BEGIN_SRC emacs-lisp
+;;; company mode
 (use-package company
   :ensure t
   :config
-  (progn
   (add-hook 'after-init-hook 'global-company-mode)
   (global-set-key (kbd "M-/") 'company-complete-common-or-cycle)
-  (setq company-idle-delay 0)))
-#+END_SRC
-* auto-complete mode
-#+BEGIN_SRC emacs-lisp
+  (setq company-idle-delay 0))
+;;; auto-complete mode
 (use-package auto-complete
   :ensure t
   :init
-  (progn
     (ac-config-default)
 ;;    (global-auto-complete-mode t)
-    ))
-#+END_SRC
-* flycheck mode
-#+BEGIN_SRC emacs-lisp
+    )
+;;; flycheck mode
 (use-package flycheck
   :ensure t
   :init
   (global-flycheck-mode t))
-#+END_SRC
-* yasnippet mode
-#+BEGIN_SRC emacs-lisp
+;;; yasnippet mode
 (use-package yasnippet
   :ensure t
+  :defer t
   :init
   (yas-global-mode 1))
-#+END_SRC
-* yasnippet-snippets
-#+BEGIN_SRC emacs-lisp
+;;; yasnippet-snippets
 (use-package yasnippet-snippets
   :ensure t)
-#+END_SRC
-

@@ -18,15 +18,15 @@
 
 (let ((gc-cons-threshold (* 256 1024 1024))
       (gc-cons-percentage 0.6)
-      (file-name-handler-alist nil)
-      (core-directory (concat user-emacs-directory "core/"))
-      (bindings-directory (concat user-emacs-directory "bindings/"))
-      (config-directory (concat user-emacs-directory "config/"))))
+      (file-name-handler-alist nil)))
 ;; Initialize package.el
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
+
+(setq custom-file "~/.emacs.d/backups/custom.el")
+(load custom-file 'noerror)
 
 ;; Bootstrap `use-package'
 (setq-default use-package-always-ensure t ; Auto-download package if not exists
@@ -40,41 +40,12 @@
 (eval-when-compile
   (require 'use-package))
 
-;; Add system-wide defaults here, for example:
-;;
-;; (setq-default inhibit-startup-message t
-;;               initial-scratch-message nil)
-
-;; Add all use-package definitions from here
-(use-package try
-  :ensure t)
-(setq custom-file "~/.emacs.d/backups/custom.el")
-(load custom-file 'noerror)
-
-(use-package outshine
-  ;; Easier navigation for source files, especially this one.
-  :bind (:map outshine-mode-map
-    ("<S-iso-lefttab>" . outshine-cycle-buffer))
-  :hook (emacs-lisp-mode . outshine-mode))
-;; When config gets stable, using emacs server may be more convenient
-;; (require 'server)
-;; (unless (server-running-p)
-;;   (server-start))
-;;; evil
-(use-package evil
-  :ensure t ;; install the evil package if not installed
-  :init ;; tweak evil's configuration before loading it
-  (setq evil-search-module 'evil-search)
-  (setq evil-ex-complete-emacs-commands nil)
-  (setq evil-vsplit-window-right t)
-  (setq evil-split-window-below t)
-  (setq evil-shift-round nil)
-  (setq evil-want-C-u-scroll t)
-  (setq evil-default-cursor t)
-  ;; This has to be before we invoke evil-mode due to:
-  ;; https://github.com/cofi/evil-leader/issues/10
-  (use-package evil-leader
-      :init (global-evil-leader-mode))
-  (evil-mode 1))
-  
+(defun load-directory (dir)
+      (let ((load-it (lambda (f)
+		       (load-file (concat (file-name-as-directory dir) f)))
+		     ))
+	(mapc load-it (directory-files dir nil "\\.el$"))))
+(load-directory "~/.emacs.d/ui")
+(load-directory "~/.emacs.d/core")
+(load-directory "~/.emacs.d/bindings")
 ;;; init.el ends here

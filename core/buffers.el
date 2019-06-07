@@ -1,25 +1,9 @@
-* ido-mode
-#+BEGIN_SRC emacs-lisp
-;; (setq ido-enable-flex-matching t)
-;; (setq ido-everywhere t)
-;; (ido-mode 1)
-#+END_SRC
-* which-key
-#+BEGIN_SRC emacs-lisp
-  (use-package which-key
-    :ensure t
-    :config
-    (which-key-mode))
-#+END_SRC
-* ibuffer interactive mode
-** set it as default
-#+BEGIN_SRC emacs-lisp
+;;; ibuffer interactive mode
+;; set it as default
 (defalias 'list-buffers 'ibuffer-other-window)
-#+END_SRC
-** better look
-#+BEGIN_SRC emacs-lisp 
+;; better look
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-  (setq ibuffer-saved-filter-groups
+(setq ibuffer-saved-filter-groups
   (quote (("default"
     ("dired" (mode . dired-mode))
     ("org" (name . "^.*org$"))
@@ -34,23 +18,22 @@
     (name . "^\\*scratch\\*$")
     (name . "^\\*Messages\\*$")))
     ))))
- (add-hook 'ibuffer-mode-hook
+(add-hook 'ibuffer-mode-hook
    (lambda ()
    (ibuffer-auto-mode 1)
    (ibuffer-switch-to-saved-filter-groups "default")))
 (setq ibuffer-show-empty-filter-groups nil)
 (setq ibuffer-expert t)
-#+END_SRC
-* swiper-mode/counsel
-#+BEGIN_SRC emacs-lisp
+
+;;; swiper-mode/counsel
 (use-package counsel
   :ensure t
   )
 (use-package swiper
   :ensure try
+  :init
+  (ivy-mode 1)
   :config
-  (progn
-    (ivy-mode 1)
     (setq ivy-use-virtual-buffers t)
     (setq ivy-re-builders-alist
       '((ivy-switch-buffer . ivy--regex-plus)
@@ -66,62 +49,48 @@
     (global-set-key (kbd "<f1> l") 'counsel-load-library)
     (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
     (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-;;    (global-set-key (kbd "C-c g") 'counsel-git)
-;;    (global-set-key (kbd "C-c j") 'counsel-git-grep)
+    (global-set-key (kbd "C-c g") 'counsel-git)
+    (global-set-key (kbd "C-c j") 'counsel-git-grep)
     (global-set-key (kbd "C-c k") 'counsel-ag)
     (global-set-key (kbd "C-x l") 'counsel-locate)
     (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
-    ))
-#+END_SRC
-* avy
-#+BEGIN_SRC emacs-lisp
-  (use-package avy
+    )
+;;; avy
+(use-package avy
     :ensure t
     :config
     (avy-setup-default)
     :bind ("M-s" . avy-goto-char))
-#+END_SRC
 
-* undo-tree
-#+BEGIN_SRC emacs-lisp
+;;; undo-tree
 (use-package undo-tree
   :ensure t
   :init
   (global-undo-tree-mode))
-#+END_SRC
-* hungry-delete mode
-#+BEGIN_SRC emacs-lisp
+;;; hungry-delete mode
 (use-package hungry-delete
   :ensure t
   :config
   (global-hungry-delete-mode))
-#+END_SRC
-* expand-region mode
-#+BEGIN_SRC emacs-lisp
+;;; expand-region mode
 (use-package expand-region
   :ensure t
   :config 
   (global-set-key (kbd "C-=") 'er/expand-region))
-#+END_SRC
-* y-n-p
-#+BEGIN_SRC emacs-lisp
+;;; y-n-p
 (fset 'yes-or-no-p 'y-or-n-p)
-#+END_SRC
-* projectile/counsel-projectile
-#+BEGIN_SRC emacs-lisp
+;;; projectile/counsel-projectile
 (use-package projectile
   :ensure t
   :config
   (projectile-global-mode)
   (setq projectile-completion-system 'ivy))
-;;(use-package counsel-projectile
-;;  :ensure t
-;;  :config
-;;  (counsel-projectile-on))
-#+END_SRC
-* nlinum-relative
-#+BEGIN_SRC emacs-lisp
+(use-package counsel-projectile
+  :ensure t
+  :config
+  (counsel-projectile-on))
+;;; nlinum-relative
 (use-package nlinum-relative
   :ensure t
   :config
@@ -130,9 +99,7 @@
   (setq nlinum-relative-redisplay-delay 0)
   (setq nlinum-relative-current-symbol "")
   (setq nlinum-relative-offset 1))
-#+END_SRC
-* backups
-#+BEGIN_SRC emacs-lisp
+;;; backups
 (let ((backup-dir "~/.emacs.d/backups")
       (auto-saves-dir "~/.emacs.d/auto-saves/"))
   (dolist (dir (list backup-dir auto-saves-dir))
@@ -148,50 +115,33 @@
       version-control t
       kept-new-versions 5
       kept-old-versions 2)
-#+END_SRC
-* emojify
-#+BEGIN_SRC emacs-lisp
+;;; emojify
 (use-package emojify
   :ensure t
   :config
   (add-hook 'after-init-hook #'global-emojify-mode))
-#+END_SRC
-* google-this
-#+BEGIN_SRC emacs-lisp
+;;; google-this
 (use-package google-this
   :ensure t
-  :config
+  :init
   (google-this-mode 1))
-#+END_SRC
-* FIXMEe
-#+BEGIN_SRC emacs-lisp
+;;; FIXMEe
 (use-package fixmee
   :ensure t
   :after button-lock
-  :config
+  :init
   (global-fixmee-mode 1))
-#+END_SRC
-* dark room
-#+BEGIN_SRC emacs-lisp
+;;; dark room
 (use-package darkroom
-  :ensure t)
-#+END_SRC
-* defaults
-** browser
-#+BEGIN_SRC emacs-lisp
+  :defer t)
+;;; defaults
+;; browser
 (setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "qutebrowser")
-#+END_SRC
-
-** kill buffer
-#+BEGIN_SRC emacs-lisp
+      browse-url-generic-program "firefox")
+;;kill buffer
 (setq kill-buffer-query-functions 
   (delq 'process-kill-buffer-query-function kill-buffer-query-functions))
-#+END_SRC
-
-** man
-#+BEGIN_SRC emacs-lisp
+;; man
 (require 'man)
 (set-face-attribute 'Man-overstrike nil :inherit font-lock-type-face :bold t)
 (set-face-attribute 'Man-underline nil :inherit font-lock-keyword-face :underline t)
-#+END_SRC

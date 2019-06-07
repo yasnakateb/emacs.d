@@ -1,5 +1,4 @@
-* auctex
-#+BEGIN_SRC emacs-lisp
+;;; auctex
 (defvar latex-build-command (if (executable-find "latexmk") "LatexMk" "LaTeX")
 "The default command to use with `SPC m b'")
 (defvar latex-enable-auto-fill t
@@ -66,25 +65,8 @@ the automatic filling of the current paragraph."
 (defun latex/font-serif () (interactive) (TeX-font nil ?\C-r))
 (defun latex/font-oblique () (interactive) (TeX-font nil ?\C-s))
 (defun latex/font-upright () (interactive) (TeX-font nil ?\C-u))
-(use-package tex
-  :defer t
-  :init
-  (progn
-  (setq TeX-command-default latex-build-command
-            TeX-auto-save t
-            TeX-parse-self t
-            TeX-syntactic-comment t
-            TeX-source-correlate-start-server nil
-            LaTeX-fill-break-at-separators nil)
-      (when latex-enable-auto-fill
-        (add-hook 'LaTeX-mode-hook 'latex/auto-fill-mode))
-      (when latex-enable-folding
-        (add-hook 'LaTeX-mode-hook 'TeX-fold-mode))
-      (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-      (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
-      (add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)))
-  (use-package latex-preview-pane 
+
+(use-package latex-preview-pane 
   :ensure t
   :config
   (latex-preview-pane-enable))
-#+END_SRC
