@@ -1,8 +1,9 @@
 ;;; company mode
 (use-package company
   :ensure t
-  :config
+  :init  
   (add-hook 'after-init-hook 'global-company-mode)
+  :config
   (global-set-key (kbd "M-/") 'company-complete-common-or-cycle)
   (setq company-idle-delay 0))
 ;;; auto-complete mode
@@ -10,7 +11,7 @@
   :ensure t
   :init
     (ac-config-default)
-;;    (global-auto-complete-mode t)
+    (global-auto-complete-mode t)
     )
 ;;; flycheck mode
 (use-package flycheck
