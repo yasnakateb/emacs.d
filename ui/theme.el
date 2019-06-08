@@ -65,7 +65,7 @@
 ;;; Font
 (set-face-attribute 'default nil
                     :family "Source Code Pro"
-                    :height 110
+                    :height 95
                     :weight 'normal
                     :width 'normal)
 ;;; highlight current line
