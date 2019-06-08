@@ -11,3 +11,6 @@ projectile-bookmarks.eld
 recentf
 request/
 url/
+var/
+transient/
+eshell/
