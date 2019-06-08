@@ -27,14 +27,10 @@
   :init
   (unless (member "all-the-icons" (font-family-list))
     (all-the-icons-install-fonts t)))
-;; spaceline
-(use-package spaceline
-  :demand t
+(use-package telephone-line
+  :ensure t
   :init
-  (setq powerline-default-separator 'arrow-fade)
-  :config
-  (require 'spaceline-config)
-  (spaceline-spacemacs-theme))
+  (telephone-line-mode 1))
 ;; parentheses
 ;; highlight matches
 (show-paren-mode 1)
