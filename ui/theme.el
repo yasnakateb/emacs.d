@@ -35,11 +35,6 @@
   :config
   (require 'spaceline-config)
   (spaceline-spacemacs-theme))
-(use-package spaceline-all-the-icons
-  :ensure t
-  :after (spaceline all-the-icons)
-  :init
-   (spaceline-all-the-icons-theme))
 ;; parentheses
 ;; highlight matches
 (show-paren-mode 1)
