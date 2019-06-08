@@ -1,11 +1,33 @@
 ;;; mu4e general settings
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-(setq mu4e-update-interval 300
-	mu4e-view-show-images t
-	mu4e-view-image-max-width 800
-	mu4e-maildir-shortcuts
+(require 'mu4e)
+;;; mu4e-maildirs-extension
+(use-package mu4e-maildirs-extension
+  :ensure t
+  :after mu4e)
+;;; mu4e-conversation
+(use-package mu4e-conversation
+  :ensure t
+  :after mu4e)
+;(eval-after-load 'mu4e
+(setq mu4e-maildir "~/.local/share/mail" 
+      mu4e-get-mail-command "mbsync -a --verbose"
+      mu4e-update-interval 300
+      mu4e-view-show-images t
+      mu4e-view-show-addresses t
+      mu4e-enable-notifications nil
+      mu4e-enable-mode-line t
+      mu4e-headers-skip-duplicates t
+      mu4e-change-filenames-when-moving t
+      mu4e-view-image-max-width 800
+      mu4e-maildir-shortcuts
 	'(("/gmail/inbox" . ?g)
 	  ("/staff/inbox" . ?s)))
+(setq mu4e-view-actions
+        '(("capture message" . mu4e-action-capture-message)
+          ("view in browser" . mu4e-action-view-in-browser)
+          ("show this thread" . mu4e-action-show-thread)
+	  ("View as pdf" . mu4e-action-view-as-pdf)))
 (global-set-key (kbd "C-c a M") 'mu4e)
 ;;; imap
 (setq mu4e-get-mail-command "mbsync")
@@ -129,6 +151,5 @@
     (message-insert-signature)))
 (add-hook 'mu4e-compose-mode-hook
           (lambda () (local-set-key (kbd "C-c C-w") #'mu4e-choose-signature)))
-;;; mu4e-conversation
-(use-package mu4e-conversation
-    :ensure t)
+(mu4e-maildirs-extension)
+;)
