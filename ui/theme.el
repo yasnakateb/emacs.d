@@ -1,8 +1,4 @@
 ;;; theme
-;; bars
-(menu-bar-mode -1)
-(toggle-scroll-bar -1) 
-(tool-bar-mode -1) 
 ;; welcome screen
 (use-package page-break-lines
   :ensure t)
@@ -13,7 +9,7 @@
   :config
   (progn
   (setq dashboard-banner-logo-title "[-< True happiness can be found when two contrary powers cooperate together >-]")
-  (setq dashboard-startup-banner "~/.emacs.d/configs/logo.png")
+  (setq dashboard-startup-banner "~/.emacs.d/logo.png")
   (setq dashboard-items '((recents  . 7)
                           (projects . 5)
                           (agenda . 5)
@@ -31,10 +27,9 @@
   :ensure t
   :after spaceline
   :init
-   (spaceline-all-the-icons-theme)
   :config
-  (progn
-   (setq spaceline-all-the-icons-separator-type 'arrow)))
+   (setq spaceline-all-the-icons-separator-type 'arrow)
+   (spaceline-all-the-icons-theme))
 ;; parentheses
 ;; highlight matches
 (show-paren-mode 1)
@@ -67,3 +62,15 @@
   (progn
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
   (setq highlight-indent-guides-method 'character)))
+;;; Font
+(set-face-attribute 'default nil
+                    :family "Source Code Pro"
+                    :height 110
+                    :weight 'normal
+                    :width 'normal)
+;;; highlight current line
+(global-hl-line-mode +1)
+;; bars
+(menu-bar-mode -1)
+(toggle-scroll-bar -1) 
+(tool-bar-mode -1) 
