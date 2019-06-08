@@ -1,6 +1,8 @@
 ;;; magit
 (use-package magit
   :ensure t
+  :init
+  (add-hook 'with-editor-mode-hook 'evil-insert-state)
   :config
   (global-set-key (kbd "C-c g") 'magit-status))
 ;;; git-gutter
