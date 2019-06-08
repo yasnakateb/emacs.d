@@ -7,28 +7,38 @@
   :init
   (dashboard-setup-startup-hook)
   :config
-  (progn
   (setq dashboard-banner-logo-title "[-< True happiness can be found when two contrary powers cooperate together >-]")
   (setq dashboard-startup-banner "~/.emacs.d/logo.png")
+  (setq dashboard-center-content t)
+  (setq dashboard-set-heading-icons t)
   (setq dashboard-items '((recents  . 7)
                           (projects . 5)
                           (agenda . 5)
-                          (bookmarks . 10)))))
+                          (bookmarks . 10))))
 ;; theme
 (use-package challenger-deep-theme
   :ensure t
   :init
   (load-theme 'challenger-deep t)
   :config)
+;; all-the-icons
+(use-package all-the-icons
+  :ensure t
+  :init
+  (unless (member "all-the-icons" (font-family-list))
+    (all-the-icons-install-fonts t)))
 ;; spaceline
 (use-package spaceline
-  :ensure t)
+  :demand t
+  :init
+  (setq powerline-default-separator 'arrow-fade)
+  :config
+  (require 'spaceline-config)
+  (spaceline-spacemacs-theme))
 (use-package spaceline-all-the-icons
   :ensure t
   :after spaceline
-  :init
   :config
-   (setq spaceline-all-the-icons-separator-type 'arrow)
    (spaceline-all-the-icons-theme))
 ;; parentheses
 ;; highlight matches
@@ -42,8 +52,7 @@
 (use-package rainbow-delimiters
   :ensure t
   :config
-  (progn
-  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)))
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 ;; transparency
 (defun toggle-transparency ()
   (interactive)
