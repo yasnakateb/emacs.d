@@ -4,6 +4,7 @@
   :init
   (add-hook 'with-editor-mode-hook 'evil-insert-state)
   :config
+  (setq magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1)
   (global-set-key (kbd "C-c g") 'magit-status))
 ;;; git-gutter
 (use-package git-gutter-fringe+
