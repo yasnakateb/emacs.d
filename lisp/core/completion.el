@@ -15,15 +15,14 @@
     )
 ;;; flycheck mode
 (use-package flycheck
-  :ensure t
-  :init
-  (global-flycheck-mode t))
+  :defer t
+  :ensure t)
 ;;; yasnippet mode
 (use-package yasnippet
   :ensure t
-  :defer t
-  :init
-  (yas-global-mode 1))
+  :defer t)
 ;;; yasnippet-snippets
 (use-package yasnippet-snippets
+  :defer t
+  :after yasnippet
   :ensure t)

@@ -115,4 +115,7 @@
    "I" 'rtags-imenu
    "r" 'darkroom-mode
    "t" 'toggle-transparency
+   "s" 'flyspell-mode
+   "c" 'flycheck-mode
+   "y" 'yas-global-mode
    "i" 'imenu)
