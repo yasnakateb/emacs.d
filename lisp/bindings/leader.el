@@ -8,6 +8,7 @@
  "o" '(:ignore t :which-key "Org")
  "a" '(:ignore t :which-key "Applications")
  "g" '(:ignore t :which-key "Magit")
+ "l" '(:ignore t :which-key "Latex")
  "b" '(:ignore t :which-key "Buffers")
  "S" '(:ignore t :which-key "Search")
  "s" '(:ignore t :which-key "Shell")
@@ -23,8 +24,7 @@
    :prefix "SPC f"
    :states '(normal visual motion)
    :keymaps 'override
-   "f" 'helm-find-files
-   )
+   "f" 'helm-find-files)
 ;;; Applications
 (general-define-key
    :prefix "SPC a"
@@ -53,8 +53,7 @@
    :keymaps 'override
    "b" 'ibuffer
    "d" 'kill-current-buffer
-   "D" 'kill-buffer
-   )
+   "D" 'kill-buffer)
 ;;; Windows
 (general-define-key
    :prefix "SPC w"
@@ -66,8 +65,7 @@
    "h" 'evil-window-left
    "j" 'evil-window-down
    "k" 'evil-window-up
-   "l" 'evil-window-right
-   )
+   "l" 'evil-window-right)
 ;;; Shell
 (general-define-key
    :prefix "SPC s"
@@ -77,16 +75,14 @@
    "u" 'update-ticket
    "c" 'scp-project
    "w" 'wttrin
-   "W" 'wttrin-exit
-   )
+   "W" 'wttrin-exit)
 ;;; Search
 (general-define-key
    :prefix "SPC S"
    :states '(normal visual motion)
    :keymaps 'override
    "c" 'avy-goto-char
-   "s" 'swiper
-   )
+   "s" 'swiper)
 ;;; leader config files 
 (defun configs-visit ()
 (interactive)
@@ -95,8 +91,7 @@
    :prefix "SPC C"
    :states '(normal visual motion)
    :keymaps 'override
-   "C" 'configs-visit 
-   )
+   "C" 'configs-visit )
 ;;; information
 (general-define-key
    :prefix "SPC h"
@@ -104,8 +99,7 @@
    :keymaps 'override
    "g" 'google-this
    "G" 'google-this-search
-   "m" 'man
-   )
+   "m" 'man)
 ;;; Toggles
 (general-define-key
    :prefix "SPC t"
@@ -113,9 +107,19 @@
    :keymaps 'override
    "n" 'neotree-toggle
    "I" 'rtags-imenu
-   "r" 'darkroom-mode
+   "d" 'darkroom-mode
    "t" 'toggle-transparency
+   "p" 'smartparens-mode
    "s" 'flyspell-mode
    "c" 'flycheck-mode
+   "r" 'rainbow-delimiters-mode
    "y" 'yas-global-mode
    "i" 'imenu)
+;;; Latex
+(general-define-key
+   :prefix "SPC l"
+   :states '(normal visual motion)
+   :keymaps 'override
+   "c" 'TeX-command-master
+   "v" 'TeX-view
+   "r" 'helm-bibtex)
