@@ -1,72 +1,77 @@
 ;;; auctex
-(defvar latex-build-command (if (executable-find "latexmk") "LatexMk" "LaTeX")
-"The default command to use with `SPC m b'")
-(defvar latex-enable-auto-fill t
-"Whether to use auto-fill-mode or not in tex files.")
-(defvar latex-enable-folding nil
-  "Whether to use `TeX-fold-mode' or not in tex/latex buffers.")
-
-(defvar latex-nofill-env '("equation"
-                           "equation*"
-                           "align"
-                           "align*"
-                           "tabular"
-                           "tikzpicture")
-"List of environment names in which `auto-fill-mode' will be inhibited.")
-
-
-(defun latex/build ()
-  (interactive)
-  (progn
-    (let ((TeX-save-query nil))
-      (TeX-save-document (TeX-master-file)))
-    (TeX-command latex-build-command 'TeX-master-file -1)))
-    ;; (setq build-proc (TeX-command latex-build-command 'TeX-master-file -1))
-    ;; ;; Sometimes, TeX-command returns nil causing an error in set-process-sentinel
-    ;; (when build-proc
-    ;;   (set-process-sentinel build-proc 'latex//build-sentinel))))
-
-(defun latex//build-sentinel (process event)
-  (if (string= event "finished\n")
-      (TeX-view)
-    (message "Errors! Check with C-`")))
-
-(defun latex//autofill ()
-  "Check whether the pointer is currently inside one of the
-environments described in `latex-nofill-env' and if so, inhibits
-the automatic filling of the current paragraph."
-  (let ((do-auto-fill t)
-        (current-environment "")
-        (level 0))
-    (while (and do-auto-fill (not (string= current-environment "document")))
-      (setq level (1+ level)
-            current-environment (LaTeX-current-environment level)
-            do-auto-fill (not (member current-environment latex-nofill-env))))
-    (when do-auto-fill
-      (do-auto-fill))))
-
-(defun latex/auto-fill-mode ()
-  "Toggle auto-fill-mode using the custom auto-fill function."
-  (interactive)
-  (auto-fill-mode)
-  (setq auto-fill-function 'latex//autofill))
-
-;; Rebindings for TeX-font
-(defun latex/font-bold () (interactive) (TeX-font nil ?\C-b))
-(defun latex/font-medium () (interactive) (TeX-font nil ?\C-m))
-(defun latex/font-code () (interactive) (TeX-font nil ?\C-t))
-(defun latex/font-emphasis () (interactive) (TeX-font nil ?\C-e))
-(defun latex/font-italic () (interactive) (TeX-font nil ?\C-i))
-(defun latex/font-clear () (interactive) (TeX-font nil ?\C-d))
-(defun latex/font-calligraphic () (interactive) (TeX-font nil ?\C-a))
-(defun latex/font-small-caps () (interactive) (TeX-font nil ?\C-c))
-(defun latex/font-sans-serif () (interactive) (TeX-font nil ?\C-f))
-(defun latex/font-normal () (interactive) (TeX-font nil ?\C-n))
-(defun latex/font-serif () (interactive) (TeX-font nil ?\C-r))
-(defun latex/font-oblique () (interactive) (TeX-font nil ?\C-s))
-(defun latex/font-upright () (interactive) (TeX-font nil ?\C-u))
-
-(use-package latex-preview-pane 
+(use-package auctex
+  :defer t
+  :mode ("\\.tex\\'" . latex-mode)
+  :init
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (add-hook 'LaTeX-mode-hook
+            (lambda ()
+	      ;(TeX-source-correlate-mode)
+              (turn-on-reftex)
+              (reftex-isearch-minor-mode)
+	      (add-to-list 'TeX-view-program-selection
+			   '(output-pdf "Zathura"))
+	      (setq-default TeX-master nil)
+              (setq reftex-plug-into-AUCTeX t
+                    TeX-PDF-mode t
+		    TeX-command-force ""
+		    ;TeX-source-correlate-method 'synctex
+		    ;TeX-source-correlate-start-server t
+		    ))))
+  (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
+  (add-hook 'LaTeX-mode-hook
+	    (lambda ()
+	      (add-hook 'after-save-hook 'TeX-command-master nil t)))
+					; to use pdfview with auctex
+  (add-hook 'LaTeX-mode-hook 'pdf-tools-install)
+  
+  ;; 3 Make C-c-c not ask, just do the default action. Add C-c-a for asking
+  ;; If non-nil, TeX-command-query will return the value of this variable instead
+  ;; of quering the user.
+  
+  (add-hook 'LaTeX-mode-hook
+	    '(lambda()
+	       (define-key LaTeX-mode-map "\C-c\C-a" ; 'a' for ask
+		 (lambda (arg) (interactive "P")
+		   (let ((TeX-command-force nil))
+		     (TeX-command-master arg))))))
+  ;; to use pdfview with auctex
+;;; reftex
+(use-package reftex
+  :ensure t
+  :defer t
+  :config
+  (setq reftex-cite-prompt-optional-args t)); Prompt for empty optional arguments in cite
+;;; pdf-tools
+(use-package pdf-tools
+  :ensure t
+  :mode ("\\.pdf\\'" . pdf-tools-install)
+  :bind ("C-c C-g" . pdf-sync-forward-search)
+  :defer t
+  :config
+  (setq mouse-wheel-follow-mouse t)
+  (setq pdf-view-resize-factor 1.10))
+;;; helm-bibtex
+(use-package helm-bibtex
+  :defer t
   :ensure t
   :config
-  (latex-preview-pane-enable))
+
+  (setq bibtex-completion-bibliography "~/Dropbox/org/ref/master.bib"
+        bibtex-completion-library-path "~/Dropbox/org/ref/pdfs"
+        bibtex-completion-notes-path   "~/Dropbox/org/ref/notes.org")
+  (setq helm-bibtex-bibliography '("~/Dropbox/org/ref/master.bib"))
+  (setq helm-bibtex-library-path '("~/Dropbox/org/ref/pdfs"))
+  ;; using bibtex path reference to pdf file
+  (setq bibtex-completion-pdf-field "File")
+  (setq helm-bibtex-default-action 'bibtex-completion-insert-citation))
+
+;;; auctex-latexmk
+(use-package auctex-latexmk
+  :ensure t
+  :defer t
+  :config
+  (auctex-latexmk-setup)
+  :init
+  (setq auctex-latexmk-inherit-TeX-PDF-mode t))
