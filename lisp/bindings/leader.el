@@ -109,6 +109,7 @@
    "I" 'rtags-imenu
    "d" 'darkroom-mode
    "t" 'toggle-transparency
+   "h" 'highlight-indent-guides-mode
    "p" 'smartparens-mode
    "s" 'flyspell-mode
    "c" 'flycheck-mode

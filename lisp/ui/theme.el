@@ -51,11 +51,10 @@
           '(85 . 50) '(100 . 100)))))
 ;; highlight-indent-guides
 (use-package highlight-indent-guides
+  :defer t
   :ensure t
   :config
-  (progn
-  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-  (setq highlight-indent-guides-method 'character)))
+  (setq highlight-indent-guides-method 'character))
 ;;; Font
 (set-face-attribute 'default nil
                     :family "Source Code Pro"
