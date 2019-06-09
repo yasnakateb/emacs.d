@@ -1,9 +1,9 @@
 ;;; leader file
 (general-define-key
  :prefix "SPC"
- :keymaps 'normal
+ :states '(normal visual motion)
+ :keymaps 'override
  "" '(nil :which-key "My lieutenant general prefix")
- ;; bind nothing but give SPC f a description for which-key
  "f" '(:ignore t :which-key "Files")
  "o" '(:ignore t :which-key "Org")
  "a" '(:ignore t :which-key "Applications")
@@ -15,14 +15,15 @@
  "w" '(:ignore t :which-key "Windows")
  "t" '(:ignore t :which-key "Toggles")
 
+ "x" 'helm-M-x
+ ";" 'eval-expression
  )
 ;;; Files
 (general-define-key
    :prefix "SPC f"
    :states '(normal visual motion)
    :keymaps 'override
-   "f" 'counsel-find-file
-   "x" 'counsel-M-x
+   "f" 'helm-find-files
    )
 ;;; Applications
 (general-define-key
@@ -30,6 +31,7 @@
    :states '(normal visual motion)
    :keymaps 'override
    "m" 'mu4e
+   "d" 'dired
    "t" 'twit
    "r" 'md4rd)
 ;;; Magit
@@ -77,7 +79,7 @@
    "w" 'wttrin
    "W" 'wttrin-exit
    )
-;;; Search 
+;;; Search
 (general-define-key
    :prefix "SPC S"
    :states '(normal visual motion)

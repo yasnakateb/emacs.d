@@ -39,13 +39,18 @@
   (package-install 'use-package))
 (eval-when-compile
   (require 'use-package))
+; stop creating backup~ files
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+(setq create-lockfiles nil)
 
 (defun load-directory (dir)
       (let ((load-it (lambda (f)
 		       (load-file (concat (file-name-as-directory dir) f)))
 		     ))
 	(mapc load-it (directory-files dir nil "\\.el$"))))
-(load-directory "~/.emacs.d/ui")
-(load-directory "~/.emacs.d/core")
-(load-directory "~/.emacs.d/bindings")
+(add-to-list 'load-path "~/.emacs.d/lisp/extra")
+(load-directory "~/.emacs.d/lisp/ui")
+(load-directory "~/.emacs.d/lisp/core")
+(load-directory "~/.emacs.d/lisp/bindings")
 ;;; init.el ends here
