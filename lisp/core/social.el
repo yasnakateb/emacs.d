@@ -15,9 +15,3 @@
   (setq twittering-icon-mode t)
   (setq twittering-timer-interval 300)
   (setq twittering-url-show-status nil))
-;;; ivy-youtube mode
-(use-package ivy-youtube
-  :ensure t
-  :defer t
-  :config
-  (setq ivy-youtube-key 'youtube-key))
