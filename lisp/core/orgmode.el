@@ -30,3 +30,13 @@
   (let* ((start (point))
     (end (+ start (nth 1 (insert-file-contents filename)))))
     (org-table-convert-region start end))) 
+;;; org-ref
+(use-package org-ref
+  :ensure t
+  :defer t
+  :init
+  (setq org-ref-bibliography-notes     "~/Dropbox/org/ref/notes.org"
+        org-ref-default-bibliography   '("~/Dropbox/org/ref/master.bib")
+        org-ref-pdf-directory          "~/Dropbox/org/ref/pdfs/")
+  (setq org-latex-pdf-process '("latexmk -pdflatex='%latex -shell-escape -interaction nonstopmode' -pdf -output-directory=%o -f %f"))
+  (setq interleave-org-notes-dir-list `(,(concat org-directory "pdfs"))))
