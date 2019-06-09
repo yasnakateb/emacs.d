@@ -79,10 +79,6 @@
   :after button-lock
   :init
   (global-fixmee-mode 1))
-;;; dark room
-(use-package darkroom
-  :ensure t
-  :defer t)
 ;;; defaults
 ;; browser
 (setq browse-url-browser-function 'browse-url-generic

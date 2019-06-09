@@ -31,9 +31,19 @@
 ;;narrow dired to match filter
 (use-package dired-narrow
   :ensure t)
+;;; dired subtree
 (use-package dired-subtree
   :ensure t)
+;;; dired-quick-sort
 (use-package dired-quick-sort
   :ensure t
   :config
   (dired-quick-sort-setup))
+;;; neo-tree
+(use-package neotree
+  :ensure t
+  :config
+  (setq projectile-switch-project-action 'neotree-projectile-action)
+  (setq neo-smart-open t)
+  (global-set-key (kbd "C-c f t") 'neotree-toggle)
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))

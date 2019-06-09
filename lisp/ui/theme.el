@@ -34,16 +34,10 @@
 ;; parentheses
 ;; highlight matches
 (show-paren-mode 1)
-;; auto-pair
-(use-package autopair
-  :ensure t
-  :config
-  (autopair-global-mode))
 ;; rainbow mode
 (use-package rainbow-delimiters
   :ensure t
-  :config
-  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+  :defer t)
 ;; transparency
 (defun toggle-transparency ()
   (interactive)
