@@ -38,6 +38,7 @@
 (let ((gc-cons-threshold (* 256 1024 1024))
       (gc-cons-percentage 0.6)
       (file-name-handler-alist nil)))
+
 ;;; Basic configs
 ; stop creating backup~ files
 (setq make-backup-files nil)
@@ -67,8 +68,21 @@
 		       (load-file (concat (file-name-as-directory dir) f)))
 		     ))
 	(mapc load-it (directory-files dir nil "\\.el$"))))
+;;; Path vars
+(setq user-emacs-directory (file-name-directory load-file-name))
+(defvar mk-emacs-dir
+  (eval-when-compile (file-truename user-emacs-directory))
+  "The path to the currently loaded .emacs.d directory. Must end with a slash.")
+
+(defvar mk-core-dir (concat mk-emacs-dir "core/")
+  "The root directory of MK's core files. Must end with a slash.")
+
+(defvar mk-modules-dir (concat mk-emacs-dir "modules/")
+"The root directory for MK's modules. Must end with a slash.")
+
 ;;; Load core
 (load-directory "~/.emacs.d/core")
+
 ;;; Load modules
 (load-directory "~/.emacs.d/modules/buffers/")
 (load-directory "~/.emacs.d/modules/completion/")
