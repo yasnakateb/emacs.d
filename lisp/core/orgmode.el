@@ -5,6 +5,9 @@
   :mode ("\\.org$" . org-mode)
   :init
   (setq org-directory     "~/Dropbox/org")
+  (setq org-agenda-files
+	(append
+	 (file-expand-wildcards (concat org-directory "/agenda/*.org"))))
   ;;open agenda in current window
   (setq org-agenda-window-setup (quote current-window))
   ;;warn me of any deadlines in next 7 days
