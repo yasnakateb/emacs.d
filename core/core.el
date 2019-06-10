@@ -45,19 +45,6 @@ Use this for files that change often, like cache files. Must end with a slash.")
   "Where package.el and quelpa plugins (and their caches) are stored.
 Must end with a slash.")
 
-(defvar mk-packages ()
-  "A list of enabled packages. Each element is a sublist, whose CAR is the
-package's name as a symbol, and whose CDR is the plist supplied to its
-`package!' declaration. Set by `mk-initialize-packages'.")
-
-(defvar mk-core-packages
-  '(persistent-soft use-package quelpa async)
-  "A list of packages that must be installed (and will be auto-installed if
-missing) and shouldn't be deleted.")
-
-(defvar mk-disabled-packages ()
-"A list of packages that should be ignored by `conf-package!' and `after!'.")
-
 ;;; Initialize package.el
 (require 'package)
 (setq package--init-file-ensured t
