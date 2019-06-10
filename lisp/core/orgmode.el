@@ -71,4 +71,68 @@
         org-ref-default-bibliography   '(concat org-directory "/ref/master.bib")
         org-ref-pdf-directory          (concat org-directory "/ref/pdfs/"))
   (setq org-latex-pdf-process '("latexmk -pdflatex='%latex -shell-escape -interaction nonstopmode' -pdf -output-directory=%o -f %f"))
-  (setq interleave-org-notes-dir-list `(,(concat org-directory "/ref/pdfs"))))
+  (setq interleave-org-notes-dir-list `(,(concat org-directory "/ref/pdfs")))
+  :config
+  (defun my-orcb-key ()
+    "Replace the key in the entry, also change the pdf file name if it exites."
+    (let ((key (funcall org-ref-clean-bibtex-key-function
+			(bibtex-generate-autokey))))
+      ;; first we delete the existing key
+      (bibtex-beginning-of-entry)
+      (re-search-forward bibtex-entry-maybe-empty-head)
+
+      (setq old-key (match-string 2));;store old key
+      
+      (if (match-beginning bibtex-key-in-head)
+	  (delete-region (match-beginning bibtex-key-in-head)
+			 (match-end bibtex-key-in-head)))
+      ;; check if the key is in the buffer
+      (when (save-excursion
+	      (bibtex-search-entry key))
+	(save-excursion
+	  (bibtex-search-entry key)
+	  (bibtex-copy-entry-as-kill)
+	  (switch-to-buffer-other-window "*duplicate entry*")
+	  (bibtex-yank))
+	(setq key (bibtex-read-key "Duplicate Key found, edit: " key)))
+      (insert key)
+      (kill-new key)
+      
+      (save-excursion
+	"update pdf names and notes items"
+	;; rename the pdf after change the bib item key
+	(my-update-pdf-names old-key key)
+	;; renmae the notes item after change the bib item key
+	(my-update-notes-item old-key key))
+      
+      ;; save the buffer
+      (setq require-final-newline t)
+      (save-buffer)))
+  ;; define a function that update the pdf file names before change the key of a bib entry
+  (defun my-update-pdf-names (old-key new-key)
+    (let ((old-filename (concat org-ref-pdf-directory old-key ".pdf"))
+	  (new-filename (concat org-ref-pdf-directory new-key ".pdf" )))
+      (if (file-exists-p old-filename)
+	  (rename-file old-filename new-filename))))
+  ;; define a function that update the notes items before change the key of bib entry
+  (defun my-update-notes-item (old-key new-key)
+    "update a notes item of a old-key by a new-key in case the bib item is changed"
+    
+    (set-buffer (find-file-noselect org-ref-bibliography-notes))
+    ;; move to the beginning of the buffer
+    (goto-char (point-min))
+    ;; find the string and replace it
+    (let ((newcite new-key)
+	  (regstr old-key))
+      
+      (while (re-search-forward regstr nil t)
+	
+	(delete-region (match-beginning 0)
+		       (match-end 0))
+	(insert newcite))
+      
+      ;; save the buffer
+      (setq require-final-newline t)
+      (save-buffer)
+      (kill-buffer)))
+  (add-hook 'org-ref-clean-bibtex-entry-hook 'my-orcb-key))
