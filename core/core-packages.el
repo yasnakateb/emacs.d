@@ -20,10 +20,12 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-;;; Code:
+
+;;; Constants
 (defconst mk-version "0.0.1"
   "Current version of MK Emacs.")
 
+;;; Variables
 (defvar mk-local-dir (concat mk-emacs-dir ".local/")
   "Root directory for local storage.
 Use this as a storage location for this system's installation of MK Emacs.
@@ -42,6 +44,47 @@ Use this for files that change often, like cache files. Must end with a slash.")
 (defvar mk-packages-dir (concat mk-local-dir "packages/")
   "Where package.el and quelpa plugins (and their caches) are stored.
 Must end with a slash.")
+
+(defvar mk-packages ()
+  "A list of enabled packages. Each element is a sublist, whose CAR is the
+package's name as a symbol, and whose CDR is the plist supplied to its
+`package!' declaration. Set by `mk-initialize-packages'.")
+
+(defvar mk-core-packages
+  '(persistent-soft use-package quelpa async)
+  "A list of packages that must be installed (and will be auto-installed if
+missing) and shouldn't be deleted.")
+
+(defvar mk-disabled-packages ()
+"A list of packages that should be ignored by `conf-package!' and `after!'.")
+
+;;; Initialize package.el
+(require 'package)
+(setq package--init-file-ensured t
+      package-user-dir (expand-file-name "elpa" doom-packages-dir)
+      package-gnupghome-dir (expand-file-name "gpg" doom-packages-dir)
+      package-enable-at-startup nil
+      package-archives
+      `(("gnu"          . "https://elpa.gnu.org/packages/")
+        ("melpa"        . "https://melpa.org/packages/")
+        ("melpa-mirror" . "https://www.mirrorservice.org/sites/melpa.org/packages/")
+        ("org"          . "https://orgmode.org/elpa/"))
+      package-archive-priorities
+      '(("melpa" . -1)
+        ("melpa-mirror" . -2)
+	("gnu" . -3)))
+(package-initialize)
+;; Bootstrap `use-package'
+(setq-default use-package-always-ensure t ; Auto-download package if not exists
+              use-package-always-defer t ; Always defer load package to speed up startup
+              use-package-verbose nil ; Don't report loading details
+              use-package-expand-minimally t  ; make the expanded code as minimal as possible
+              use-package-enable-imenu-support t) ; Let imenu finds use-package definitions
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(eval-when-compile
+  (require 'use-package))
 
 (provide 'core-packages)
 ;;; core-packages.el ends here
