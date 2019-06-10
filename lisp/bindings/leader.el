@@ -33,6 +33,7 @@
    "m" 'mu4e
    "d" 'dired
    "t" 'twit
+   "e" 'elfeed
    "r" 'md4rd)
 ;;; Magit
 (general-define-key

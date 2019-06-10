@@ -196,3 +196,12 @@
 		("" "minted" t)
 		("" "parskip" t)
 		("" "tikz" t)))))
+
+;;; elfeed-org
+(use-package elfeed-org
+  :after elfeed
+  :defer t
+  :ensure t
+  :config
+  (setq rmh-elfeed-org-files  (list (concat org-directory "/feed/emacs.org")
+				    (concat org-directory "/feed/research.org"))))
