@@ -80,16 +80,19 @@
 		   (load-file (concat (file-name-as-directory dir) f)))
 		 ))
     (mapc load-it (directory-files dir nil "\\.el$"))))
-(defun load-modules (modules)
+
+(defun load-modules (dir)
+  (let (modules (directory-files-recursively dir "")
   (while modules
-    (load-directory (car modules))
-    (set modules (cdr modules))))
+    (load (car modules))
+    (set modules (cdr modules)))))
 
 ;;; Load core
 (add-to-list 'load-path mk-core-dir)
 (require 'core)
 
 ;;; Load modules
-(load-modules (directory-files-recursively mk-modules-dir ""))
+(load-modules mk-modules-dir))
+
 (provide 'init)
 ;;; init.el ends here

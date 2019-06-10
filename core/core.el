@@ -75,5 +75,6 @@ Must end with a slash.")
 
 ;;; Load core-packages
 (require 'core-packages)
+
 (provide 'core)
 ;;; core.el ends here
