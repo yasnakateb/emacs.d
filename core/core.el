@@ -1,4 +1,4 @@
-;;; core-packagees.el --- package management system -*- lexical-binding: t; -*-
+;;; core.el --- package management system -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2019  M.R. Siavash Katebzadeh
 
@@ -61,8 +61,8 @@ missing) and shouldn't be deleted.")
 ;;; Initialize package.el
 (require 'package)
 (setq package--init-file-ensured t
-      package-user-dir (expand-file-name "elpa" doom-packages-dir)
-      package-gnupghome-dir (expand-file-name "gpg" doom-packages-dir)
+      package-user-dir (expand-file-name "elpa" mk-packages-dir)
+      package-gnupghome-dir (expand-file-name "gpg" mk-packages-dir)
       package-enable-at-startup nil
       package-archives
       `(("gnu"          . "https://elpa.gnu.org/packages/")
@@ -86,5 +86,5 @@ missing) and shouldn't be deleted.")
 (eval-when-compile
   (require 'use-package))
 
-(provide 'core-packages)
-;;; core-packages.el ends here
+(provide 'core)
+;;; core.el ends here
