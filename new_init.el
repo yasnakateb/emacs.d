@@ -25,8 +25,9 @@
 ;; in org style) to navigate through sections, and "imenu" to locate individual
 ;; use-package definition.
 
-;;; Speed up startup
+(message "Starting MK")
 
+;;; Speed up startup
 (eval-when-compile (require 'cl))
 
 (lexical-let ((emacs-start-time (current-time)))
@@ -82,17 +83,14 @@
     (mapc load-it (directory-files dir nil "\\.el$"))))
 
 (defun load-modules (dir)
-  (let (modules (directory-files-recursively dir "")
-  (while modules
-    (load (car modules))
-    (set modules (cdr modules)))))
+  (mapcar 'load (directory-files-recursively dir "")))
 
 ;;; Load core
 (add-to-list 'load-path mk-core-dir)
 (require 'core)
-
+(message "Core has been loaded.")
 ;;; Load modules
-(load-modules mk-modules-dir))
+(load-modules mk-modules-dir)
 
 (provide 'init)
 ;;; init.el ends here
