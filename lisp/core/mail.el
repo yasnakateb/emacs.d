@@ -177,3 +177,6 @@
           (lambda () (local-set-key (kbd "C-c C-w") #'mu4e-choose-signature)))
 (mu4e-maildirs-extension)
 ;)
+(use-package helm-mu
+  :defer t
+  :ensure t)
