@@ -53,5 +53,36 @@
   :init
   (which-key-mode))
 
+;;; evil
+(use-package evil
+  :ensure t
+  :init
+  (setq evil-search-module 'evil-search
+	evil-ex-complete-emacs-commands nil
+	evil-vsplit-window-right t
+	evil-split-window-below t
+	evil-shift-round nil
+	evil-want-C-u-scroll t
+	evil-default-cursor t
+	evil-want-integration nil
+	evil-want-keybinding nil)
+  ;; This has to be before we invoke evil-mode due to:
+  ;; https://github.com/cofi/evil-leader/issues/10
+  (use-package evil-leader
+      :init (global-evil-leader-mode))
+  (evil-mode 1))
+
+;;; evil-org
+(use-package evil-org
+  :ensure t)
+
+;;; evil-collection
+(use-package evil-collection
+  :ensure t)
+
+;;; evil-magit
+(use-package evil-magit
+  :ensure t)
+
 (provide 'core-package)
 ;;; core-packages.el ends here
