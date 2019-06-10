@@ -62,12 +62,6 @@
 (setq custom-file "~/.emacs.d/backups/custom.el")
 (load custom-file 'noerror)
 
-;;; Load directory function
-(defun load-directory (dir)
-      (let ((load-it (lambda (f)
-		       (load-file (concat (file-name-as-directory dir) f)))
-		     ))
-	(mapc load-it (directory-files dir nil "\\.el$"))))
 ;;; Path vars
 (setq user-emacs-directory (file-name-directory load-file-name))
 (defvar mk-emacs-dir
@@ -80,25 +74,22 @@
 (defvar mk-modules-dir (concat mk-emacs-dir "modules/")
 "The root directory for MK's modules. Must end with a slash.")
 
+;;; Load directory function
+(defun load-directory (dir)
+  (let ((load-it (lambda (f)
+		   (load-file (concat (file-name-as-directory dir) f)))
+		 ))
+    (mapc load-it (directory-files dir nil "\\.el$"))))
+(defun load-modules (modules)
+  (while modules
+    (load-directory (car modules))
+    (set modules (cdr modules))))
+
 ;;; Load core
-(load-directory "~/.emacs.d/core")
+(add-to-list 'load-path mk-core-dir)
+(require 'core)
 
 ;;; Load modules
-(load-directory "~/.emacs.d/modules/buffers/")
-(load-directory "~/.emacs.d/modules/completion/")
-(load-directory "~/.emacs.d/modules/engines/")
-(load-directory "~/.emacs.d/modules/evil/")
-(load-directory "~/.emacs.d/modules/extra/")
-(load-directory "~/.emacs.d/modules/files/")
-(load-directory "~/.emacs.d/modules/git/")
-(load-directory "~/.emacs.d/modules/latex/")
-(load-directory "~/.emacs.d/modules/mail/")
-(load-directory "~/.emacs.d/modules/org/")
-(load-directory "~/.emacs.d/modules/python/")
-(load-directory "~/.emacs.d/modules/rss/")
-(load-directory "~/.emacs.d/modules/shell/")
-(load-directory "~/.emacs.d/modules/social/")
-(load-directory "~/.emacs.d/modules/web/")
-(load-directory "~/.emacs.d/modules/window/")
+(load-modules (directory-files-recursively mk-modules-dir ""))
 (provide 'init)
 ;;; init.el ends here

@@ -61,7 +61,7 @@ Must end with a slash.")
         ("melpa-mirror" . -2)
 	("gnu" . -3)))
 (package-initialize)
-;; Bootstrap `use-package'
+;;; Bootstrap `use-package'
 (setq-default use-package-always-ensure t ; Auto-download package if not exists
               use-package-always-defer t ; Always defer load package to speed up startup
               use-package-verbose nil ; Don't report loading details
@@ -73,5 +73,7 @@ Must end with a slash.")
 (eval-when-compile
   (require 'use-package))
 
+;;; Load core-packages
+(require 'core-packages)
 (provide 'core)
 ;;; core.el ends here
