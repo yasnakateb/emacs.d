@@ -20,9 +20,33 @@
       mu4e-headers-skip-duplicates t
       mu4e-change-filenames-when-moving t
       mu4e-view-image-max-width 800
+      mu4e-completing-read-function 'completing-read
+      mu4e-use-fancy-chars 't
+      mu4e-view-show-images 't
+      message-kill-buffer-on-exit 't
       mu4e-maildir-shortcuts
 	'(("/gmail/inbox" . ?g)
 	  ("/staff/inbox" . ?s)))
+(let ((dir "~/Downloads"))
+        (when (file-directory-p dir)
+	  (setq mu4e-attachment-dir dir)))
+(add-hook 'mu4e-compose-mode-hook
+                (lambda () (use-hard-newlines t 'guess)))
+(require 'gnus-dired)
+      ;; make the `gnus-dired-mail-buffers' function also work on
+      ;; message-mode derived modes, such as mu4e-compose-mode
+(defun gnus-dired-mail-buffers ()
+  "Return a list of active message buffers."
+  (let (buffers)
+    (save-current-buffer
+      (dolist (buffer (buffer-list t))
+	(set-buffer buffer)
+	(when (and (derived-mode-p 'message-mode)
+		   (null message-sent-message-via))
+	  (push (buffer-name buffer) buffers))))
+    (nreverse buffers)))
+(setq gnus-dired-mail-mode 'mu4e-user-agent)
+(add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
 (setq mu4e-view-actions
         '(("capture message" . mu4e-action-capture-message)
           ("view in browser" . mu4e-action-view-in-browser)
