@@ -25,8 +25,7 @@
 ;; in org style) to navigate through sections, and "imenu" to locate individual
 ;; use-package definition.
 
-;;; Bootstrap
-;; Speed up startup
+;;; Speed up startup
 
 (eval-when-compile (require 'cl))
 
@@ -39,7 +38,7 @@
 (let ((gc-cons-threshold (* 256 1024 1024))
       (gc-cons-percentage 0.6)
       (file-name-handler-alist nil)))
-;; basic configs
+;;; Basic configs
 ; stop creating backup~ files
 (setq make-backup-files nil)
 (setq auto-save-default nil)
@@ -62,15 +61,15 @@
 (setq custom-file "~/.emacs.d/backups/custom.el")
 (load custom-file 'noerror)
 
-;; load directory function
+;;; Load directory function
 (defun load-directory (dir)
       (let ((load-it (lambda (f)
 		       (load-file (concat (file-name-as-directory dir) f)))
 		     ))
 	(mapc load-it (directory-files dir nil "\\.el$"))))
-;; load core
+;;; Load core
 (load-directory "~/.emacs.d/core")
-;;
+;;; Load modules
 (load-directory "~/.emacs.d/modules/buffers/")
 (load-directory "~/.emacs.d/modules/completion/")
 (load-directory "~/.emacs.d/modules/engines/")
