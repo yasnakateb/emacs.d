@@ -45,7 +45,10 @@
    :prefix "SPC o"
    :states '(normal visual motion)
    :keymaps 'override
-   "o" 'org-mode)
+   "a" 'org-agenda
+   "o" 'org-mode
+   "c" 'org-capture
+   "l" 'org-store-link)
 ;;; Buffers
 (general-define-key
    :prefix "SPC b"

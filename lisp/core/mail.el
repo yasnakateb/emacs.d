@@ -32,21 +32,6 @@
 	  (setq mu4e-attachment-dir dir)))
 (add-hook 'mu4e-compose-mode-hook
                 (lambda () (use-hard-newlines t 'guess)))
-(require 'gnus-dired)
-      ;; make the `gnus-dired-mail-buffers' function also work on
-      ;; message-mode derived modes, such as mu4e-compose-mode
-(defun gnus-dired-mail-buffers ()
-  "Return a list of active message buffers."
-  (let (buffers)
-    (save-current-buffer
-      (dolist (buffer (buffer-list t))
-	(set-buffer buffer)
-	(when (and (derived-mode-p 'message-mode)
-		   (null message-sent-message-via))
-	  (push (buffer-name buffer) buffers))))
-    (nreverse buffers)))
-(setq gnus-dired-mail-mode 'mu4e-user-agent)
-(add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
 (setq mu4e-view-actions
         '(("capture message" . mu4e-action-capture-message)
           ("view in browser" . mu4e-action-view-in-browser)
@@ -131,6 +116,7 @@
 ;;; alert
 (use-package mu4e-alert
   :ensure t
+  :after mu4e
   :config
      (mu4e-alert-set-default-style 'notifications)
      (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
@@ -138,6 +124,7 @@
 ;;; gnus-dired
 (use-package gnus
   :ensure t
+  :after mu4e
   :config
   (progn
     (defun gnus-dired-mail-buffers ()
@@ -149,13 +136,13 @@
                      (null message-sent-message-via))
             (push (buffer-name buffer) buffers))))
       (nreverse buffers)))
-
 (setq gnus-dired-mail-mode 'mu4e-user-agent)
 (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)))
 ;;; maildirs-extention
 (use-package mu4e-maildirs-extension
   :ensure t
   :config
+  :after mu4e
   (mu4e-maildirs-extension))
 ;;; signature
 (defun mu4e-choose-signature ()
@@ -176,7 +163,11 @@
 (add-hook 'mu4e-compose-mode-hook
           (lambda () (local-set-key (kbd "C-c C-w") #'mu4e-choose-signature)))
 (mu4e-maildirs-extension)
-;)
+;;; helm-mu
 (use-package helm-mu
   :defer t
   :ensure t)
+;;; org-mu4e
+(require 'org-mu4e)
+(setq org-mu4e-link-query-in-headers-mode nil)
+;)
