@@ -84,5 +84,7 @@
 (use-package evil-magit
   :ensure t)
 
+(require 'core-bindings)
+
 (provide 'core-packages)
 ;;; core-packages.el ends here
