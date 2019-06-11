@@ -75,6 +75,10 @@
 (defvar mk-modules-dir (concat mk-emacs-dir "modules/")
 "The root directory for MK's modules. Must end with a slash.")
 
+(defvar mk-lisp-dir (concat mk-emacs-dir "site-lisp/")
+  "The root directory of MK's external files. Must end with a slash.")
+
+
 ;;; Load directory function
 (defun load-directory (dir)
   (let ((load-it (lambda (f)
@@ -87,6 +91,7 @@
 
 ;;; Load core
 (add-to-list 'load-path mk-core-dir)
+(add-to-list 'load-path mk-lisp-dir)
 (require 'core)
 (message "Core has been loaded.")
 ;;; Load modules

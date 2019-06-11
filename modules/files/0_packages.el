@@ -1,4 +1,4 @@
-;;; packages.el --- Engines -*- lexical-binding: t; -*-
+;;; packages.el --- Files -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2019  M.R. Siavash Katebzadeh
 
@@ -19,8 +19,28 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-(use-package helm
+;;; preview files in dired
+(use-package peep-dired
   :ensure t
   :init
-  (helm-mode 1)
+  (setq peep-dired-cleanup-on-disable t
+	peep-dired-enable-on-directories t
+	peep-dired-ignored-extensions '("mkv" "iso" "mp4")))
+
+;;narrow dired to match filter
+(use-package dired-narrow
+  :ensure t)
+
+;;; dired subtree
+(use-package dired-subtree
+  :ensure t)
+
+;;; dired-quick-sort
+(use-package dired-quick-sort
+  :ensure t)
+
+;;; neo-tree
+(use-package neotree
+  :ensure t)
+
 ;;; packages.el ends here
