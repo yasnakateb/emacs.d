@@ -14,5 +14,5 @@ url/
 var/
 transient/
 eshell/
-xkcd/
+.xkcd/
 .local/

@@ -25,44 +25,6 @@
 ;; in org style) to navigate through sections, and "imenu" to locate individual
 ;; use-package definition.
 
-(message "Starting MK")
-
-;;; Speed up startup
-(eval-when-compile (require 'cl))
-
-(lexical-let ((emacs-start-time (current-time)))
-  (add-hook 'emacs-startup-hook
-            (lambda ()
-              (let ((elapsed (float-time (time-subtract (current-time) emacs-start-time))))
-                (message "[Emacs initialized in %.3fs]" elapsed)))))
-
-(let ((gc-cons-threshold (* 256 1024 1024))
-      (gc-cons-percentage 0.6)
-      (file-name-handler-alist nil)))
-
-;;; Basic configs
-; stop creating backup~ files
-(setq make-backup-files nil)
-(setq auto-save-default nil)
-(setq create-lockfiles nil)
-(let ((backup-dir "~/.emacs.d/backups")
-      (auto-saves-dir "~/.emacs.d/auto-saves/"))
-  (dolist (dir (list backup-dir auto-saves-dir))
-    (when (not (file-directory-p dir))
-      (make-directory dir t)))
-  (setq backup-directory-alist `(("." . ,backup-dir))
-        auto-save-file-name-transforms `((".*" ,auto-saves-dir t))
-        auto-save-list-file-prefix (concat auto-saves-dir ".saves-")
-        tramp-backup-directory-alist `((".*" . ,backup-dir))
-        tramp-auto-save-directory auto-saves-dir))
-(setq backup-by-copying t
-      delete-old-versions t
-      version-control t
-      kept-new-versions 5
-      kept-old-versions 2)
-(setq custom-file "~/.emacs.d/backups/custom.el")
-(load custom-file 'noerror)
-
 ;;; Path vars
 (setq user-emacs-directory (file-name-directory load-file-name))
 (defvar mk-emacs-dir
@@ -81,7 +43,55 @@
 (defvar mk-ui-dir (concat mk-emacs-dir "ui/")
   "The root directory of MK's UI files. Must end with a slash.")
 
-;;; Load directory function
+(defvar mk-backup-dir (concat mk-emacs-dir ".backup/")
+  "The root directory of MK's backup files. Must end with a slash.")
+
+(defvar mk-autosave-dir (concat mk-emacs-dir ".autosave/")
+  "The root directory of MK's autosave files. Must end with a slash.")
+
+(defvar mk-autosave-dir (concat mk-eshell-dir ".autosave/")
+  "The root directory of MK's eshell files. Must end with a slash.")
+
+(message "Starting MK")
+;;; Speed up startup
+(eval-when-compile (require 'cl))
+
+(lexical-let ((emacs-start-time (current-time)))
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              (let ((elapsed (float-time (time-subtract (current-time) emacs-start-time))))
+                (message "[Emacs initialized in %.3fs]" elapsed)))))
+
+(let ((gc-cons-threshold (* 256 1024 1024))
+      (gc-cons-percentage 0.6)
+      (file-name-handler-alist nil)))
+
+;;; Basic configs
+; stop creating backup~ files
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+(setq create-lockfiles nil)
+(setq eshell-directory-name mk-eshell-dir)
+
+(let ((backup-dir mk-backup-dir)
+      (auto-saves-dir mk-autosave-dir))
+  (dolist (dir (list backup-dir auto-saves-dir))
+    (when (not (file-directory-p dir))
+      (make-directory dir t)))
+  (setq backup-directory-alist `(("." . ,backup-dir))
+        auto-save-file-name-transforms `((".*" ,auto-saves-dir t))
+        auto-save-list-file-prefix (concat auto-saves-dir ".saves-")
+        tramp-backup-directory-alist `((".*" . ,backup-dir))
+        tramp-auto-save-directory auto-saves-dir))
+(setq backup-by-copying t
+      delete-old-versions t
+      version-control t
+      kept-new-versions 5
+      kept-old-versions 2)
+(setq custom-file (concat mk-backup-dir "custom.el"))
+(load custom-file 'noerror)
+
+;; Load directory function
 (defun load-directory (dir)
   (let ((load-it (lambda (f)
 		   (load-file (concat (file-name-as-directory dir) f)))

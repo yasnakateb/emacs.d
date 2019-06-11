@@ -56,7 +56,9 @@
 
 ;; xkcd
 (use-package xkcd
-  :ensure t)
-
+  :ensure t
+  :init
+  (setq xkcd-cache-dir (concat mk-emacs-dir ".xkcd/"))
+  (setq xkcd-cache-latest (concat xkcd-cache-dir "latest/")))
 
 ;;; packages.el ends here
