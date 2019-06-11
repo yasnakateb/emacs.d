@@ -1,4 +1,4 @@
-;;; bindings.el --- File -*- lexical-binding: t; -*-
+;;; bindings.el --- UI -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2019  M.R. Siavash Katebzadeh
 
@@ -19,45 +19,15 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;;; dired
-(with-eval-after-load 'dired
-  (evil-collection-init 'dired)
-  (evil-define-key 'normal dired-mode-map (kbd "/") 'dired-narrow
-    (kbd "P") 'peep-dired
-    (kbd "t") 'dired-subtree-insert
-    (kbd "T") 'dired-subtree-remove
-    (kbd "<return>") 'dired-single-buffer
-    (kbd "l") 'dired-single-buffer
-    (kbd "h") 'dired-single-up-directory)
-
-  (evil-define-key 'normal peep-dired-mode-map (kbd "<SPC>") 'peep-dired-scroll-page-down
-    (kbd "C-<SPC>") 'peep-dired-scroll-page-up
-    (kbd "<backspace>") 'peep-dired-scroll-page-up
-    (kbd "j") 'peep-dired-next-file
-    (kbd "k") 'peep-dired-prev-file)
-  (add-hook 'peep-dired-hook 'evil-normalize-keymaps))
-
+;;; Toggles
 (general-define-key
-   :prefix "SPC a"
+   :prefix "SPC t"
    :states '(normal visual motion)
    :keymaps 'override
-   "d" 'dired)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   "d" 'darkroom-mode
+   "t" 'toggle-transparency
+   "h" 'highlight-indent-guides-mode
+   "p" 'smartparens-mode
+   "r" 'rainbow-delimiters-mode)
 
 ;;; bindings.el ends here

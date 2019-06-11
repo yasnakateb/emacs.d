@@ -1,13 +1,33 @@
-;;; init.el --- skeleton config  -*- lexical-binding: t; coding:utf-8; fill-column: 119 -*-
+;;; init.el --- init file -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2019  M.R. Siavash Katebzadeh
+
+;; Author: M.R.Siavash Katebzadeh <mr.katebzadeh@gmail.com>
+;; Keywords: lisp
+;; Version: 0.0.1
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+
 ;; A bare-boned config template. Use "outshine-cycle-buffer" (<Tab> and <S-Tab>
 ;; in org style) to navigate through sections, and "imenu" to locate individual
 ;; use-package definition.
 
-;;; Bootstrap
-;; Speed up startup
+(message "Starting MK")
 
+;;; Speed up startup
 (eval-when-compile (require 'cl))
 
 (lexical-let ((emacs-start-time (current-time)))
@@ -19,26 +39,8 @@
 (let ((gc-cons-threshold (* 256 1024 1024))
       (gc-cons-percentage 0.6)
       (file-name-handler-alist nil)))
-;; Initialize package.el
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
 
-(setq custom-file "~/.emacs.d/backups/custom.el")
-(load custom-file 'noerror)
-
-;; Bootstrap `use-package'
-(setq-default use-package-always-ensure t ; Auto-download package if not exists
-              use-package-always-defer t ; Always defer load package to speed up startup
-              use-package-verbose nil ; Don't report loading details
-              use-package-expand-minimally t  ; make the expanded code as minimal as possible
-              use-package-enable-imenu-support t) ; Let imenu finds use-package definitions
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(eval-when-compile
-  (require 'use-package))
+;;; Basic configs
 ; stop creating backup~ files
 (setq make-backup-files nil)
 (setq auto-save-default nil)
@@ -58,14 +60,46 @@
       version-control t
       kept-new-versions 5
       kept-old-versions 2)
+(setq custom-file "~/.emacs.d/backups/custom.el")
+(load custom-file 'noerror)
 
+;;; Path vars
+(setq user-emacs-directory (file-name-directory load-file-name))
+(defvar mk-emacs-dir
+  (eval-when-compile (file-truename user-emacs-directory))
+  "The path to the currently loaded .emacs.d directory. Must end with a slash.")
+
+(defvar mk-core-dir (concat mk-emacs-dir "core/")
+  "The root directory of MK's core files. Must end with a slash.")
+
+(defvar mk-modules-dir (concat mk-emacs-dir "modules/")
+"The root directory for MK's modules. Must end with a slash.")
+
+(defvar mk-lisp-dir (concat mk-emacs-dir "site-lisp/")
+  "The root directory of MK's external files. Must end with a slash.")
+
+(defvar mk-ui-dir (concat mk-emacs-dir "ui/")
+  "The root directory of MK's UI files. Must end with a slash.")
+
+;;; Load directory function
 (defun load-directory (dir)
-      (let ((load-it (lambda (f)
-		       (load-file (concat (file-name-as-directory dir) f)))
-		     ))
-	(mapc load-it (directory-files dir nil "\\.el$"))))
-(add-to-list 'load-path "~/.emacs.d/lisp/extra")
-(load-directory "~/.emacs.d/lisp/ui")
-(load-directory "~/.emacs.d/lisp/core")
-(load-directory "~/.emacs.d/lisp/bindings")
+  (let ((load-it (lambda (f)
+		   (load-file (concat (file-name-as-directory dir) f)))
+		 ))
+    (mapc load-it (directory-files dir nil "\\.el$"))))
+
+(defun load-modules (dir)
+  (mapcar 'load (directory-files-recursively dir "")))
+
+;;; Load core
+(add-to-list 'load-path mk-core-dir)
+(add-to-list 'load-path mk-lisp-dir)
+(require 'core)
+(message "Core has been loaded.")
+;;; Load Theme 
+(load-modules mk-ui-dir)
+;;; Load modules
+(load-modules mk-modules-dir)
+(provide 'init)
+
 ;;; init.el ends here
