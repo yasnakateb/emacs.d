@@ -43,7 +43,7 @@
 (defvar mk-ui-dir (concat mk-emacs-dir "ui/")
   "The root directory of MK's UI files. Must end with a slash.")
 
-(defvar mk-backup-dir (concat mk-emacs-dir ".backup/")
+(defvar mk-backup-dir (concat mk-emacs-dir ".backups/")
   "The root directory of MK's backup files. Must end with a slash.")
 
 (defvar mk-autosave-dir (concat mk-emacs-dir ".autosave/")

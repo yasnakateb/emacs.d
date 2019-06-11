@@ -1,9 +1,7 @@
-elpa/*
 *~
-configs/*.el
 ac-comphist.dat
-auto-saves/
-backups/
+.auto-saves/
+.backups/
 emojis/
 irony/
 ivy-youtube-history
@@ -13,6 +11,6 @@ request/
 url/
 var/
 transient/
-eshell/
+.eshell/
 .xkcd/
 .local/
