@@ -26,4 +26,13 @@
  :keymaps 'override
  "" 'company-complete-common-or-cycle)
 
+;;; Toggles
+(general-define-key
+   :prefix "SPC t"
+   :states '(normal visual motion)
+   :keymaps 'override
+   "s" 'flyspell-mode
+   "c" 'flycheck-mode
+   "y" 'yas-global-mode)
+
 ;;; bindings.el ends here

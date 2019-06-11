@@ -42,4 +42,13 @@
    :keymaps 'override
    "C" 'configs-visit )
 
+;;; Toggles
+(general-define-key
+   :prefix "SPC t"
+   :states '(normal visual motion)
+   :keymaps 'override
+   "i" 'imenu-list
+   "I" 'imenu)
+
+
 ;;; bindings.el ends here
