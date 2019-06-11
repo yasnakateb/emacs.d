@@ -21,7 +21,8 @@
 
 ;;; latest org
 (use-package org
-  :ensure t
+  :ensure org-plus-contrib
+  :pin org
   :mode ("\\.org$" . org-mode)
   :init
   (setq org-directory     "~/Dropbox/org"
@@ -70,5 +71,17 @@
         org-ref-pdf-directory          (concat org-directory "/ref/pdfs/"))
   (setq org-latex-pdf-process '("latexmk -pdflatex='%latex -shell-escape -interaction nonstopmode' -pdf -output-directory=%o -f %f"))
   (setq interleave-org-notes-dir-list `(,(concat org-directory "/ref/pdfs"))))
+
+;;; evil-org
+(use-package evil-org
+    :ensure t
+    :init
+    (add-hook 'org-mode-hook 'evil-org-mode)
+    (add-hook 'evil-org-mode-hook
+              (lambda ()
+                (evil-org-set-key-theme '(navigation insert textobjects))))
+    :config
+    (require 'evil-org-agenda)
+    (evil-org-agenda-set-keys))
 
 ;;; packages.el ends here

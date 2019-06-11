@@ -72,13 +72,11 @@
       :init (global-evil-leader-mode))
   (evil-mode 1))
 
-;;; evil-org
-(use-package evil-org
-  :ensure t)
-
 ;;; evil-collection
 (use-package evil-collection
-  :ensure t)
+  :ensure t
+  :init
+  (evil-collection-init))
 
 ;;; evil-magit
 (use-package evil-magit
