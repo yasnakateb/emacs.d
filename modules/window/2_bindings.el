@@ -1,4 +1,4 @@
-;;; bindings.el --- Buffers -*- lexical-binding: t; -*-
+;;; bindings.el --- Window -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2019  M.R. Siavash Katebzadeh
 
@@ -19,45 +19,27 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;;; ibuffer 
+;;; Windows
 (general-define-key
- :prefix "SPC b"
- :states '(normal visual motion)
- :keymaps 'override
- "d" 'kill-current-buffer
- "D" 'kill-buffer
- "b" 'ibuffer)
-;;; avy
-(with-eval-after-load 'avy
-  (general-define-key
-   :prefix "SPC s"
+   :prefix "SPC w"
    :states '(normal visual motion)
    :keymaps 'override
-   "a" 'avy-goto-char))
+   "v" 'evil-window-vsplit
+   "s" 'evil-window-split
+   "d" 'evil-window-delete
+   "h" 'evil-window-left
+   "j" 'evil-window-down
+   "k" 'evil-window-up
+   "l" 'evil-window-right)
 
-;;; smart-hungry-delete
-(with-eval-after-load 'smart-hungry-delete
-  (general-define-key
-   :prefix "<backspace>"
-   :states '(insert)
-   :keymaps 'override
-   "" 'smart-hungry-delete-backward-char))
-
-;;; expand-region
-  (general-define-key
-   :prefix "SPC s"
-   :states '(normal visual motion)
-   :keymaps 'override
-   "e" 'er/expand-region)
-
-;;; information
+;;; leader config files 
+(defun configs-visit ()
+(interactive)
+(helm-find-files mk-emacs-dir))
 (general-define-key
-   :prefix "SPC h"
+   :prefix "SPC C"
    :states '(normal visual motion)
    :keymaps 'override
-   "g" 'google-this
-   "G" 'google-this-search
-   "m" 'man)
+   "C" 'configs-visit )
 
 ;;; bindings.el ends here
-
