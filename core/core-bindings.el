@@ -1,4 +1,4 @@
-;;; bindings.el --- Completion -*- lexical-binding: t; -*-
+;;; core-bindings.el --- Core key bindings -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2019  M.R. Siavash Katebzadeh
 
@@ -19,20 +19,29 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;;; company
+;;; Esc
+(global-set-key [escape] 'keyboard-escape-quit)
+
+;;; leader file
 (general-define-key
- :prefix "C-SPC"
- :states '(normal insert visual motion)
+ :prefix "SPC"
+ :states '(normal visual motion)
  :keymaps 'override
- "" 'company-complete-common-or-cycle)
+ "" '(nil :which-key "My lieutenant general prefix")
+ "f" '(:ignore t :which-key "Files")
+ "o" '(:ignore t :which-key "Org")
+ "a" '(:ignore t :which-key "Applications")
+ "g" '(:ignore t :which-key "Magit")
+ "l" '(:ignore t :which-key "Latex")
+ "b" '(:ignore t :which-key "Buffers")
+ "s" '(:ignore t :which-key "Search")
+ "S" '(:ignore t :which-key "Shell")
+ "h" '(:ignore t :which-key "Help!")
+ "w" '(:ignore t :which-key "Windows")
+ "t" '(:ignore t :which-key "Toggles")
 
-;;; Toggles
-(general-define-key
-   :prefix "SPC t"
-   :states '(normal visual motion)
-   :keymaps 'override
-   "s" 'global-flyspell-mode
-   "c" 'global-flycheck-mode
-   "y" 'yas-global-mode)
-
-;;; bindings.el ends here
+ "x" 'helm-M-x
+ ";" 'eval-expression
+ )
+(provide 'core-bindings)
+;;; core-bindings.el ends here
