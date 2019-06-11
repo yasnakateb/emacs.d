@@ -23,13 +23,15 @@
 (require 'dashboard)
 (dashboard-setup-startup-hook)
 (setq dashboard-banner-logo-title "[-< True happiness can be found when two contrary powers cooperate together >-]"
-      dashboard-startup-banner "~/.emacs.d/logo.png"
+      dashboard-startup-banner (concat mk-emacs-dir "logo.png")
       dashboard-center-content t
       dashboard-set-heading-icons t
       dashboard-items '((recents  . 7)
                         (projects . 5)
                         (agenda . 5)
                         (bookmarks . 10)))
+(setq initial-scratch-message nil)
+(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
 
 ;;; parentheses
 ;; highlight matches

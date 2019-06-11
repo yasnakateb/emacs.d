@@ -49,7 +49,7 @@
 (defvar mk-autosave-dir (concat mk-emacs-dir ".autosave/")
   "The root directory of MK's autosave files. Must end with a slash.")
 
-(defvar mk-autosave-dir (concat mk-eshell-dir ".autosave/")
+(defvar mk-eshell-dir (concat mk-emacs-dir ".eshell/")
   "The root directory of MK's eshell files. Must end with a slash.")
 
 (message "Starting MK")
@@ -67,11 +67,13 @@
       (file-name-handler-alist nil)))
 
 ;;; Basic configs
+(setq warning-minimum-level :emergency)
+(setq eshell-directory-name mk-eshell-dir)
 ; stop creating backup~ files
 (setq make-backup-files nil)
 (setq auto-save-default nil)
+(setq auto-save-list-file-prefix nil)
 (setq create-lockfiles nil)
-(setq eshell-directory-name mk-eshell-dir)
 
 (let ((backup-dir mk-backup-dir)
       (auto-saves-dir mk-autosave-dir))
