@@ -1,4 +1,3 @@
-
 ;;; bindings.el --- Git -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2019  M.R. Siavash Katebzadeh
@@ -22,10 +21,10 @@
 
 ;;; Magit
 (with-eval-after-load 'magit
-  (general-define-key
-   :prefix "SPC g"
-   :states '(normal visual motion)
-   :keymaps 'override
-   "s" 'magit-status))
-
+  (evil-collection-init 'magit))
+(general-define-key
+ :prefix "SPC g"
+ :states '(normal visual motion)
+ :keymaps 'override
+ "s" 'magit-status)
 ;;; bindings.el ends here

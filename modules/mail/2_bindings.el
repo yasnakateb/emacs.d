@@ -23,11 +23,11 @@
 (with-eval-after-load 'mu4e
   (evil-collection-init 'mu4e)
   (evil-define-key 'normal mu4e-headers-mode-map (kbd "/") 'helm-mu)
-  (evil-define-key 'normal mu4e-headers-mode-map (kbd "C") 'helm-mu-contacts)
-  (general-define-key
-   :prefix "SPC a"
-   :states '(normal visual motion)
-   :keymaps 'override
-   "m" 'mu4e))
+  (evil-define-key 'normal mu4e-headers-mode-map (kbd "C") 'helm-mu-contacts))
+(general-define-key
+ :prefix "SPC a"
+ :states '(normal visual motion)
+ :keymaps 'override
+ "m" 'mu4e)
 
 ;;; bindings.el ends here
