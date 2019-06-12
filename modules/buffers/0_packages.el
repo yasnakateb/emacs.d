@@ -57,4 +57,20 @@
   :after button-lock
   :init
   (global-fixmee-mode 1))
+
+;;; aggressive-indent
+(use-package aggressive-indent
+  :ensure t
+  :hook ((css-mode . aggressive-indent-mode)
+         (emacs-lisp-mode . aggressive-indent-mode)
+         (js-mode . aggressive-indent-mode)
+         (lisp-mode . aggressive-indent-mode))
+  :custom (aggressive-indent-comments-too))
+
+;;; electric-operator
+(use-package electric-operator
+  :ensure t
+  :delight
+  :hook (python-mode . electric-operator-mode))
+
 ;;; packages.el ends here
