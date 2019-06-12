@@ -63,6 +63,8 @@
 (with-eval-after-load 'auctex-latexmk
   (auctex-latexmk-setup))
   
-
+;;; company-auctex
+(with-eval-after-load 'company-auctex
+  (company-auctex-init))
 
 ;;; configs.el ends here

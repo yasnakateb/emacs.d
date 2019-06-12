@@ -60,4 +60,9 @@
   :init
   (setq auctex-latexmk-inherit-TeX-PDF-mode t))
 
+;;; company-auctex
+(use-package company-auctex
+  :ensure t
+  :after (auctex company))
+
 ;;; packages.el ends here
