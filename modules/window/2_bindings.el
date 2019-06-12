@@ -48,7 +48,7 @@
    :states '(normal visual motion)
    :keymaps 'override
    "i" 'imenu-list
-   "I" 'imenu)
+   "I" 'helm-imenu)
 
 
 ;;; bindings.el ends here
