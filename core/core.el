@@ -48,9 +48,15 @@ Must end with a slash.")
 ;;; Initialize package.el
 (require 'package)
 (setq package--init-file-ensured t
+      initial-scratch-message ""
+      tab-width 4
+      select-enable-clipboard t
+      user-full-name "M.R. Siavash Katebzadeh"
+      user-mail-address "mr.katebzadeh@gmail.com"
       package-user-dir (expand-file-name "elpa" mk-packages-dir)
       package-gnupghome-dir (expand-file-name "gpg" mk-packages-dir)
       package-enable-at-startup nil
+      help-window-select t
       package-archives
       `(("gnu"          . "https://elpa.gnu.org/packages/")
         ("melpa"        . "https://melpa.org/packages/")
