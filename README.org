@@ -1,4 +1,4 @@
-* MangeKyō Emacs
+* MangeKyo Emacs
   [[./logo.png]]
 
 This repository contains all my GNU Emacs configuration.
