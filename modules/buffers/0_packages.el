@@ -73,4 +73,10 @@
   :delight
   :hook (python-mode . electric-operator-mode))
 
+;;; rainbow-mode
+(use-package rainbow-mode
+  :ensure t
+  :delight
+  :hook (prog-mode))
+
 ;;; packages.el ends here
