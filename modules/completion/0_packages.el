@@ -60,4 +60,22 @@
   (if (file-exists-p abbrev-file-name)
       (quietly-read-abbrev-file)))
 
+;;; flyspell
+(use-package flyspell
+  :ensure t
+  :delight
+  :hook ((markdown-mode org-mode text-mode) . flyspell-mode)
+         (prog-mode . flyspell-prog-mode)
+  :custom
+  (flyspell-abbrev-p t)
+  (flyspell-default-dictionary "en_US")
+  (flyspell-issue-message-flag nil)
+  (flyspell-issue-welcome-flag nil))
+
+;;; flyspell-correct-helm
+(use-package flyspell-correct-helm
+  :ensure t
+  :after (flyspell ivy)
+  :init (setq flyspell-correct-interface #'flyspell-correct-helm))
+
 ;;; packages.el ends here
