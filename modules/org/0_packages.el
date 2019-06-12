@@ -74,14 +74,21 @@
 
 ;;; evil-org
 (use-package evil-org
-    :ensure t
-    :init
-    (add-hook 'org-mode-hook 'evil-org-mode)
-    (add-hook 'evil-org-mode-hook
-              (lambda ()
-                (evil-org-set-key-theme '(navigation insert textobjects))))
-    :config
-    (require 'evil-org-agenda)
-    (evil-org-agenda-set-keys))
+  :ensure t
+  :init
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  (add-hook 'evil-org-mode-hook
+	    (lambda ()
+	      (evil-org-set-key-theme '(navigation insert textobjects))))
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
+
+;;; org-bullets
+(use-package org-bullets
+  :ensure t
+  :hook (org-mode . org-bullets-mode)
+  :custom
+  (org-bullets-bullet-list '("●" "►" "▸")))
 
 ;;; packages.el ends here
