@@ -30,4 +30,32 @@
 	twittering-timer-interval 300
 	twittering-url-show-status nil))
 
+;;; engine-mode
+(with-eval-after-load 'engine-mode
+  (defengine amazon
+    "http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=%s")
+
+  (defengine duckduckgo
+    "https://duckduckgo.com/?q=%s")
+
+  (defengine github
+    "https://github.com/search?ref=simplesearch&q=%s")
+
+  (defengine google-images
+    "http://www.google.com/images?hl=en&source=hp&biw=1440&bih=795&gbv=2&aq=f&aqi=&aql=&oq=&q=%s")
+
+  (defengine google-maps
+    "http://maps.google.com/maps?q=%s"
+    :docstring "Mappin' it up.")
+
+  (defengine stack-overflow
+    "https://stackoverflow.com/search?q=%s")
+
+  (defengine youtube
+    "http://www.youtube.com/results?aq=f&oq=&search_query=%s")
+
+  (defengine wikipedia
+    "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
+    :docstring "Searchin' the wikis."))
+
 ;;; configs.el ends here

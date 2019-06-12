@@ -36,4 +36,9 @@
   (setq twittering-timer-interval 300)
   (setq twittering-url-show-status nil))
 
+;;; engine-mode
+(use-package engine-mode
+  :defer 3
+  :ensure t)
+
 ;;; packages.el ends here
