@@ -1,0 +1,13 @@
+* MangeKyō Emacs
+  [[./logo.png]]
+
+This repository contains all my GNU Emacs configuration.
+
+** Install
+   Just take a backup of your dotemacs and clone this repo:
+
+#+BEGIN_SRC emacs-lisp
+ git clone https://github.com/mrkatebzadeh/emacs.d ~/.emacs.d
+ #+END_SRC
+
+ It will take some time to install required packages.
