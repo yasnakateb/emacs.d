@@ -23,14 +23,18 @@
 (with-eval-after-load 'org
   (require 'org-id)
 
-  (org-todo-keywords '((sequence "TODO(t)"
+  (setq org-todo-keywords '((sequence "TODO(t)"
                                  "STARTED(s)"
                                  "WAITING(w@/!)"
                                  "SOMEDAY(.)" "|" "DONE(x!)" "CANCELLED(c@)")
                        (sequence "TOBUY"
                                  "TOSHRINK"
                                  "TOCUT"
-                                 "TOSEW" "|" "DONE(x)")))
+                                 "TOSEW" "|" "DONE(x)")
+		       (sequence "TODO"
+                                 "DOING"
+                                 "TESTING"
+                                 "ALMOST" "|" "DONE(x)")))
 
   (org-babel-do-load-languages
    'org-babel-load-languages
