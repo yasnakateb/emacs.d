@@ -22,6 +22,17 @@
 ;;; ibuffer interactive mode
 ;; set it as default
 (defalias 'list-buffers 'ibuffer-other-window)
+
+(defvar *protected-buffers* '("*scratch*" "*Messages*")
+  "Buffers that cannot be killed.")
+
+(defun mk-protected-buffers ()
+  "Protects some buffers from being killed."
+  (dolist (buffer *protected-buffers*)
+    (with-current-buffer buffer
+      (emacs-lock-mode 'kill))))
+
+(add-hook 'after-init-hook #'mk-protected-buffers)
 ;; better look
 (setq ibuffer-saved-filter-groups
   (quote (("default"
