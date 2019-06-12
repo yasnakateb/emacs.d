@@ -81,7 +81,23 @@
 
 ;;; simple
 (use-package simple
-  :ensure t
+  :ensure nil
   :hook (before-save . delete-trailing-whitespace))
+
+;;; recentf
+(use-package recentf
+  :ensure t
+  :init (recentf-mode)
+  :custom
+  (recentf-exclude (list "COMMIT_EDITMSG"
+                         "~$"
+                         "/scp:"
+                         "/ssh:"
+                         "/sudo:"
+                         "/tmp/"))
+  (recentf-max-menu-items 15)
+  (recentf-max-saved-items 200)
+  (recentf-save-file (concat mk-backup-dir "recentf"))
+  :config (run-at-time nil (* 5 60) 'recentf-save-list))
 
 ;;; packages.el ends here
