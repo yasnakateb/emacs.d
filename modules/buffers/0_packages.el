@@ -79,4 +79,9 @@
   :delight
   :hook (prog-mode))
 
+;;; simple
+(use-package simple
+  :ensure t
+  :hook (before-save . delete-trailing-whitespace))
+
 ;;; packages.el ends here
