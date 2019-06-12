@@ -64,4 +64,8 @@
   :mode ("\\.epub\\'" . nov-mode)
   :custom (nov-text-width 75))
 
+;;; csv
+(use-package csv-mode
+  :ensure t)
+
 ;;; packages.el ends here
