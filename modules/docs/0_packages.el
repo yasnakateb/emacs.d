@@ -19,12 +19,14 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+;;; markdown-mode
 (use-package markdown-mode
   :ensure-system-package (pandoc . "trizen -S pandoc")
   :delight "μ "
   :mode ("\\.markdown\\'" "\\.md\\'")
   :custom (markdown-command "/usr/bin/pandoc"))
 
+;;; markdown-preview-mode
 (use-package markdown-preview-mode
   :after markdown-mode
   :custom
@@ -55,5 +57,11 @@
 
             @media (max-width: 767px) { .markdown-body { padding: 15px; } }
           </style>")))
+
+;;; nov
+(use-package nov
+  :ensure t
+  :mode ("\\.epub\\'" . nov-mode)
+  :custom (nov-text-width 75))
 
 ;;; packages.el ends here
