@@ -21,6 +21,10 @@
 
 ;;; company
 (with-eval-after-load 'company
-  (setq company-idle-delay 0))
+  (setq company-idle-delay 0.1
+	company-begin-commands '(self-insert-command)
+	company-minimum-prefix-length 2
+	company-show-numbers t
+	company-tooltip-align-annotations 't))
 
 ;;; configs.el ends here

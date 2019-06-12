@@ -44,4 +44,10 @@
 (use-package yasnippet-snippets
   :ensure t)
 
+;;; company-box
+(use-package company-box
+  :after company
+  :delight
+  :hook (company-mode . company-box-mode))
+
 ;;; packages.el ends here
