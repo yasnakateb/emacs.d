@@ -108,4 +108,10 @@
      ("TODO" . (:foreground "green" :weight bold))
      ("WAITING" . (:foreground "red" :weight bold)))))
 
+;;; org-crypt
+(use-package org-cryptd
+  :ensure nil
+  :after org
+  :custom (org-crypt-key "3797D501BCA4213083024D46533892D5073A452C"))
+
 ;;; packages.el ends here
