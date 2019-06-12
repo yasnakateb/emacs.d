@@ -23,7 +23,9 @@
  :prefix "SPC a"
  :states '(normal visual motion)
  :keymaps 'override
- "c" 'calc)
+ "c" 'calc
+ "C" 'calendar
+ "h" 'holidays)
 
 
 ;;; bindings.el ends here

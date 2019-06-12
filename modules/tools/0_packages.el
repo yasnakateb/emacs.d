@@ -19,7 +19,16 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+;;; calc
 (use-package calc
+  :ensure t)
+
+;;; calendar
+(use-package calendar
+  :ensure t)
+
+;;; holidays
+(use-package holidays
   :ensure t)
 
 ;;; packages.el ends here
