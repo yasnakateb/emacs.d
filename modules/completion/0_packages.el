@@ -75,7 +75,18 @@
 ;;; flyspell-correct-helm
 (use-package flyspell-correct-helm
   :ensure t
-  :after (flyspell ivy)
+  :after (flyspell helm)
   :init (setq flyspell-correct-interface #'flyspell-correct-helm))
+
+;;; langtool
+(use-package langtool
+  :ensure t
+  :defer 2
+  :delight
+  :custom
+  (langtool-default-language "en")
+  (langtool-language-tool-jar "~/.local/apps/LanguageTool-4.5/languagetool-commandline.jar")
+  (langtool-language-tool-server-jar "~/.local/apps/LanguageTool-4.5/languagetool-server.jar")
+  (langtool-mother-tongue "ir"))
 
 ;;; packages.el ends here
