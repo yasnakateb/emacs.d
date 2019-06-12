@@ -21,7 +21,7 @@
 
 ;;; markdown-mode
 (use-package markdown-mode
-  :ensure-system-package (pandoc . "trizen -S pandoc")
+  :ensure t
   :delight "μ "
   :mode ("\\.markdown\\'" "\\.md\\'")
   :custom (markdown-command "/usr/bin/pandoc"))

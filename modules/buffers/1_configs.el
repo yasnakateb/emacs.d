@@ -41,6 +41,7 @@
     ("web" (or (mode . web-mode) (mode . js2-mode)))
     ("shell" (or (mode . eshell-mode) (mode . shell-mode)))
     ("mu4e" (name . "\*mu4e\*"))
+    ("IRC" (mode . erc-mode))
     ("programming" (or
       (mode . python-mode)
       (mode . c++-mode)))

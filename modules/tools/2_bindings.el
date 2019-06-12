@@ -23,6 +23,7 @@
  :prefix "SPC a"
  :states '(normal visual motion)
  :keymaps 'override
+ "i" 'mk-erc-start-or-switch
  "c" 'calc
  "C" 'calendar
  "h" 'holidays)

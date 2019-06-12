@@ -36,7 +36,7 @@
   (setq calendar-mark-holidays-flag t))
 
 ;;; holidays
-(with-eval-after-load 'Holidays
+(with-eval-after-load 'holidays
   (setq holiday-bahai-holidays nil
 	holiday-christian-holidays '((holiday-fixed 1 6 "Epiphany")
 				     (holiday-fixed 2 2 "Candlemas")
