@@ -68,4 +68,21 @@
 (use-package csv-mode
   :ensure t)
 
+;;; dockerfile-mode
+(use-package dockerfile-mode
+  :ensure t
+  :delight "δ "
+  :mode "Dockerfile\\'")
+
+;;; elisp-mode
+(use-package elisp-mode
+  :ensure nil
+  :delight "ξ ")
+
+;;; eldoc
+(use-package eldoc
+  :ensure t
+  :delight
+  :hook (emacs-lisp-mode . eldoc-mode))
+
 ;;; packages.el ends here
