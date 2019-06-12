@@ -26,5 +26,9 @@
   :init
   (setq wttrin-default-accept-language '("Accept-Language" . "en-US")
 	wttrin-default-cities '("Edinburgh" "~Shiraz" "London")))
+;;; sh-script
+(use-package sh-script
+  :ensure t
+  :hook (after-save . executable-make-buffer-file-executable-if-script-p))
 
 ;;; packages.el ends here
