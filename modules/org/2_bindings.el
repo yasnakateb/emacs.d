@@ -27,6 +27,8 @@
    "a" 'org-agenda
    "o" 'org-mode
    "c" 'org-capture
+   "t" 'org-journal-new-entry
+   "y" 'journal-file-yesterday
    "l" 'org-store-link)
 
 ;;; bindings.el ends here

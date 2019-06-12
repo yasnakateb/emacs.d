@@ -114,4 +114,26 @@
   :after org
   :custom (org-crypt-key "3797D501BCA4213083024D46533892D5073A452C"))
 
+;;; org-journal
+(use-package org-journal
+  :ensure t
+  :after org
+  :preface
+  (defun get-journal-file-yesterday ()
+    "Gets filename for yesterday's journal entry."
+    (let* ((yesterday (time-subtract (current-time) (days-to-time 1)))
+           (daily-name (format-time-string "%Y%m%d" yesterday)))
+      (expand-file-name (concat org-journal-dir daily-name))))
+  
+  (defun journal-file-yesterday ()
+    "Creates and load a file based on yesterday's date."
+    (interactive)
+    (find-file (get-journal-file-yesterday)))
+  :custom
+  (org-journal-date-format "%e %b %Y (%A)")
+  (org-journal-dir (format (concat org-directory "/journal/")
+			   (format-time-string "%Y")))
+  (org-journal-enable-encryption t)
+  (org-journal-file-format "%Y%m%d")
+  (org-journal-time-format ""))
 ;;; packages.el ends here
