@@ -50,4 +50,14 @@
   :delight
   :hook (company-mode . company-box-mode))
 
+;;; abbrev
+(use-package abbrev
+  :ensure nil
+  :delight
+  :hook (text-mode . abbrev-mode)
+  :custom (abbrev-file-name (concat mk-emacs-dir "abbrev_defs"))
+  :config
+  (if (file-exists-p abbrev-file-name)
+      (quietly-read-abbrev-file)))
+
 ;;; packages.el ends here
