@@ -22,6 +22,16 @@
 ;;; org
 (with-eval-after-load 'org
   (require 'org-id)
+
+  (org-todo-keywords '((sequence "TODO(t)"
+                                 "STARTED(s)"
+                                 "WAITING(w@/!)"
+                                 "SOMEDAY(.)" "|" "DONE(x!)" "CANCELLED(c@)")
+                       (sequence "TOBUY"
+                                 "TOSHRINK"
+                                 "TOCUT"
+                                 "TOSEW" "|" "DONE(x)")))
+
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((gnuplot . t)))

@@ -91,4 +91,21 @@
   :custom
   (org-bullets-bullet-list '("●" "►" "▸")))
 
+;;; org-contacts
+(use-package org-contacts
+  :ensure nil
+  :after org
+  :custom (org-contacts-files '((concat org-directory "/agenda/contacts.org"))))
+
+;;; org-faces
+(use-package org-faces
+  :ensure nil
+  :after org
+  :custom
+  (org-todo-keyword-faces
+   '(("DONE" . (:foreground "cyan" :weight bold))
+     ("SOMEDAY" . (:foreground "gray" :weight bold))
+     ("TODO" . (:foreground "green" :weight bold))
+     ("WAITING" . (:foreground "red" :weight bold)))))
+
 ;;; packages.el ends here
