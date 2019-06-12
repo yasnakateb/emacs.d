@@ -26,7 +26,8 @@
  :keymaps 'override
  "d" 'kill-current-buffer
  "D" 'kill-buffer
- "b" 'ibuffer)
+ "b" 'helm-buffers-list
+ "B" 'ibuffer)
 ;;; avy
 (with-eval-after-load 'avy
   (general-define-key
