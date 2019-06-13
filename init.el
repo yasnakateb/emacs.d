@@ -52,6 +52,8 @@
 (defvar mk-eshell-dir (concat mk-emacs-dir ".eshell/")
   "The root directory of MK's eshell files. Must end with a slash.")
 
+(setq org-directory     "~/Dropbox/org")
+
 (message "Starting MK")
 ;;; Speed up startup
 (eval-when-compile (require 'cl))
@@ -108,7 +110,7 @@
 (add-to-list 'load-path mk-lisp-dir)
 (require 'core)
 (message "Core has been loaded.")
-;;; Load Theme 
+;;; Load Theme
 (load-modules mk-ui-dir)
 ;;; Load modules
 (load-modules mk-modules-dir)

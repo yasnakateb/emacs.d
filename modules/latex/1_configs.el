@@ -51,11 +51,11 @@
 
 ;;; helm-bibtex
 (with-eval-after-load 'helm-bibtex
-  (setq bibtex-completion-bibliography "~/Dropbox/org/ref/master.bib"
-        bibtex-completion-library-path "~/Dropbox/org/ref/pdfs"
-        bibtex-completion-notes-path   "~/Dropbox/org/ref/notes.org"
-	helm-bibtex-bibliography '("~/Dropbox/org/ref/master.bib")
-	helm-bibtex-library-path '("~/Dropbox/org/ref/pdfs")
+  (setq bibtex-completion-bibliography (concat org-directory "/ref/master.bib")
+        bibtex-completion-library-path (concat org-directory "/ref/pdfs")
+        bibtex-completion-notes-path   (concat org-directory "/ref/notes.org")
+	helm-bibtex-bibliography bibtex-completion-bibliography
+	helm-bibtex-library-path bibtex-completion-library-path
 	;; using bibtex path reference to pdf file
 	bibtex-completion-pdf-field "File"
 	helm-bibtex-default-action 'bibtex-completion-insert-citation))

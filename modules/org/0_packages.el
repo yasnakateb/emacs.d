@@ -25,8 +25,7 @@
   :pin org
   :mode ("\\.org$" . org-mode)
   :init
-  (setq org-directory     "~/Dropbox/org"
-	org-agenda-files
+  (setq org-agenda-files
 	(append
 	 (file-expand-wildcards (concat org-directory "/agenda/*.org")))
 	org-agenda-window-setup (quote current-window)
@@ -124,7 +123,7 @@
     (let* ((yesterday (time-subtract (current-time) (days-to-time 1)))
            (daily-name (format-time-string "%Y%m%d" yesterday)))
       (expand-file-name (concat org-journal-dir daily-name))))
-  
+
   (defun journal-file-yesterday ()
     "Creates and load a file based on yesterday's date."
     (interactive)
