@@ -1,5 +1,4 @@
-
-;;; bindings.el --- Engine -*- lexical-binding: t; -*-
+;;; bindings.el --- Media -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2019  M.R. Siavash Katebzadeh
 
@@ -20,13 +19,13 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;;; Files
-(with-eval-after-load 'helm
+;;; emms
+;;; elfeed
 (general-define-key
-   :prefix "SPC f"
+   :prefix "SPC a"
    :states '(normal visual motion)
    :keymaps 'override
-   "k" 'helm-show-kill-ring
-   "f" 'helm-find-files))
+   "s" 'emms-start-mpd)
+
 
 ;;; bindings.el ends here

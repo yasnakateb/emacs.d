@@ -14,3 +14,5 @@ transient/
 .eshell/
 .xkcd/
 .local/
+emms/
+.emms/
