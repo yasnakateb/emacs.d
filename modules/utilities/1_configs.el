@@ -36,5 +36,10 @@
   (interactive)
   (helm :sources '(helm-power-source)))
 
+;;; config files
+(defun configs-init ()
+  "Open init.el file."
+  (interactive)
+  (find-file (concat mk-emacs-dir "init.el")))
 
 ;;; configs.el ends here

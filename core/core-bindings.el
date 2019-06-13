@@ -29,6 +29,7 @@
  :keymaps 'override
  "" '(nil :which-key "My lieutenant general prefix")
  "f" '(:ignore t :which-key "Files")
+ "C" '(:ignore t :which-key "Config Files")
  "o" '(:ignore t :which-key "Org")
  "a" '(:ignore t :which-key "Applications")
  "g" '(:ignore t :which-key "Magit")

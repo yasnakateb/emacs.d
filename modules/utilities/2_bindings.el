@@ -26,4 +26,11 @@
  :keymaps 'override
  "z" 'helm-power)
 
+;;; config files
+(general-define-key
+ :prefix "SPC C"
+ :states '(normal visual motion)
+ :keymaps 'override
+ "C" 'configs-init)
+
 ;;; bindings.el ends here

@@ -27,6 +27,7 @@
    :states '(normal visual motion)
    :keymaps 'override
    "k" 'helm-show-kill-ring
+   "r" 'helm-recentf
    "f" 'helm-find-files)
 
   (define-key helm-map (kbd "TAB") #'helm-execute-persistent-action)

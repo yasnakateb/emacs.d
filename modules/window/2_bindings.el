@@ -21,34 +21,24 @@
 
 ;;; Windows
 (general-define-key
-   :prefix "SPC w"
-   :states '(normal visual motion)
-   :keymaps 'override
-   "v" 'evil-window-vsplit
-   "s" 'evil-window-split
-   "d" 'evil-window-delete
-   "h" 'evil-window-left
-   "j" 'evil-window-down
-   "k" 'evil-window-up
-   "l" 'evil-window-right)
-
-;;; leader config files 
-(defun configs-visit ()
-(interactive)
-(helm-find-files mk-emacs-dir))
-(general-define-key
-   :prefix "SPC C"
-   :states '(normal visual motion)
-   :keymaps 'override
-   "C" 'configs-visit )
+ :prefix "SPC w"
+ :states '(normal visual motion)
+ :keymaps 'override
+ "v" 'evil-window-vsplit
+ "s" 'evil-window-split
+ "d" 'evil-window-delete
+ "h" 'evil-window-left
+ "j" 'evil-window-down
+ "k" 'evil-window-up
+ "l" 'evil-window-right)
 
 ;;; Toggles
 (general-define-key
-   :prefix "SPC t"
-   :states '(normal visual motion)
-   :keymaps 'override
-   "i" 'imenu-list
-   "I" 'helm-imenu)
+ :prefix "SPC t"
+ :states '(normal visual motion)
+ :keymaps 'override
+ "i" 'imenu-list
+ "I" 'helm-imenu)
 
 
 ;;; bindings.el ends here
