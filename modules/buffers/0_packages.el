@@ -92,6 +92,9 @@
   (recentf-exclude (list "COMMIT_EDITMSG"
                          "~$"
                          "/scp:"
+                         (expand-file-name mk-backup-dir)
+                         (expand-file-name mk-local-dir)
+                         (expand-file-name (concat mk-emacs-dir "emms/"))
                          "/ssh:"
                          "/sudo:"
                          "/tmp/"))
