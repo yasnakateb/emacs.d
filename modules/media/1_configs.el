@@ -62,5 +62,13 @@
 (with-eval-after-load 'helm-youtube
   (load-library (concat mk-secret-dir "youtube.gpg")))
 
-;;; configs.el ends here
+;;; transmission
+(with-eval-after-load 'transmission
+  (defvar transmission-auto-refresh-all nil
+    "Enable status auto refresh in all transmission buffers.")
+  (setq transmission-refresh-modes '(transmission-mode
+				     transmission-files-mode
+				     transmission-info-mode
+				     transmission-peers-mode)))
 
+;;; configs.el ends here

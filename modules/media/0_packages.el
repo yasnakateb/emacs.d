@@ -29,5 +29,7 @@
 (use-package helm-youtube
   :ensure t)
 
+;;; transmission
+(use-package transmission
+  :ensure t)
 ;;; packages.el ends here
-

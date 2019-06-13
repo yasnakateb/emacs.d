@@ -30,4 +30,18 @@
    "s" 'emms-player-mpd-play
    "e" 'emms-player-mpd-pause)
 
+;;; helm-youtube
+(general-define-key
+ :prefix "SPC h"
+ :states '(normal visual motion)
+ :keymaps 'override
+ "Y" 'helm-youtube)
+
+;;; transmission
+(general-define-key
+ :prefix "SPC a"
+ :states '(normal visual motion)
+ :keymaps 'override
+ "T" 'transmission)
+
 ;;; bindings.el ends here
