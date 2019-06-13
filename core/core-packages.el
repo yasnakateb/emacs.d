@@ -82,6 +82,10 @@
 (use-package evil-magit
   :ensure t)
 
+;;; restart-emacs
+(use-package restart-emacs
+  :ensure t)
+
 (require 'core-bindings)
 
 (provide 'core-packages)

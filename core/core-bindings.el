@@ -45,5 +45,14 @@
  "x" 'helm-M-x
  ";" 'eval-expression
  )
+
+;;; Exit/restart/reboot/shutdown
+(general-define-key
+ :prefix "SPC q"
+ :states '(normal visual motion)
+ :keymaps 'override
+ "q" 'kill-emacs
+ "Q" 'restart-emacs)
+
 (provide 'core-bindings)
 ;;; core-bindings.el ends here
