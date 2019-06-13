@@ -58,5 +58,9 @@
   (mpd-start-music-daemon)
   (emms))
 
+;;; helm-youtube
+(with-eval-after-load 'helm-youtube
+  (load-library (concat mk-secret-dir "youtube.gpg")))
+
 ;;; configs.el ends here
 

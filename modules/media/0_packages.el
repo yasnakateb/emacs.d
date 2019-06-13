@@ -26,5 +26,8 @@
 (use-package emms-info-mediainfo
   :ensure t)
 
+(use-package helm-youtube
+  :ensure t)
+
 ;;; packages.el ends here
 

@@ -22,7 +22,7 @@
 ;;; org
 (with-eval-after-load 'org
   (require 'org-id)
-
+  (setq mk-secret-dir (concat org-directory "/keys/"))
   (setq org-todo-keywords '((sequence "TODO(t)"
                                  "STARTED(s)"
                                  "WAITING(w@/!)"
