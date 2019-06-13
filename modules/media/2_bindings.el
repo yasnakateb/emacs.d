@@ -20,12 +20,19 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; emms
-;;; elfeed
 (general-define-key
    :prefix "SPC a"
    :states '(normal visual motion)
    :keymaps 'override
    "s" 'emms-start-mpd)
 
+(general-define-key
+   :prefix "SPC m"
+   :states '(normal visual motion)
+   :keymaps 'override
+   "n" 'emms-player-mpd-next
+   "p" 'emms-player-mpd-previous
+   "s" 'emms-player-mpd-play
+   "e" 'emms-player-mpd-pause)
 
 ;;; bindings.el ends here

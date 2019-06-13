@@ -20,10 +20,9 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; emms
-
 (require 'emms-setup)
 (require 'emms-player-mpd)
-(emms-all) ; don't change this to values you see on stackoverflow questions if you expect emms to work
+(emms-all)
 (setq emms-seek-seconds 5)
 (setq emms-player-list '(emms-player-mpd))
 (setq emms-info-functions '(emms-info-mpd))
