@@ -38,6 +38,7 @@
  "s" '(:ignore t :which-key "Search")
  "S" '(:ignore t :which-key "Shell")
  "h" '(:ignore t :which-key "Help!")
+ "v" '(:ignore t :which-key "Volume")
  "w" '(:ignore t :which-key "Windows")
  "t" '(:ignore t :which-key "Toggles")
 

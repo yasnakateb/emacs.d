@@ -44,4 +44,15 @@
  :keymaps 'override
  "T" 'transmission)
 
+;;; volume
+(general-define-key
+ :prefix "SPC v"
+ :states '(normal visual motion)
+ :keymaps 'override
+ "i" 'volume-increase
+ "d" 'volume-decrease
+ "t" 'volume-toggle
+ "m" 'volume-max)
+
+
 ;;; bindings.el ends here

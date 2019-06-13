@@ -70,5 +70,27 @@
 				     transmission-files-mode
 				     transmission-info-mode
 				     transmission-peers-mode)))
+;;; volume
+(setq volume-step "10%")
+
+(defun volume-increase ()
+  "Increase the volume by volume-setp"
+  (interactive)
+  (shell-command (concat "amixer set Master " volume-step "+")))
+
+(defun volume-decrease ()
+  "Decrease the volume by volume-setp"
+  (interactive)
+  (shell-command (concat "amixer set Master " volume-step "-")))
+
+(defun volume-toggle ()
+  "Mute/unmute the volume."
+  (interactive)
+  (shell-command "amixer set Master toggle"))
+
+(defun volume-max ()
+  "Set the volume to 100%."
+  (interactive)
+  (shell-command "amixer set Master 100%"))
 
 ;;; configs.el ends here
