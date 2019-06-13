@@ -22,11 +22,15 @@
 
 ;;; Files
 (with-eval-after-load 'helm
-(general-define-key
+  (general-define-key
    :prefix "SPC f"
    :states '(normal visual motion)
    :keymaps 'override
    "k" 'helm-show-kill-ring
-   "f" 'helm-find-files))
+   "f" 'helm-find-files)
+
+  (define-key helm-map (kbd "TAB") #'helm-execute-persistent-action)
+  (define-key helm-map (kbd "<tab>") #'helm-execute-persistent-action)
+  (define-key helm-map (kbd "C-z") #'helm-select-action))
 
 ;;; bindings.el ends here
