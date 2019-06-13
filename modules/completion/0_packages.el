@@ -46,6 +46,7 @@
 
 ;;; company-box
 (use-package company-box
+  :disable t
   :after company
   :delight
   :hook (company-mode . company-box-mode))
