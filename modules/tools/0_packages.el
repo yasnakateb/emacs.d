@@ -107,7 +107,7 @@
     (if (get-buffer "irc.freenode.net:6667")
         (erc-track-switch-buffer 1)
       (erc :server "irc.freenode.net" :port 6667 :nick "mrkatebzadeh")))
-  :hook ((ercn-notify . mk-erc-notify)
+  :hook (;(ercn-notify . mk-erc-notify)
          (erc-send-pre . mk-erc-preprocess))
   :custom-face
   (erc-action-face ((t (:foreground "#8fbcbb"))))
@@ -137,7 +137,7 @@
   (erc-track-exclude-types '("JOIN" "MODE" "NICK" "PART" "QUIT"
                              "324" "329" "332" "333" "353" "477"))
   :config
-  (add-to-list 'erc-modules 'notifications)
+  ;(add-to-list 'erc-modules 'notifications)
   (erc-services-mode 1)
   (erc-update-modules))
 
