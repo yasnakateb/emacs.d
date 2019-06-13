@@ -21,23 +21,24 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; auctex
-(add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
-(add-hook 'LaTeX-mode-hook
-    (lambda ()
-      (add-hook 'after-save-hook 'TeX-command-master nil t)))
-				; to use pdfview with auctex
-(add-hook 'LaTeX-mode-hook 'pdf-tools-install)
+(with-eval-after-load 'auctex
+  (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
+  (add-hook 'LaTeX-mode-hook
+	    (lambda ()
+	      (add-hook 'after-save-hook 'TeX-command-master nil t)))
+					; to use pdfview with auctex
+  (add-hook 'LaTeX-mode-hook 'pdf-tools-install)
 
-;; 3 Make C-c-c not ask, just do the default action. Add C-c-a for asking
-;; If non-nil, TeX-command-query will return the value of this variable instead
-;; of quering the user.
+  ;; 3 Make C-c-c not ask, just do the default action. Add C-c-a for asking
+  ;; If non-nil, TeX-command-query will return the value of this variable instead
+  ;; of quering the user.
 
-(add-hook 'LaTeX-mode-hook
-    '(lambda()
-       (define-key LaTeX-mode-map "\C-c\C-a" ; 'a' for ask
-	 (lambda (arg) (interactive "P")
-	   (let ((TeX-command-force nil))
-	     (TeX-command-master arg))))))
+  (add-hook 'LaTeX-mode-hook
+	    '(lambda()
+	       (define-key LaTeX-mode-map "\C-c\C-a" ; 'a' for ask
+		 (lambda (arg) (interactive "P")
+		   (let ((TeX-command-force nil))
+		     (TeX-command-master arg)))))))
 
 ;;; reftex
 (with-eval-after-load 'reftex
@@ -47,7 +48,7 @@
 (with-eval-after-load 'pdf-tools
   (setq mouse-wheel-follow-mouse t
 	pdf-view-resize-factor 1.10))
-  
+
 ;;; helm-bibtex
 (with-eval-after-load 'helm-bibtex
   (setq bibtex-completion-bibliography "~/Dropbox/org/ref/master.bib"
@@ -62,7 +63,7 @@
 ;;; auctex-latexmk
 (with-eval-after-load 'auctex-latexmk
   (auctex-latexmk-setup))
-  
+
 ;;; company-auctex
 (with-eval-after-load 'company-auctex
   (company-auctex-init))
