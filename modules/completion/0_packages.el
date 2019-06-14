@@ -90,4 +90,25 @@
   (langtool-language-tool-server-jar "~/.local/apps/LanguageTool-4.5/languagetool-server.jar")
   (langtool-mother-tongue "ir"))
 
+;;; lsp-mode
+(use-package lsp-mode
+  :ensure t
+  :hook ((c-mode c++-mode java-mode python-mode) . lsp)
+  :custom
+  (lsp-prefer-flymake nil)
+  (lsp-session-file (concat mk-backup-dir "lsp-session-v1")))
+
+(use-package lsp-ui
+  :ensure t)
+
+(use-package company-lsp
+  :ensure t)
+
+(use-package dap-mode
+  :ensure t
+  :after lsp-mode
+  :config
+  (dap-mode t)
+  (dap-ui-mode t))
+
 ;;; packages.el ends here

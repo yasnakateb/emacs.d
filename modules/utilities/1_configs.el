@@ -25,8 +25,8 @@
         (candidates . ("Cancel" "Shutdown" "Reboot" "Lock"))
         (action . (lambda (candidate)
 		    (cond
-		     ((equal candidate "Shutdown") (shell-command "sudo shutdown"))
-		     ((equal candidate "Reboot") (shell-command "sudo shutdown -r"))
+		     ((equal candidate "Shutdown") (shell-command "sudo shutdown now"))
+		     ((equal candidate "Reboot") (shell-command "sudo shutdown -r now"))
 		     ((equal candidate "Lock") (shell-command "slock"))
 		     ((equal candidate "Cancel") (message "Canceled!"))
 		     (t (message "Invalid!")))))))

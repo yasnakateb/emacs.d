@@ -21,7 +21,7 @@
 
 ;;; markdown-mode
 (general-define-key
-   :prefix "SPC m"
+   :prefix "SPC l"
    :states '(normal visual motion)
    :keymaps 'markdown-mode-map
    ;; Movement
