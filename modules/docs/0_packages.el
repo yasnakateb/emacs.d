@@ -85,4 +85,9 @@
   :delight
   :hook (emacs-lisp-mode . eldoc-mode))
 
+;;; rfc-mode
+(use-package rfc-mode
+  :ensure t
+  :init (require 'rfc-mode))
+
 ;;; packages.el ends here
