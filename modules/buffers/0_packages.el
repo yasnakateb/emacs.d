@@ -36,6 +36,12 @@
 (use-package expand-region
   :ensure t)
 
+;;; evil-surround
+(use-package evil-surround
+  :ensure t
+  :config
+  (global-evil-surround-mode 1))
+
 ;;; projectile/counsel-projectile
 (use-package projectile
   :ensure t)
