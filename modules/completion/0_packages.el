@@ -44,13 +44,6 @@
 (use-package yasnippet-snippets
   :ensure t)
 
-;;; company-box
-(use-package company-box
-  :disable t
-  :after company
-  :delight
-  :hook (company-mode . company-box-mode))
-
 ;;; abbrev
 (use-package abbrev
   :ensure nil

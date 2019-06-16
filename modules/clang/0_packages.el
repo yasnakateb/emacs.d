@@ -23,7 +23,6 @@
 (use-package ccls
   :ensure t
   :after projectile
-  :ensure-system-package ccls
   :custom
   (ccls-args nil)
   (ccls-executable (executable-find "ccls"))
