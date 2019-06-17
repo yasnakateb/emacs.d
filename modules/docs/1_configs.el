@@ -30,5 +30,8 @@
     (shell-command (concat "rsync -qq -avz --delete ftp.rfc-editor.org::rfcs-text-only " rfc-mode-directory "rfc-update"))
     (message "RFCs are updated.")))
 
+;;; ned-mode and ini-mode
+(autoload 'ned-mode "ned-mode" "Major Mode for editing Ned files" t)
+(setq auto-mode-alist (cons '("\\.ned\\'" . ned-mode) auto-mode-alist))
 
 ;;; configs.el ends here
