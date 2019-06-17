@@ -53,7 +53,7 @@
  :states '(normal visual motion)
  :keymaps 'override
  "q" 'kill-emacs
- "Q" 'restart-emacs)
+ "r" 'restart-emacs)
 
 (provide 'core-bindings)
 ;;; core-bindings.el ends here
