@@ -21,7 +21,7 @@
 
 ;;; mu4e
 (with-eval-after-load 'mu4e
-  (setq mu4e-maildir "~/.local/share/mail" 
+  (setq mu4e-maildir "~/.local/share/mail"
 	mu4e-get-mail-command "mbsync -a --verbose"
 	mu4e-update-interval 300
 	mu4e-view-show-images t
@@ -48,8 +48,6 @@
           ("view in browser" . mu4e-action-view-in-browser)
           ("show this thread" . mu4e-action-show-thread)
 	  ("View as pdf" . mu4e-action-view-as-pdf)))
-  ;; imap
-  (setq mu4e-get-mail-command "mbsync")
   ;; default send
   (setq mu4e-sent-folder "/sent"
 	mu4e-drafts-folder "/drafts"
