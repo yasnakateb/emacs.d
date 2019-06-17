@@ -29,10 +29,13 @@
 
 ;; theme
 (use-package challenger-deep-theme
-  :ensure t
-  :init
-  (load-theme 'challenger-deep t))
+  :ensure t)
+					;  :init  (load-theme 'challenger-deep t))
 
+;; dracula-theme
+(use-package dracula-theme
+  :ensure t
+  :init (load-theme 'dracula t))
 ;; all-the-icons
 (use-package all-the-icons
   :ensure t
