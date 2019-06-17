@@ -26,10 +26,18 @@
 (use-package outshine
   ;; Easier navigation for source files, especially this one.
   :bind (:map outshine-mode-map
-    ("<S-iso-lefttab>" . outshine-cycle-buffer))
-  :hook (emacs-lisp-mode . outshine-mode))
+	      ("<S-iso-lefttab>" . outshine-cycle-buffer))
+  :hook (emacs-lisp-mode . outshine-mode)
+  :config
+  (advice-add 'outshine-narrow-to-subtree :before
+	      (lambda (&rest args) (unless (outline-on-heading-p t)
+				     (outline-previous-visible-heading 1))))
+  ;;; outshine
+  (let ((kmap outline-minor-mode-map))
+    (define-key kmap (kbd "M-RET") 'outshine-insert-heading)
+    (define-key kmap (kbd "<backtab>") 'outshine-cycle-buffer)))
 
-;;; hydra
+  ;;; hydra
 (use-package hydra
   :ensure t)
 
