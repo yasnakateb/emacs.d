@@ -93,4 +93,11 @@
  "G" 'google-this-search
  "m" 'man)
 
+;;; nlinum-relative
+(general-define-key
+ :prefix "SPC t"
+ :states '(normal visual motion)
+ :keymaps 'override
+ "n" 'nlinum-relative-toggle)
+
 ;;; bindings.el ends here

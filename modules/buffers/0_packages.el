@@ -48,7 +48,10 @@
 
 ;;; nlinum-relative
 (use-package nlinum-relative
-  :ensure t)
+  :ensure t
+  :init
+  (nlinum-relative-setup-evil)
+  (add-hook 'prog-mode-hook 'nlinum-relative-mode))
 
 ;;; emojify
 (use-package emojify

@@ -80,8 +80,6 @@
 
 ;;; nlinum-relative
 (with-eval-after-load 'nlinum-relative
-  (nlinum-relative-setup-evil)
-  (add-hook 'prog-mode-hook 'nlinum-relative-mode)
   (setq nlinum-relative-redisplay-delay 0
 	nlinum-relative-current-symbol ""
 	nlinum-relative-offset 1))
