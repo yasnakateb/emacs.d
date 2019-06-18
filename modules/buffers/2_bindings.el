@@ -27,7 +27,9 @@
  "d" 'kill-current-buffer
  "D" 'kill-buffer
  "b" 'helm-buffers-list
- "B" 'ibuffer)
+ "B" 'ibuffer
+ "w" 'evil-write
+ "u" 'undo-tree-visualize)
 
 ;;; projectile
 (general-define-key
