@@ -72,7 +72,10 @@
 
 ;;; projectile
 (with-eval-after-load 'projectile
-  (setq projectile-completion-system 'helm)
+  (setq projectile-completion-system 'helm
+	projectile-enable-caching t
+	projectile-switch-project-action 'helm-projectile-find-file)
+  (add-to-list 'projectile-globally-ignored-directories "backup")
   (projectile-global-mode))
 
 ;;; nlinum-relative
@@ -91,17 +94,14 @@
 ;; browser
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "firefox")
+
 ;;kill buffer
 (setq kill-buffer-query-functions
-  (delq 'process-kill-buffer-query-function kill-buffer-query-functions))
+      (delq 'process-kill-buffer-query-function kill-buffer-query-functions))
+
 ;; man
 (require 'man)
 (set-face-attribute 'Man-overstrike nil :inherit font-lock-type-face :bold t)
 (set-face-attribute 'Man-underline nil :inherit font-lock-keyword-face :underline t)
 
 ;;; configs.el ends here
-
-
-
-
-

@@ -19,8 +19,16 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+;;; helm
 (use-package helm
   :ensure t
   :init
   (helm-mode 1))
+
+;;; helm-projectile
+(use-package helm-projectile
+  :ensure t
+  :init
+  (helm-projectile-on))
+
 ;;; packages.el ends here

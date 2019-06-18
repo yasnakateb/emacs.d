@@ -42,9 +42,10 @@
   :config
   (global-evil-surround-mode 1))
 
-;;; projectile/counsel-projectile
+;;; projectile
 (use-package projectile
   :ensure t)
+
 ;;; nlinum-relative
 (use-package nlinum-relative
   :ensure t)
