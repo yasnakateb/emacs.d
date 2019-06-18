@@ -16,3 +16,6 @@ transient/
 .local/
 emms/
 .emms/
+.cache/
+projectile.cache
+tramp
