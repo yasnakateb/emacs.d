@@ -26,7 +26,7 @@
 ;; use-package definition.
 
 ;;; Path vars
-(setq user-emacs-directory (file-name-directory load-file-name))
+;;(setq user-emacs-directory (file-name-directory load-file-name))
 (defvar mk-emacs-dir
   (eval-when-compile (file-truename user-emacs-directory))
   "The path to the currently loaded .emacs.d directory. Must end with a slash.")

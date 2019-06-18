@@ -94,6 +94,10 @@
 (use-package restart-emacs
   :ensure t)
 
+;;; esup
+(use-package esup
+  :ensure t)
+
 (require 'core-bindings)
 
 (provide 'core-packages)
