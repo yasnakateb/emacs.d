@@ -39,8 +39,26 @@
 (use-package dired-quick-sort
   :ensure t)
 
-;;; neo-tree
-(use-package neotree
+;;; treemacs
+(use-package treemacs
+  :ensure t
+  :defer t)
+
+(use-package treemacs-evil
+  :after treemacs evil
+  :ensure t)
+
+(use-package treemacs-projectile
+  :after treemacs projectile
+  :ensure t)
+
+(use-package treemacs-icons-dired
+  :after treemacs dired
+  :ensure t
+  :config (treemacs-icons-dired-mode))
+
+(use-package treemacs-magit
+  :after treemacs magit
   :ensure t)
 
 ;;; packages.el ends here

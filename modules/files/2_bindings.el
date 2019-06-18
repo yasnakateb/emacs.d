@@ -38,12 +38,19 @@
   (add-hook 'peep-dired-hook 'evil-normalize-keymaps))
 
 (general-define-key
-   :prefix "SPC a"
-   :states '(normal visual motion)
-   :keymaps 'override
-   "d" 'dired)
+ :prefix "SPC a"
+ :states '(normal visual motion)
+ :keymaps 'override
+ "d" 'dired)
 
+;;; Toggles
+(general-define-key
+ :prefix "SPC t"
+ :states '(normal visual motion)
+ :keymaps 'override
+ "f" 'treemacs)
 
+;;; bindings.el ends here
 
 
 
