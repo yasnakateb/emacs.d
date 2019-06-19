@@ -23,7 +23,8 @@
 (use-package helm
   :ensure t
   :init
-  (helm-mode 1))
+  (helm-mode 1)
+  (setq helm-ff-skip-boring-files t))
 
 ;;; helm-projectile
 (use-package helm-projectile

@@ -41,6 +41,7 @@
  "h" '(:ignore t :which-key "Help!")
  "v" '(:ignore t :which-key "Volume")
  "w" '(:ignore t :which-key "Windows")
+ "q" '(:ignore t :which-key "Quit")
  "t" '(:ignore t :which-key "Toggles")
 
  "x" 'helm-M-x
