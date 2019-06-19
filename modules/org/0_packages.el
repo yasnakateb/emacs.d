@@ -135,4 +135,11 @@
   (org-journal-enable-encryption t)
   (org-journal-file-format "%Y%m%d")
   (org-journal-time-format ""))
+
+;;; org-cal
+(use-package org-gcal
+  :ensure t
+  :config
+  (load-library "~/Dropbox/org/keys/gcal.el.gpg"))
+
 ;;; packages.el ends here
