@@ -52,7 +52,7 @@
 ;;; helm-bibtex
 (with-eval-after-load 'helm-bibtex
   (setq bibtex-completion-bibliography (concat org-directory "/ref/master.bib")
-        bibtex-completion-library-path (concat org-directory "/ref/pdfs")
+        bibtex-completion-library-path (concat org-directory "/ref/files")
         bibtex-completion-notes-path   (concat org-directory "/ref/notes.org")
 	helm-bibtex-bibliography bibtex-completion-bibliography
 	helm-bibtex-library-path bibtex-completion-library-path

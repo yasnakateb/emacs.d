@@ -63,13 +63,13 @@
 ;;; org-ref
 (use-package org-ref
   :ensure t
-  :defer t
   :init
+  (require 'org-ref)
   (setq org-ref-bibliography-notes     (concat org-directory "/ref/notes.org")
         org-ref-default-bibliography   '(concat org-directory "/ref/master.bib")
-        org-ref-pdf-directory          (concat org-directory "/ref/pdfs/"))
+        org-ref-pdf-directory          (concat org-directory "/ref/files/"))
   (setq org-latex-pdf-process '("latexmk -pdflatex='%latex -shell-escape -interaction nonstopmode' -pdf -output-directory=%o -f %f"))
-  (setq interleave-org-notes-dir-list `(,(concat org-directory "/ref/pdfs"))))
+  (setq interleave-org-notes-dir-list `(,(concat org-directory "/ref/files"))))
 
 ;;; evil-org
 (use-package evil-org

@@ -68,31 +68,31 @@
       \\usepackage{verbatim}\n
       \\institute{{{{beamerinstitute}}}}\n
        \\subject{{{{beamersubject}}}}\n"
-		 
+
 		 ("\\section{%s}" . "\\section*{%s}")
-		 
+
 		 ("\\begin{frame}[fragile]\\frametitle{%s}"
 		  "\\end{frame}"
 		  "\\begin{frame}[fragile]\\frametitle{%s}"
 		  "\\end{frame}")))
-  
+
   ;; letter class, for formal letters
-  
+
   (add-to-list 'org-export-latex-classes
-	       
+
 	       '("letter"
 		 "\\documentclass[11pt]{letter}\n
       \\usepackage[utf8]{inputenc}\n
       \\usepackage[T1]{fontenc}\n
       \\usepackage{color}"
-		 
+
 		 ("\\section{%s}" . "\\section*{%s}")
 		 ("\\subsection{%s}" . "\\subsection*{%s}")
 		 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
 		 ("\\paragraph{%s}" . "\\paragraph*{%s}")
 		 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-  
+
   (setq org-latex-create-formula-image-program 'imagemagick)
   (setq org-latex-packages-alist
 	(quote (("" "color" t)
@@ -114,11 +114,53 @@
   "Insert a file into the current buffer at point, and convert it to an org table."
   (interactive (list (ido-read-file-name "csv file: ")))
   (let* ((start (point))
-    (end (+ start (nth 1 (insert-file-contents filename)))))
-    (org-table-convert-region start end))) 
+	 (end (+ start (nth 1 (insert-file-contents filename)))))
+    (org-table-convert-region start end)))
 
 ;;; org-ref
 (with-eval-after-load 'org-ref
+  (defun mk-set-libraries (library)
+    "Set paths according to the selected library."
+    (cond
+     ((equal candidate "Research")
+      (setq org-ref-bibliography-notes     (concat org-directory "/ref/notes.org")
+	    org-ref-default-bibliography   '(concat org-directory "/ref/master.bib")
+	    org-ref-pdf-directory          (concat org-directory "/ref/files/")
+	    bibtex-completion-bibliography (concat org-directory "/ref/master.bib")
+	    bibtex-completion-library-path (concat org-directory "/ref/files")
+	    bibtex-completion-notes-path   (concat org-directory "/ref/notes.org")
+	    helm-bibtex-bibliography bibtex-completion-bibliography
+	    helm-bibtex-library-path bibtex-completion-library-path))
+     ((equal candidate "Ebooks")
+      (setq org-ref-bibliography-notes     (concat org-directory "/ebooks/notes.org")
+	    org-ref-default-bibliography   '(concat org-directory "/ebooks/master.bib")
+	    org-ref-pdf-directory          (concat org-directory "/ebooks/files/")
+	    bibtex-completion-bibliography (concat org-directory "/ebooks/master.bib")
+	    bibtex-completion-library-path (concat org-directory "/ebooks/files")
+	    bibtex-completion-notes-path   (concat org-directory "/ebooks/notes.org")
+	    helm-bibtex-bibliography bibtex-completion-bibliography
+	    helm-bibtex-library-path bibtex-completion-library-path))
+     ((equal candidate "PDFs")
+      (setq org-ref-bibliography-notes     (concat org-directory "/pdfs/notes.org")
+	    org-ref-default-bibliography   '(concat org-directory "/pdfs/master.bib")
+	    org-ref-pdf-directory          (concat org-directory "/pdfs/files/")
+	    bibtex-completion-bibliography (concat org-directory "/pdfs/master.bib")
+	    bibtex-completion-library-path (concat org-directory "/pdfs/files")
+	    bibtex-completion-notes-path   (concat org-directory "/pdfs/notes.org")
+	    helm-bibtex-bibliography bibtex-completion-bibliography
+	    helm-bibtex-library-path bibtex-completion-library-path))
+     (t (message "Invalid!"))))
+  (setq mk-helm-libraries-source
+	'((name . "Select a library.")
+	  (candidates . ("Research" "Ebooks" "PDFs"))
+	  (action . (lambda (candidate)
+		      (mk-set-libraries candidate)))))
+
+  (defun mk-helm-ref ()
+    "Prompt for switching libraries."
+    (interactive)
+    (helm :sources '(mk-helm-libraries-source)))
+
   (defun my-orcb-key ()
     "Replace the key in the entry, also change the pdf file name if it exites."
     (let ((key (funcall org-ref-clean-bibtex-key-function
@@ -126,9 +168,9 @@
       ;; first we delete the existing key
       (bibtex-beginning-of-entry)
       (re-search-forward bibtex-entry-maybe-empty-head)
-      
+
       (setq old-key (match-string 2));;store old key
-      
+
       (if (match-beginning bibtex-key-in-head)
 	  (delete-region (match-beginning bibtex-key-in-head)
 			 (match-end bibtex-key-in-head)))
@@ -143,14 +185,14 @@
 	(setq key (bibtex-read-key "Duplicate Key found, edit: " key)))
       (insert key)
       (kill-new key)
-      
+
       (save-excursion
 	"update pdf names and notes items"
 	;; rename the pdf after change the bib item key
 	(my-update-pdf-names old-key key)
 	;; renmae the notes item after change the bib item key
 	(my-update-notes-item old-key key))
-      
+
       ;; save the buffer
       (setq require-final-newline t)
       (save-buffer)))
@@ -163,24 +205,24 @@
   ;; define a function that update the notes items before change the key of bib entry
   (defun my-update-notes-item (old-key new-key)
     "update a notes item of a old-key by a new-key in case the bib item is changed"
-    
+
     (set-buffer (find-file-noselect org-ref-bibliography-notes))
     ;; move to the beginning of the buffer
     (goto-char (point-min))
     ;; find the string and replace it
     (let ((newcite new-key)
 	  (regstr old-key))
-      
+
       (while (re-search-forward regstr nil t)
-	
+
 	(delete-region (match-beginning 0)
 		       (match-end 0))
 	(insert newcite))
-      
+
       ;; save the buffer
       (setq require-final-newline t)
       (save-buffer)
       (kill-buffer)))
   (add-hook 'org-ref-clean-bibtex-entry-hook 'my-orcb-key))
- 
+
 ;;; configs.el ends here
