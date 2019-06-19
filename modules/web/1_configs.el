@@ -29,7 +29,7 @@
     (eldoc-mode +1)
     (tide-hl-identifier-mode +1)
     (company-mode +1))
-  
+
   (setq company-tooltip-align-annotations t)
   (add-hook 'before-save-hook 'tide-format-before-save)
   (add-hook 'typescript-mode-hook #'setup-tide-mode)
@@ -37,11 +37,5 @@
 	    (lambda ()
 	      (set (make-local-variable 'company-backends) '(company-web-html))
 	      (company-mode t))))
-
-;;; react native
-(with-eval-after-load 'js2-mode
-  (setq js2-basic-offset 2
-	js2-bounce-indent-p t)
-  (add-hook 'js2-mode-hook 'company-mode))
 
 ;;; configs.el ends here

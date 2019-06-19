@@ -21,16 +21,7 @@
 
 ;;; company mode
 (use-package company
-  :ensure t
-  :init
-  (add-hook 'after-init-hook 'global-company-mode))
-
-;;; auto-complete mode
-(use-package auto-complete
-  :ensure t
-  :init
-    (ac-config-default)
-    (global-auto-complete-mode t))
+  :ensure t)
 
 ;;; flycheck mode
 (use-package flycheck
@@ -57,9 +48,6 @@
 ;;; flyspell
 (use-package flyspell
   :ensure t
-  :delight
-  :hook ((markdown-mode org-mode text-mode) . flyspell-mode)
-         (prog-mode . flyspell-prog-mode)
   :custom
   (flyspell-abbrev-p t)
   (flyspell-default-dictionary "en_US")

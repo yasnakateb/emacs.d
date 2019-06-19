@@ -21,7 +21,7 @@
 
 ;;; avy
 (use-package avy
-    :ensure t)
+  :ensure t)
 
 ;;; undo-tree
 (use-package undo-tree
@@ -54,8 +54,7 @@
 (use-package nlinum-relative
   :ensure t
   :init
-  (nlinum-relative-setup-evil)
-  (add-hook 'prog-mode-hook 'nlinum-relative-mode))
+  (nlinum-relative-setup-evil))
 
 ;;; emojify
 (use-package emojify
@@ -78,8 +77,7 @@
   :hook ((css-mode . aggressive-indent-mode)
          (emacs-lisp-mode . aggressive-indent-mode)
          (js-mode . aggressive-indent-mode)
-         (lisp-mode . aggressive-indent-mode))
-  :custom (aggressive-indent-comments-too))
+         (lisp-mode . aggressive-indent-mode)))
 
 ;;; electric-operator
 (use-package electric-operator

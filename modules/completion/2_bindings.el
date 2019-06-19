@@ -28,11 +28,11 @@
 
 ;;; Toggles
 (general-define-key
-   :prefix "SPC t"
-   :states '(normal visual motion)
-   :keymaps 'override
-   "s" 'global-flyspell-mode
-   "c" 'global-flycheck-mode
-   "y" 'yas-global-mode)
+ :prefix "SPC t"
+ :states '(normal visual motion)
+ :keymaps 'override
+ "s" 'flyspell-mode
+ "c" 'global-flycheck-mode
+ "y" 'yas-global-mode)
 
 ;;; bindings.el ends here
