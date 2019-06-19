@@ -21,7 +21,7 @@
 
 ;;; power
 (setq helm-power-source
-      '((name . "HELM at the Emacs")
+      '((name . "Managing power in the Emacs.")
         (candidates . ("Cancel" "Shutdown" "Reboot" "Lock"))
         (action . (lambda (candidate)
 		    (cond
