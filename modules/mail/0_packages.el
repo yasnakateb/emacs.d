@@ -21,7 +21,10 @@
 
 ;;; mu4e general settings
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-(require 'mu4e)
+(use-package mu4e
+  :ensure nil
+  :defer 5)
+
 ;;; mu4e-conversation
 (use-package mu4e-conversation
   :ensure t
@@ -30,7 +33,7 @@
 ;;; alert
 (use-package mu4e-alert
   :ensure t)
- 
+
 ;;; gnus-dired
 (use-package gnus
   :ensure t)

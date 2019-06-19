@@ -20,43 +20,44 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; emms
-(require 'emms-setup)
-(require 'emms-player-mpd)
-(emms-all)
-(setq emms-seek-seconds 5)
-(setq emms-player-list '(emms-player-mpd))
-(setq emms-info-functions '(emms-info-mpd))
-(setq emms-player-mpd-server-name "localhost")
-(setq emms-player-mpd-server-port "6600")
+(with-eval-after-load 'emms
+  (require 'emms-setup)
+  (require 'emms-player-mpd)
+  (emms-all)
+  (setq emms-seek-seconds 5)
+  (setq emms-player-list '(emms-player-mpd))
+  (setq emms-info-functions '(emms-info-mpd))
+  (setq emms-player-mpd-server-name "localhost")
+  (setq emms-player-mpd-server-port "6600")
 
-(setq mpc-host "localhost:6600")
-(defun mpd-start-music-daemon ()
-  "Start MPD, connects to it and syncs the metadata cache."
-  (interactive)
-  (shell-command "mpd")
-  (mpd-update-database)
-  (emms-player-mpd-connect)
-  (emms-cache-set-from-mpd-all)
-  (message "MPD Started!"))
+  (setq mpc-host "localhost:6600")
+  (defun mpd-start-music-daemon ()
+    "Start MPD, connects to it and syncs the metadata cache."
+    (interactive)
+    (shell-command "mpd")
+    (mpd-update-database)
+    (emms-player-mpd-connect)
+    (emms-cache-set-from-mpd-all)
+    (message "MPD Started!"))
 
-(defun mpd-kill-music-daemon ()
-  "Stops playback and kill the music daemon."
-  (interactive)
-  (emms-stop)
-  (call-process "killall" nil nil nil "mpd")
-  (message "MPD Killed!"))
+  (defun mpd-kill-music-daemon ()
+    "Stops playback and kill the music daemon."
+    (interactive)
+    (emms-stop)
+    (call-process "killall" nil nil nil "mpd")
+    (message "MPD Killed!"))
 
-(defun mpd-update-database ()
-  "Updates the MPD database synchronously."
-  (interactive)
-  (call-process "mpc" nil nil nil "update")
-  (message "MPD Database Updated!"))
+  (defun mpd-update-database ()
+    "Updates the MPD database synchronously."
+    (interactive)
+    (call-process "mpc" nil nil nil "update")
+    (message "MPD Database Updated!"))
 
-(defun emms-start-mpd ()
-  "Run EMMS and MPD"
-  (interactive)
-  (mpd-start-music-daemon)
-  (emms))
+  (defun emms-start-mpd ()
+    "Run EMMS and MPD"
+    (interactive)
+    (mpd-start-music-daemon)
+    (emms)))
 
 ;;; helm-youtube
 (with-eval-after-load 'helm-youtube

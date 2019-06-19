@@ -49,6 +49,7 @@
 ;;; pdf-tools
 (use-package pdf-tools
   :ensure t
+  :defer 10
   :mode ("\\.pdf\\'" . pdf-tools-install))
 
 ;;; helm-bibtex

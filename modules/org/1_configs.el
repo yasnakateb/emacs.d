@@ -118,6 +118,13 @@
     (org-table-convert-region start end)))
 
 ;;; org-ref
+(defun mk-helm-ref ()
+  "Prompt for switching libraries."
+  (interactive)
+  (require 'org-ref)
+  (helm :sources '(mk-helm-libraries-source)))
+
+
 (with-eval-after-load 'org-ref
   (defun mk-set-libraries (library)
     "Set paths according to the selected library."
@@ -155,11 +162,6 @@
 	  (candidates . ("Research" "Ebooks" "PDFs"))
 	  (action . (lambda (candidate)
 		      (mk-set-libraries candidate)))))
-
-  (defun mk-helm-ref ()
-    "Prompt for switching libraries."
-    (interactive)
-    (helm :sources '(mk-helm-libraries-source)))
 
   (defun my-orcb-key ()
     "Replace the key in the entry, also change the pdf file name if it exites."

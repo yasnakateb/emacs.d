@@ -63,8 +63,8 @@
 ;;; org-ref
 (use-package org-ref
   :ensure t
+  :defer 7
   :init
-  (require 'org-ref)
   (setq org-ref-bibliography-notes     (concat org-directory "/ref/notes.org")
         org-ref-default-bibliography   '(concat org-directory "/ref/master.bib")
         org-ref-pdf-directory          (concat org-directory "/ref/files/"))
