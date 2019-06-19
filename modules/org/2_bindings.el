@@ -21,14 +21,16 @@
 
 ;;; Org
 (general-define-key
-   :prefix "SPC o"
-   :states '(normal visual motion)
-   :keymaps 'override
-   "a" 'org-agenda
-   "o" 'org-mode
-   "c" 'org-capture
-   "t" 'org-journal-new-entry
-   "y" 'journal-file-yesterday
-   "l" 'org-store-link)
+ :prefix "SPC o"
+ :states '(normal visual motion)
+ :keymaps 'override
+ "a" 'org-agenda
+ "o" 'org-mode
+ "c" 'org-capture
+ "t" 'org-journal-new-entry
+ "y" 'journal-file-yesterday
+ "r" 'helm-bibtex
+ "s" 'mk-helm-ref
+ "l" 'org-store-link)
 
 ;;; bindings.el ends here
