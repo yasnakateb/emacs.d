@@ -36,6 +36,10 @@
 (use-package expand-region
   :ensure t)
 
+;;; paren-face
+(use-package paren-face
+  :ensure t)
+
 ;;; evil-surround
 (use-package evil-surround
   :ensure t
