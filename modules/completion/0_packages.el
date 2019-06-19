@@ -74,10 +74,15 @@
 ;;; lsp-mode
 (use-package lsp-mode
   :ensure t
-  :hook ((c-mode c++-mode java-mode python-mode) . lsp)
+  :hook ((prog-mode) . lsp)
   :custom
   (lsp-prefer-flymake nil)
-  (lsp-session-file (concat mk-backup-dir "lsp-session-v1")))
+  (lsp-session-file (concat mk-backup-dir "lsp-session-v1"))
+  :config
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection "pyls")
+		    :major-modes '(python-mode)
+		    :server-id 'pyls)))
 
 (use-package lsp-ui
   :ensure t)
