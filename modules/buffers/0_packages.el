@@ -99,6 +99,7 @@
 ;;; recentf
 (use-package recentf
   :ensure t
+  :defer 8
   :init (recentf-mode)
   :custom
   (recentf-exclude (list "COMMIT_EDITMSG"

@@ -20,3 +20,4 @@ emms/
 projectile.cache
 tramp
 org-gcal/
+*.elc
