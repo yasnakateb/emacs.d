@@ -116,4 +116,9 @@
   (recentf-save-file (concat mk-backup-dir "recentf"))
   :config (run-at-time nil (* 5 60) 'recentf-save-list))
 
+;;; docker-tramp
+(use-package docker-tramp
+  :ensure t
+  :defer 6)
+
 ;;; packages.el ends here

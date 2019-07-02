@@ -28,6 +28,8 @@
    :keymaps 'override
    "k" 'helm-show-kill-ring
    "r" 'helm-recentf
+   "t" 'helm-tramp
+   "T" 'helm-tramp-quit
    "f" 'helm-find-files)
 
   (define-key helm-map (kbd "TAB") #'helm-execute-persistent-action)

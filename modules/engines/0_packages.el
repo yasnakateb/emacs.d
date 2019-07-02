@@ -32,4 +32,9 @@
   :init
   (helm-projectile-on))
 
+;;; helm-tramp
+(use-package helm-tramp
+  :ensure t
+  :defer 6)
+
 ;;; packages.el ends here
