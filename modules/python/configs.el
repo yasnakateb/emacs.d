@@ -19,11 +19,4 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-(defun lsp-set-cfg ()
-  (let ((lsp-cfg `(:pyls (:configurationSources ("flake8")))))
-    ;; TODO: check lsp--cur-workspace here to decide per server / project
-    (lsp--set-configuration lsp-cfg)))
-
-(add-hook 'lsp-after-initialize-hook 'lsp-set-cfg))
-
 ;;; configs.el ends here
