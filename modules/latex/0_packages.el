@@ -46,11 +46,11 @@
 (use-package reftex
   :ensure t)
 
-;;; pdf-tools
-(use-package pdf-tools
-  :ensure t
-  :defer 10
-  :mode ("\\.pdf\\'" . pdf-tools-install))
+;;;; pdf-tools
+					;(use-package pdf-tools
+					;  :ensure t
+					;  :defer 10
+					;  :mode ("\\.pdf\\'" . pdf-tools-install))
 
 ;;; helm-bibtex
 (use-package helm-bibtex

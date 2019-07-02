@@ -45,9 +45,9 @@
   (setq reftex-cite-prompt-optional-args t))
 
 ;;; pdf-tools
-(with-eval-after-load 'pdf-tools
-  (setq mouse-wheel-follow-mouse t
-	pdf-view-resize-factor 1.10))
+					;(with-eval-after-load 'pdf-tools
+					;  (setq mouse-wheel-follow-mouse t
+					;	pdf-view-resize-factor 1.10))
 
 ;;; helm-bibtex
 (with-eval-after-load 'helm-bibtex
