@@ -22,19 +22,24 @@
 ;;; org
 (with-eval-after-load 'org
   (require 'org-id)
+
+  (setq org-ref-open-pdf-function
+	(lambda (fpath)
+	  (start-process "zathura" "*helm-bibtex-zathura*" "/usr/bin/zathura" fpath)))
+
   (setq mk-secret-dir (concat org-directory "/keys/"))
   (setq org-todo-keywords '((sequence "TODO(t)"
-                                 "STARTED(s)"
-                                 "WAITING(w@/!)"
-                                 "SOMEDAY(.)" "|" "DONE(x!)" "CANCELLED(c@)")
-                       (sequence "TOBUY"
-                                 "TOSHRINK"
-                                 "TOCUT"
-                                 "TOSEW" "|" "DONE(x)")
-		       (sequence "TODO"
-                                 "DOING"
-                                 "TESTING"
-                                 "ALMOST" "|" "DONE(x)")))
+				      "STARTED(s)"
+				      "WAITING(w@/!)"
+				      "SOMEDAY(.)" "|" "DONE(x!)" "CANCELLED(c@)")
+			    (sequence "TOBUY"
+				      "TOSHRINK"
+				      "TOCUT"
+				      "TOSEW" "|" "DONE(x)")
+			    (sequence "TODO"
+				      "DOING"
+				      "TESTING"
+				      "ALMOST" "|" "DONE(x)")))
 
   (org-babel-do-load-languages
    'org-babel-load-languages
