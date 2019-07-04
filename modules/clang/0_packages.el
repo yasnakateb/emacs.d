@@ -23,12 +23,14 @@
 (use-package ccls
   :ensure t
   :after projectile
+  :hook ((c-mode c++-mode objc-mode) .
+         (lambda () (require 'ccls) (lsp)))
   :custom
   (ccls-args nil)
   (ccls-executable (executable-find "ccls"))
   (projectile-project-root-files-top-down-recurring
    (append '("compile_commands.json" ".ccls")
-           projectile-project-root-files-top-down-recurring))
+	   projectile-project-root-files-top-down-recurring))
   :config (add-to-list 'projectile-globally-ignored-directories ".ccls-cache"))
 
 ;;; google-c-style
