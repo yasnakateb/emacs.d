@@ -27,7 +27,7 @@
 	TeX-parse-self t)
   (add-hook 'LaTeX-mode-hook
             (lambda ()
-	      ;(TeX-source-correlate-mode)
+	      (TeX-source-correlate-mode)
               (turn-on-reftex)
               (reftex-isearch-minor-mode)
 	      (add-to-list 'TeX-view-program-selection
@@ -36,8 +36,8 @@
               (setq reftex-plug-into-AUCTeX t
                     TeX-PDF-mode t
 		    TeX-command-force ""
-		    ;TeX-source-correlate-method 'synctex
-		    ;TeX-source-correlate-start-server t
+		    TeX-source-correlate-method 'synctex
+		    TeX-source-correlate-start-server t
 		    ))))
 
   ;; to use pdfview with auctex
