@@ -142,4 +142,7 @@
   :config
   (load-library "~/Dropbox/org/keys/gcal.el.gpg"))
 
+;;; org-drill
+(require 'org-drill)
+
 ;;; packages.el ends here
