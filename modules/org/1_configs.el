@@ -36,6 +36,9 @@
 				      "TOSHRINK"
 				      "TOCUT"
 				      "TOSEW" "|" "DONE(x)")
+			    (sequence "TOWATCH"
+				      "UNRELEASED"
+				      "RELEASED" "|" "WATCHED(x)")
 			    (sequence "TODO"
 				      "DOING"
 				      "TESTING"

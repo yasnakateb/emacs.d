@@ -145,4 +145,16 @@
 ;;; org-drill
 (require 'org-drill)
 
+;;; org-tvdb
+(use-package org-tvdb
+  :ensure nil ; remove this if available through melpa
+  :config
+  (load-library "~/Dropbox/org/keys/tvdb.el.gpg")
+  :commands (org-tvdb-insert-todo-list
+	     org-tvdb-add-season
+	     org-tvdb-add-series
+	     org-tvdb-mark-series-watched
+	     org-tvdb-mark-season-watched
+	     org-tvdb-update-series
+	     org-tvdb-update-season))
 ;;; packages.el ends here
