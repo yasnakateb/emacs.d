@@ -55,8 +55,8 @@
 
 ;;; Font
 (set-face-attribute 'default nil
-                    :family "Source Code Pro"
-                    :height 95
+                    :family "monaco"
+                    :height 180
                     :weight 'normal
                     :width 'normal)
 
@@ -64,7 +64,7 @@
 (global-hl-line-mode +1)
 ;; bars
 (menu-bar-mode -1)
-(toggle-scroll-bar -1) 
-(tool-bar-mode -1) 
+(toggle-scroll-bar -1)
+(tool-bar-mode -1)
 
 ;;; configs.el ends here
