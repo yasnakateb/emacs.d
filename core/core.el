@@ -58,9 +58,9 @@ Must end with a slash.")
       package-enable-at-startup nil
       help-window-select t
       package-archives
-      `(("gnu"          . "https://elpa.gnu.org/packages/")
-        ("melpa"        . "https://melpa.org/packages/")
-        ("org"          . "https://orgmode.org/elpa/"))
+      `(("gnu"          . "http://elpa.gnu.org/packages/")
+        ("melpa"        . "http://melpa.org/packages/")
+        ("org"          . "http://orgmode.org/elpa/"))
       package-archive-priorities
       '(("melpa" . -1)
 	("gnu" . -3)))
